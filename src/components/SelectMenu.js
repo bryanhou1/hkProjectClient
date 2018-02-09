@@ -14,6 +14,7 @@ class SelectMenu extends Component {
 
   render() {
     const { items, name, autoCompleteCollection } = this.props;
+    debugger;
     return (
       <div>
 
@@ -24,7 +25,7 @@ class SelectMenu extends Component {
         
         <ReactAutocomplete
           inputProps={{ id: `searchField-${this.props.idVal}`}}
-          items={[" "," hi"]}
+          items={autoCompleteCollection[this.state.selectValue] || []}
           shouldItemRender={(item, value) => item.toString().toLowerCase().indexOf(value.toLowerCase()) > -1}
           getItemValue={item => item}
           renderItem={(item, highlighted) =>

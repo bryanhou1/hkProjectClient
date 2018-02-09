@@ -5,7 +5,7 @@ const initialState = {sequences: [],
     argType: [],
     genome: [],
     accession: [],
-    taxonomicphylum: [],
+    taxonomicPhylum: [],
     taxonomicClass: [],
     taxonomicOrder: [],
     taxonomicFamily: [],
@@ -31,10 +31,12 @@ export default function sequenceReducer(state = initialState, action){
     case "SEARCH_FAILURE":
     case "FETCH_SEQUENCE_FAILURE":
       return {...state, fetching: false}
+
+
     case "FETCH_AUTOCOMPLETE_START":
       return { ...state, autoCompleteCollection: {...state.autoCompleteCollection, fetching: true} }
     case "FETCH_AUTOCOMPLETE_SUCCESS":
-      return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, [action.attr]: action.col.map(String), fetching: false } }
+      return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, [action.attr]: action.col, fetching: false } }
     case "FETCH_AUTOCOMPLETE_FAILURE":
       return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, fetching: false } }
     default:

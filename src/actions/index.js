@@ -35,8 +35,8 @@ export const loadAutoComplete = (attr) => {
     
     return request.then(
       response => {
-        // debugger;
-        dispatch({type: "FETCH_AUTOCOMPLETE_SUCCESS", attr: response.data.attr, col: response.data.col, trie: response.data.trie})
+        dispatch({type: "FETCH_AUTOCOMPLETE_SUCCESS", attr: response.data.attr, col: response.data.col.map(String), trie: response.data.trie})
+        //trie not implemented
       },
       err => {
         dispatch({type: "FETCH_AUTOCOMPLETE_FAILURE"})
@@ -57,7 +57,6 @@ export const search = (query) => {
 
     return request.then(
       response => {
-        debugger;
         dispatch({ type: "SEARCH_SUCCESS", sequences: response.data})
       },
       err => {
