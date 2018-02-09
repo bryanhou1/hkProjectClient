@@ -5,6 +5,8 @@ import Form from '../components/Form';
 import DisplayTable from '../components/DisplayTable';
 import {connect} from 'react-redux';
 import {initiateSession, loadAutoComplete, search} from '../actions/index';
+import { CSVLink } from 'react-csv';
+
 
 class App extends Component {
 
@@ -13,7 +15,6 @@ class App extends Component {
   }
 
   render() {
-    // debugger; 
     const {sequences, loadAutoComplete, autoCompleteCollection, search} = this.props;
 
     return (
@@ -24,6 +25,8 @@ class App extends Component {
           autoCompleteCollection={autoCompleteCollection}
         />
         <DisplayTable sequences={sequences} />
+        
+        <CSVLink data={sequences} >Download Search Result</CSVLink>
       </div>
     );
   }
@@ -36,5 +39,4 @@ const mapStateToProps = (state) => {
     autoCompleteCollection: autoCompleteCollection
   }
 }
-
 export default connect(mapStateToProps, {initiateSession, loadAutoComplete, search})(App);

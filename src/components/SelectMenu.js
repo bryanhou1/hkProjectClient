@@ -14,7 +14,6 @@ class SelectMenu extends Component {
 
   render() {
     const { items, name, autoCompleteCollection } = this.props;
-    debugger;
     return (
       <div>
 
