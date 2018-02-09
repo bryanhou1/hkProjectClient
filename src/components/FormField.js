@@ -10,7 +10,7 @@ class FormField extends Component {
         {menu.map((i, index) => (
           <div key={index}>
             <label htmlFor={i[0]}>{i[0]}</label> : 
-            <SelectMenu name={i[0]} items={i[1]} loadAutoComplete={loadAutoComplete} autoCompleteCollection={autoCompleteCollection}/>
+            <SelectMenu idVal={index} name={i[0]} items={i[1]} loadAutoComplete={loadAutoComplete} autoCompleteCollection={autoCompleteCollection}/>
           </div>
         ))}
       </div>

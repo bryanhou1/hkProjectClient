@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FormField from './FormField';
+import ErrorsDisplay from './ErrorsDisplay';
 
 class Form extends Component {
   constructor(props) {
@@ -28,18 +29,37 @@ class Form extends Component {
       ]]
    ]
   }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const query = {};
+    [0,1,2].forEach((i) => {
+      if (document.getElementById(`attrField-${i}`).value !== "" && document.getElementById(`searchField-${i}`).value.trim() !=="") {
+        query[document.getElementById(`attrField-${i}`).value] = document.getElementById(`searchField-${i}`).value.trim()
+      }
+    })
+    if (!(Object.keys(query).length === 0 && query.constructor === Object)) { //object not empty
+      console.log("valid search")
+      this.props.search(query)
+    } else {
+      console.log("invalid search")
+    }
+    
+  }
 
   render() {
+    const {loadAutoComplete, autoCompleteCollection} = this.props;
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <FormField
             menu={this.menu}
-            loadAutoComplete={this.props.loadAutoComplete}
-            autoCompleteCollection={this.props.autoCompleteCollection}
+            loadAutoComplete={loadAutoComplete}
+            autoCompleteCollection={autoCompleteCollection}
           />
           <button type="input">Search</button>
+          <ErrorsDisplay />
         </form>
+        
       </div>
     )
   }

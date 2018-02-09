@@ -22,10 +22,13 @@ const initialState = {sequences: [],
 export default function sequenceReducer(state = initialState, action){
 
   switch (action.type) {
+    case "SEARCH_START":
     case "FETCH_SEQUENCE_START":
       return {...state, fetching: true}
+    case "SEARCH_SUCCESS":
     case "FETCH_SEQUENCE_SUCCESS":
       return {...state, sequences: action.sequences, fetching: false}
+    case "SEARCH_FAILURE":
     case "FETCH_SEQUENCE_FAILURE":
       return {...state, fetching: false}
     case "FETCH_AUTOCOMPLETE_START":

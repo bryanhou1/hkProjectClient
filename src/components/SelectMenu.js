@@ -17,13 +17,14 @@ class SelectMenu extends Component {
     return (
       <div>
 
-        <select name={name} value={this.state.selectValue} onChange={this.handleChange}>
+        <select name={name} value={this.state.selectValue} onChange={this.handleChange} id={`attrField-${this.props.idVal}`}>
           <option value="" disabled/>
           {items.map((item, i) => <option key={i} value={item[1]}>{item[0]}</option> )}
         </select>
         
         <ReactAutocomplete
-          items={autoCompleteCollection[this.state.selectValue]|| [" "," hi"]}
+          inputProps={{ id: `searchField-${this.props.idVal}`}}
+          items={[" "," hi"]}
           shouldItemRender={(item, value) => item.toString().toLowerCase().indexOf(value.toLowerCase()) > -1}
           getItemValue={item => item}
           renderItem={(item, highlighted) =>

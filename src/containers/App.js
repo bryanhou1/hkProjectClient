@@ -4,7 +4,7 @@ import './App.css';
 import Form from '../components/Form';
 import DisplayTable from '../components/DisplayTable';
 import {connect} from 'react-redux';
-import {initiateSession, loadAutoComplete} from '../actions/index';
+import {initiateSession, loadAutoComplete, search} from '../actions/index';
 
 class App extends Component {
 
@@ -13,11 +13,13 @@ class App extends Component {
   }
 
   render() {
-    const {sequences, loadAutoComplete, autoCompleteCollection} = this.props;
+    // debugger; 
+    const {sequences, loadAutoComplete, autoCompleteCollection, search} = this.props;
 
     return (
       <div className="App">
         <Form 
+          search={search}
           loadAutoComplete={loadAutoComplete} 
           autoCompleteCollection={autoCompleteCollection}
         />
@@ -35,4 +37,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {initiateSession, loadAutoComplete})(App);
+export default connect(mapStateToProps, {initiateSession, loadAutoComplete, search})(App);
