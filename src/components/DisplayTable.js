@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import * as CONSTANTS from "../constants/index";
 import matchSorter from 'match-sorter';
 
 class DisplayTable extends Component {
@@ -25,74 +26,74 @@ class DisplayTable extends Component {
               ]
             },
             {
-              Header: "ARG",
+              Header: CONSTANTS.ARG,
               columns: [
                 {
-                  Header: "Subtype",
-                  accessor: "argSubtype",
+                  Header: CONSTANTS.DISPLAY.SUBTYPE,
+                  accessor: CONSTANTS.DB.SUBTYPE,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Type",
-                  accessor: "argType"
+                  Header: CONSTANTS.DISPLAY.TYPE,
+                  accessor: CONSTANTS.DB.TYPE,
                 }
               ]
             },
             {
-              Header: "Genome Taxonomy",
+              Header: CONSTANTS.GENOME_TAXONOMY,
               columns: [
                 {
-                  Header: "Genome",
-                  accessor: "genome",
+                  Header: CONSTANTS.DISPLAY.GENOME,
+                  accessor: CONSTANTS.DB.GENOME,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Accession",
-                  accessor: "accession",
+                  Header: CONSTANTS.DISPLAY.ACCESSION,
+                  accessor: CONSTANTS.DB.ACCESSION,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Phylum",
-                  accessor: "taxonomicPhylum",
+                  Header: CONSTANTS.DISPLAY.PHYLUM,
+                  accessor: CONSTANTS.DB.PHYLUM,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Class",
-                  accessor: "taxonomicClass",
+                  Header: CONSTANTS.DISPLAY.CLASS,
+                  accessor: CONSTANTS.DB.CLASS,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Order",
-                  accessor: "taxonomicOrder",
+                  Header: CONSTANTS.DISPLAY.ORDER,
+                  accessor: CONSTANTS.DB.ORDER,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Family",
-                  accessor: "taxonomicFamily",
+                  Header: CONSTANTS.DISPLAY.FAMILY,
+                  accessor: CONSTANTS.DB.FAMILY,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Genus",
-                  accessor: "taxonomicGenus",
+                  Header: CONSTANTS.DISPLAY.GENUS,
+                  accessor: CONSTANTS.DB.GENUS,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Species",
-                  accessor: "taxonomicSpecies",
+                  Header: CONSTANTS.DISPLAY.SPECIES,
+                  accessor: CONSTANTS.DB.SPECIES,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: "Strain",
-                  accessor: "strain",
+                  Header: CONSTANTS.DISPLAY.STRAIN,
+                  accessor: CONSTANTS.DB.STRAIN,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 }
@@ -100,23 +101,23 @@ class DisplayTable extends Component {
               ]
             },
             {
-              Header: 'Blast Criteria',
+              Header: CONSTANTS.BLAST_CRITERIA,
               columns: [
                 {
-                  Header: "Identity",
-                  accessor: "identity"
+                  Header: CONSTANTS.DISPLAY.IDENTITY,
+                  accessor: CONSTANTS.DB.IDENTITY
                 },
                 {
-                  Header: "Hit Ratio",
-                  accessor: "hitRatio"
+                  Header: CONSTANTS.DISPLAY.HIT_RATIO,
+                  accessor: CONSTANTS.DB.HIT_RATIO
                 },
                 {
-                  Header: "Alignment Length",
-                  accessor: "alignmentLength"
+                  Header: CONSTANTS.DISPLAY.ALIGNMENT_LENGTH,
+                  accessor: CONSTANTS.DB.ALIGNMENT_LENGTH
                 },
                 {
-                  Header: "E Value",
-                  accessor: "eValue"
+                  Header: CONSTANTS.DISPLAY.E_VALUE,
+                  accessor: CONSTANTS.DB.E_VALUE
                 }
               ]
             }

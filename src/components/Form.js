@@ -1,31 +1,32 @@
 import React, {Component} from 'react';
 import FormField from './FormField';
 import ErrorsDisplay from './ErrorsDisplay';
+import * as CONSTANTS from '../constants/index';
 
 class Form extends Component {
   constructor(props) {
     super(props);
     this.menu = [
-      ["ARG", [
-        ["SubType","argSubtype"],
-        ["Type","argType"]
+      [CONSTANTS.ARG, [
+        [CONSTANTS.DISPLAY.SUBTYPE, CONSTANTS.DB.SUBTYPE],
+        [CONSTANTS.DISPLAY.TYPE, CONSTANTS.DB.TYPE]
       ]],
-      ["Genome Taxonomy", [
-        ["Genome","genome"],
-        ["Accession","accession"],
-        ["Phylum","taxonomicPhylum"],
-        ["Class","taxonomicClass"],
-        ["Order","taxonomicOrder"],
-        ["Family","taxonomicFamily"],
-        ["Genus","taxonomicGenus"],
-        ["Species","taxonomicSpecies"],
-        ["Strain","strain"]
+      [CONSTANTS.GENOME_TAXONOMY, [
+        [CONSTANTS.DISPLAY.GENOME, CONSTANTS.DB.GENOME],
+        [CONSTANTS.DISPLAY.ACCESSION, CONSTANTS.DB.ACCESSION],
+        [CONSTANTS.DISPLAY.PHYLUM, CONSTANTS.DB.PHYLUM],
+        [CONSTANTS.DISPLAY.CLASS, CONSTANTS.DB.CLASS],
+        [CONSTANTS.DISPLAY.ORDER, CONSTANTS.DB.ORDER],
+        [CONSTANTS.DISPLAY.FAMILY, CONSTANTS.DB.FAMILY],
+        [CONSTANTS.DISPLAY.GENUS, CONSTANTS.DB.GENUS],
+        [CONSTANTS.DISPLAY.SPECIES, CONSTANTS.DB.SPECIES],
+        [CONSTANTS.DISPLAY.STRAIN, CONSTANTS.DB.STRAIN]
       ]],
-      ["Blast Criteria", [
-        ["Identity","identity"],
-        ["Hit Ratio","hitRatio"],
-        ["Alignment Length","alignmentLength"],
-        ["E Value","eValue"]
+      [CONSTANTS.GENOME_TAXONOMY, [
+        [CONSTANTS.DISPLAY.IDENTITY, CONSTANTS.DB.IDENTITY],
+        [CONSTANTS.DISPLAY.HIT_RATIO, CONSTANTS.DB.HIT_RATIO],
+        [CONSTANTS.DISPLAY.ALIGNMENT_LENGTH, CONSTANTS.DB.ALIGNMENT_LENGTH],
+        [CONSTANTS.DISPLAY.E_VALUE, CONSTANTS.DB.E_VALUE]
       ]]
    ]
   }
