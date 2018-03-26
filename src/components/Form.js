@@ -42,6 +42,7 @@ class Form extends Component {
       console.log("valid search")
       this.props.search(query)
     } else {
+      // display error message
       console.log("invalid search")
     }
     

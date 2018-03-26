@@ -1,13 +1,13 @@
 import axios from 'axios';
-import createTrie from 'autosuggest-trie';
 import * as CONSTANTS from '../constants/index';
+import * as URL from '../config/url';
 
 export const initiateSession = () => {
   return (dispatch, getState) => {
     dispatch({type: CONSTANTS.FETCH_SEQUENCE_START})
     const request = axios({
       method: 'get',
-      url: 'http://localhost:3000/items'
+      url: `${URL.API_URL}/items`
     })
     
     return request.then(
@@ -27,7 +27,7 @@ export const loadAutoComplete = (attr) => {
     dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_START})
     const request = axios({
       method: 'get',
-      url: `http://localhost:3000/get_autocomplete_data`,
+      url: `${URL.API_URL}/get_autocomplete_data`,
       params: {
         "attr": attr
       }
@@ -35,9 +35,8 @@ export const loadAutoComplete = (attr) => {
     
     return request.then(
       response => {
-        dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS, attr: response.data.attr, col: response.data.col.map(String), trie: response.data.trie})
-        //trie not implemented
-      },
+        //
+        dispatch({ type: CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS, attr: response.data.attr, col: response.data.col.map(String)})},
       err => {
         dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_FAILURE})
         throw err;
@@ -51,7 +50,7 @@ export const search = (query) => {
     dispatch({ type: "SEARCH_START" })
     const request = axios({
       method: 'get',
-      url: `http://localhost:3000/items`,
+      url: `${URL.API_URL}/items`,
       params: {query: query}
     })
 
