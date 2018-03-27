@@ -12,7 +12,8 @@ export const initiateSession = () => {
     
     return request.then(
       response => {
-        dispatch({type: CONSTANTS.FETCH_SEQUENCE_SUCCESS, sequences: response.data})
+        debugger
+        dispatch({type: CONSTANTS.FETCH_SEQUENCE_SUCCESS, sequences: response.data.items, table: response.data.table})
       },
       err => {
         dispatch({type: CONSTANTS.FETCH_SEQUENCE_FAILURE})
@@ -55,10 +56,36 @@ export const search = (query, tableNo) => {
 
     return request.then(
       response => {
-        dispatch({ type: "SEARCH_SUCCESS", sequences: response.data.items, table: response.data.table})
+        const {items, table} = response.data;
+        dispatch({ type: "SEARCH_SUCCESS", sequences: items, table: table})
+
+
+
+        if (table===2) {
+          // let tableCopy = [];
+          // let uniqueRows = []
+          // let uniqueColumns = []
+          // for (let row of items) {
+          //   if (uniqueColumns.includes(JSON.stringify(obj2))) {
+            
+          //   } 
+          //   if {JSON.stringify(obj1) === JSON.stringify(obj2) }
+          // }
+
+
+          // let firstRows = {blank: [],arg: [],subtype: [],type: [],rank: [],remain: []}
+          
+          // // for (let row of items) {
+          // //   firstRows.blank << {value: ""};
+          // //   firstRows.arg << {value: row[arg]};
+          // //   firstRows.subtype << {value: row[subtype]};
+          // //   firstRows.type << {value: row[type]};
+          // //   firstRows.rank << {value: row[rank]};
+          // // }
+          // dispatch({ type: "RENDER_TABLE_TWO_FROM_JSON", sequences: items, table: table})
+        }
       },
       err => {
-        debugger;
         dispatch({ type: "SEARCH_FAILURE" })
         throw err;
       }

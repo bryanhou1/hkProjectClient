@@ -2,6 +2,13 @@ import * as CONSTANTS from '../constants/index';
 
 const initialState = {sequences1: [],
   sequences2: [],
+  sequences2Grid: [
+    [{value: ""}, {value: "Sample"}, {value: "Ecotype"},{value: "Eco-subtype"}, {value: "Identity"}, {value: "Hit length"}, {value: "E-value"}],
+    [{value: "ARG"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}],
+    [{value: "Type"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}],
+    [{value: "Subtype"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}],
+    [{value: "Rank"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}]
+  ],
   fetching: false,
   autoCompleteCollection: {
     1: {

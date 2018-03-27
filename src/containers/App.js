@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import Form from '../components/Form';
 import DisplayTable from '../components/DisplayTable';
@@ -15,29 +14,8 @@ class App extends Component {
     this.props.initiateSession();
   }
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      grid: [
-        [{value: ""},
-          {value: "sample"},
-          {value: "ecotype"},
-          {value: "eco-subtype"},
-          {value: "identity"},
-          {value: "hit length"},
-          {value: "e-value"}
-        ]
-        ,
-        [{value: "ARG"}, {value: 1}, {value: 3}, {value: 3}, {value: 3}],
-        [{value: "Type"}, {value: 2}, {value: 4}, {value: 4}, {value: 4}],
-        [{value: "Subtype"}, {value: 1}, {value: 3}, {value: 3}, {value: 3}],
-        [{value: "Rank"}, {value: 2}, {value: 4}, {value: 4}, {value: 4}]
-      ]
-    }
-  }
-
   render() {
-    const {sequences1, loadAutoComplete, autoCompleteCollection, search} = this.props;
+    const {sequences1, loadAutoComplete, autoCompleteCollection, search, sequences2Grid} = this.props;
 
     return (
       <div className="App">
@@ -61,18 +39,9 @@ class App extends Component {
 
 
         <ReactDataSheet
-        data={this.state.grid}
-        valueRenderer={(cell) => cell.value}
-        onContextMenu={(e, cell, i, j) => cell.readOnly ? e.preventDefault() : null}
-        onCellsChanged={changes => {
-          const grid = this.state.grid.map(row => [...row])
-          changes.forEach(({cell, row, col, value}) => {
-            grid[row][col] = {...grid[row][col], value}
-          })
-          this.setState({grid})
-        }}
-        readOnly={true}
-      />
+          data={sequences2Grid}
+          valueRenderer={(cell) => cell.value}
+        />
 
 
       </div>
@@ -81,9 +50,10 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { sequences1, autoCompleteCollection } = state.sequencesReducer;
+  const { sequences1, sequences2Grid, autoCompleteCollection } = state.sequencesReducer;
   return {
     sequences1: sequences1,
+    sequences2Grid: sequences2Grid,
     autoCompleteCollection: autoCompleteCollection
   }
 }
