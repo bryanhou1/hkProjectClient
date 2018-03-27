@@ -10,7 +10,6 @@ class DisplayTable extends Component {
   
   render() {
     const {sequences} =this.props;
-    console.log(sequences)
     return (
       <ReactTable
           data={sequences}

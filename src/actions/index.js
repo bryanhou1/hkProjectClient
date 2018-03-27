@@ -7,7 +7,7 @@ export const initiateSession = () => {
     dispatch({type: CONSTANTS.FETCH_SEQUENCE_START})
     const request = axios({
       method: 'get',
-      url: `${URL.API_URL}/items`
+      url: `${URL.API_URL}/items1`
     })
     
     return request.then(
@@ -22,12 +22,12 @@ export const initiateSession = () => {
   }
 }
 
-export const loadAutoComplete = (attr) => {
+export const loadAutoComplete = (attr, tableNo) => {
   return (dispatch, getState) => {
     dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_START})
     const request = axios({
       method: 'get',
-      url: `${URL.API_URL}/get_autocomplete_data`,
+      url: `${URL.API_URL}/get_autocomplete_data_${tableNo}`,
       params: {
         "attr": attr
       }
@@ -35,8 +35,7 @@ export const loadAutoComplete = (attr) => {
     
     return request.then(
       response => {
-        //
-        dispatch({ type: CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS, attr: response.data.attr, col: response.data.col.map(String)})},
+        dispatch({ type: CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS, attr: response.data.attr, col: response.data.col.map(String), table: response.data.table})},
       err => {
         dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_FAILURE})
         throw err;
@@ -45,20 +44,21 @@ export const loadAutoComplete = (attr) => {
   }
 } 
 
-export const search = (query) => {
+export const search = (query, tableNo) => {
   return (dispatch, getState) => {
     dispatch({ type: "SEARCH_START" })
     const request = axios({
       method: 'get',
-      url: `${URL.API_URL}/items`,
+      url: `${URL.API_URL}/items${tableNo}`,
       params: {query: query}
     })
 
     return request.then(
       response => {
-        dispatch({ type: "SEARCH_SUCCESS", sequences: response.data})
+        dispatch({ type: "SEARCH_SUCCESS", sequences: response.data.items, table: response.data.table})
       },
       err => {
+        debugger;
         dispatch({ type: "SEARCH_FAILURE" })
         throw err;
       }

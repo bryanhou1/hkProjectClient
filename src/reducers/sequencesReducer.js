@@ -1,24 +1,41 @@
 import * as CONSTANTS from '../constants/index';
 
-const initialState = {sequences: [],
+const initialState = {sequences1: [],
+  sequences2: [],
   fetching: false,
   autoCompleteCollection: {
-    [CONSTANTS.DB.SUBTYPE]: [],
-    [CONSTANTS.DB.TYPE]: [],
-    [CONSTANTS.DB.GENOME]: [],
-    [CONSTANTS.DB.ACCESSION]: [],
-    [CONSTANTS.DB.PHYLUM]: [],
-    [CONSTANTS.DB.CLASS]: [],
-    [CONSTANTS.DB.ORDER]: [],
-    [CONSTANTS.DB.FAMILY]: [],
-    [CONSTANTS.DB.GENUS]: [],
-    [CONSTANTS.DB.SPECIES]: [],
-    [CONSTANTS.DB.STRAIN]: [],
-    [CONSTANTS.DB.IDENTITY]: [],
-    [CONSTANTS.DB.HIT_RATIO]: [],
-    [CONSTANTS.DB.ALIGNMENT_LENGTH]: [],
-    [CONSTANTS.DB.E_VALUE]: [], 
+    1: {
+      [CONSTANTS.DB.SUBTYPE]: [],
+      [CONSTANTS.DB.TYPE]: [],
+      [CONSTANTS.DB.GENOME]: [],
+      [CONSTANTS.DB.ACCESSION]: [],
+      [CONSTANTS.DB.PHYLUM]: [],
+      [CONSTANTS.DB.CLASS]: [],
+      [CONSTANTS.DB.ORDER]: [],
+      [CONSTANTS.DB.FAMILY]: [],
+      [CONSTANTS.DB.GENUS]: [],
+      [CONSTANTS.DB.SPECIES]: [],
+      [CONSTANTS.DB.STRAIN]: [],
+      [CONSTANTS.DB.IDENTITY]: [],
+      [CONSTANTS.DB.HIT_RATIO]: [],
+      [CONSTANTS.DB.ALIGNMENT_LENGTH]: [],
+      [CONSTANTS.DB.E_VALUE]: []
+    }, 
+    2: {
+      "sample": [],
+      "ecoType": [],
+      "ecoSubtype": [],
+      "identity": [],
+      "hitLength": [],
+      "eValue": [],
+      "arg": [],
+      "argSubtype": [],
+      "argType": [],
+      "rank": [],
+      "abundance": [],
+    },
     fetching: false
+    
   }}
 
 export default function sequenceReducer(state = initialState, action){
@@ -29,7 +46,7 @@ export default function sequenceReducer(state = initialState, action){
       return {...state, fetching: true}
     case CONSTANTS.SEARCH_SUCCESS:
     case CONSTANTS.FETCH_SEQUENCE_SUCCESS:
-      return {...state, sequences: action.sequences, fetching: false}
+      return {...state, [`sequences${action.table}`]: action.sequences, fetching: false}
     case CONSTANTS.SEARCH_FAILURE:
     case CONSTANTS.FETCH_SEQUENCE_FAILURE:
       return {...state, fetching: false}
@@ -38,7 +55,7 @@ export default function sequenceReducer(state = initialState, action){
     case CONSTANTS.FETCH_AUTOCOMPLETE_START:
       return { ...state, autoCompleteCollection: {...state.autoCompleteCollection, fetching: true} }
     case CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS:
-      return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, [action.attr]: action.col, fetching: false } }
+      return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, [action.table]: {...state.autoCompleteCollection[action.table], [action.attr]: action.col}, fetching: false } }
     case CONSTANTS.FETCH_AUTOCOMPLETE_FAILURE:
       return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, fetching: false } }
     default:

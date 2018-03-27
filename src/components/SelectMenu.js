@@ -9,21 +9,21 @@ class SelectMenu extends Component {
 
   handleChange = (e) => {
     this.setState({selectValue: e.target.value});
-    this.props.loadAutoComplete(e.target.value);
+    this.props.loadAutoComplete(e.target.value, e.target.id.match(/-(.+)-/)[1]);
   }
 
   render() {
-    const { items, name, autoCompleteCollection } = this.props;
+    const { items, name, autoCompleteCollection, idVal, menuChoice } = this.props;
     return (
       <div>
 
-        <select name={name} value={this.state.selectValue} onChange={this.handleChange} id={`attrField-${this.props.idVal}`}>
+        <select name={name} value={this.state.selectValue} onChange={this.handleChange} id={`attrField-${menuChoice}-${idVal}`}>
           <option value="" disabled/>
           {items.map((item, i) => <option key={i} value={item[1]}>{item[0]}</option> )}
         </select>
         
         <ReactAutocomplete
-          inputProps={{ id: `searchField-${this.props.idVal}`}}
+          inputProps={{ id: `searchField-${menuChoice}-${this.props.idVal}`}}
           items={autoCompleteCollection[this.state.selectValue] || []}
           shouldItemRender={(item, value) => item.toString().toLowerCase().indexOf(value.toLowerCase()) > -1}
           getItemValue={item => item}

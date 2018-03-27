@@ -6,7 +6,7 @@ import * as CONSTANTS from '../constants/index';
 class Form extends Component {
   constructor(props) {
     super(props);
-    this.menu = [
+    this.menu1 = [
       [CONSTANTS.ARG, [
         [CONSTANTS.DISPLAY.SUBTYPE, CONSTANTS.DB.SUBTYPE],
         [CONSTANTS.DISPLAY.TYPE, CONSTANTS.DB.TYPE]
@@ -22,25 +22,47 @@ class Form extends Component {
         [CONSTANTS.DISPLAY.SPECIES, CONSTANTS.DB.SPECIES],
         [CONSTANTS.DISPLAY.STRAIN, CONSTANTS.DB.STRAIN]
       ]],
-      [CONSTANTS.GENOME_TAXONOMY, [
+      [CONSTANTS.BLAST_CRITERIA, [
         [CONSTANTS.DISPLAY.IDENTITY, CONSTANTS.DB.IDENTITY],
         [CONSTANTS.DISPLAY.HIT_RATIO, CONSTANTS.DB.HIT_RATIO],
         [CONSTANTS.DISPLAY.ALIGNMENT_LENGTH, CONSTANTS.DB.ALIGNMENT_LENGTH],
         [CONSTANTS.DISPLAY.E_VALUE, CONSTANTS.DB.E_VALUE]
       ]]
    ]
-  }
+
+
+   this.menu2 = [
+    [CONSTANTS.ARG, [
+      ["ARG", "arg"],
+      ["Subtype", "argSubtype"],
+      ["Type", "argType"],
+      ["Rank", "rank"],
+    ]],
+    ["blue", [
+      ["sample", "sample"],
+      ["ecoType", "ecoType"], 
+      ["ecoSubtype", "ecoSubtype"],  
+      ["identity", "identity"],
+    ]],
+    ["detail", [
+      ["hitLength", "hitLength"], 
+      ["eValue", "eValue"],
+      ["abundance", "abundance"],
+    ]]
+  ]}
+
   handleSubmit = (e) => {
+    const {menuChoice, search} = this.props;
     e.preventDefault();
     const query = {};
     [0,1,2].forEach((i) => {
-      if (document.getElementById(`attrField-${i}`).value !== "" && document.getElementById(`searchField-${i}`).value.trim() !=="") {
-        query[document.getElementById(`attrField-${i}`).value] = document.getElementById(`searchField-${i}`).value.trim()
+      if (document.getElementById(`attrField-${menuChoice}-${i}`).value !== "" && document.getElementById(`searchField-${menuChoice}-${i}`).value.trim() !=="") {
+        query[document.getElementById(`attrField-${menuChoice}-${i}`).value] = document.getElementById(`searchField-${menuChoice}-${i}`).value.trim()
       }
     })
     if (!(Object.keys(query).length === 0 && query.constructor === Object)) { //object not empty
       console.log("valid search")
-      this.props.search(query)
+      search(query, menuChoice)
     } else {
       // display error message
       console.log("invalid search")
@@ -48,16 +70,29 @@ class Form extends Component {
     
   }
 
+  menu = (menuChoice) => {
+    switch (menuChoice) {
+      case 1:
+        return this.menu1;
+      case 2:
+        return this.menu2;
+      default:
+        return;
+    }
+  }
+
   render() {
-    const {loadAutoComplete, autoCompleteCollection} = this.props;
+    const {menuChoice, loadAutoComplete, autoCompleteCollection} = this.props;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <FormField
-            menu={this.menu}
+            menuChoice={menuChoice}
+            menu={this.menu(menuChoice)}
             loadAutoComplete={loadAutoComplete}
-            autoCompleteCollection={autoCompleteCollection}
+            autoCompleteCollection={autoCompleteCollection[menuChoice]}
           />
+
           <button type="input">Search</button>
           <ErrorsDisplay />
         </form>
