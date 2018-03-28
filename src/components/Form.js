@@ -42,12 +42,11 @@ class Form extends Component {
       ["sample", "sample"],
       ["ecoType", "ecoType"], 
       ["ecoSubtype", "ecoSubtype"],  
-      ["identity", "identity"],
     ]],
     ["detail", [
+      ["identity", "identity"],
       ["hitLength", "hitLength"], 
-      ["eValue", "eValue"],
-      ["abundance", "abundance"],
+      ["eValue", "eValue"]
     ]]
   ]}
 

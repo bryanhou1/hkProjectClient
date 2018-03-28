@@ -58,8 +58,16 @@ export default function sequenceReducer(state = initialState, action){
     case CONSTANTS.FETCH_SEQUENCE_FAILURE:
       return {...state, fetching: false}
 
+    case "RENDER_TABLE_TWO": {
 
-    case CONSTANTS.FETCH_AUTOCOMPLETE_START:
+      let copy = initialState.sequences2Grid.slice()
+      copy = copy.map((row, i) => row.concat(...action.grid[0][i]))
+      debugger;
+      copy = [...copy, ...action.grid[1]]
+      return { ...state, sequences2Grid: copy};
+      
+      break;
+    }case CONSTANTS.FETCH_AUTOCOMPLETE_START:
       return { ...state, autoCompleteCollection: {...state.autoCompleteCollection, fetching: true} }
     case CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS:
       return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, [action.table]: {...state.autoCompleteCollection[action.table], [action.attr]: action.col}, fetching: false } }
