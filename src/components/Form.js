@@ -71,7 +71,6 @@ class Form extends Component {
       ["ecoSubtype", "ecoSubtype"],  
     ]]]
   }
-  
 
   handleSubmit = (e) => {
     const {menuChoice, search} = this.props;
@@ -87,9 +86,8 @@ class Form extends Component {
       }
     }
 
-    // debugger;
     ["identity","eValue","hitLength"].forEach((prop) => {
-      if (document.getElementById(prop).children[0].className !== "default text") {
+      if (document.getElementById(prop) && document.getElementById(prop).children[0].className !== "default text") {
         query[prop] = document.getElementById(prop).children[0].innerHTML
       }
     })
@@ -143,7 +141,7 @@ class Form extends Component {
                 autoCompleteCollection={autoCompleteCollection[menuChoice]}
               />
               <br />
-              <Button primary> Search </Button>
+              <Button primary fluid> Search </Button>
               <ErrorsDisplay />
             </form>
           </Grid.Column>

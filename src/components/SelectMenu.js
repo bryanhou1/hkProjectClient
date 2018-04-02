@@ -25,7 +25,7 @@ class SelectMenu extends Component {
 
         
         <ReactAutocomplete
-          inputProps={{ id: `searchField-${menuChoice}-${this.props.idVal}`, placeholder: "search..."}}
+          inputProps={{ id: `searchField-${menuChoice}-${idVal}`, placeholder: "search...", disabled: !this.state.selectValue}}
           wrapperStyle={{ position: 'relative', display: 'inline-block'}}
           wrapperProps={{ className: "ui input"}}
           menuStyle={{

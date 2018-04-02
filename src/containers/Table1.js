@@ -4,6 +4,7 @@ import DisplayTableOne from '../components/DisplayTableOne';
 import {connect} from 'react-redux';
 import {initiateSession, loadAutoComplete, search} from '../actions/index';
 import { CSVLink } from 'react-csv';
+import ResDivider from '../components/ResDivider';
 
 class Table1 extends Component {
 
@@ -23,6 +24,7 @@ class Table1 extends Component {
           loadAutoComplete={loadAutoComplete} 
           autoCompleteCollection={autoCompleteCollection}
         />
+        <ResDivider text={"result"}/>
         <DisplayTableOne sequences={sequences1} />
         <CSVLink data={sequences1} >Download Search Result</CSVLink>
       </div>
