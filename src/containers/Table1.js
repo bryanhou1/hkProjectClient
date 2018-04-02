@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from '../components/Form';
-import DisplayTable from '../components/DisplayTable';
+import DisplayTableOne from '../components/DisplayTableOne';
 import {connect} from 'react-redux';
 import {initiateSession, loadAutoComplete, search} from '../actions/index';
 import { CSVLink } from 'react-csv';
@@ -23,7 +23,7 @@ class Table1 extends Component {
           loadAutoComplete={loadAutoComplete} 
           autoCompleteCollection={autoCompleteCollection}
         />
-        <DisplayTable sequences={sequences1} />
+        <DisplayTableOne sequences={sequences1} />
         <CSVLink data={sequences1} >Download Search Result</CSVLink>
       </div>
     );

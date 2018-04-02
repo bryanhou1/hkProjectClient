@@ -4,7 +4,7 @@ import "react-table/react-table.css";
 import * as CONSTANTS from "../constants/index";
 import matchSorter from 'match-sorter';
 
-class DisplayTable extends Component {
+class DisplayTableOne extends Component {
 
   fuzzyMatch = (filter, rows) => matchSorter(rows, filter.value, { keys: [filter.id] })
   
@@ -28,6 +28,11 @@ class DisplayTable extends Component {
               Header: CONSTANTS.ARG,
               columns: [
                 {
+                  Header: "ARG",
+                  accessor: "arg",
+                  filterMethod: this.fuzzyMatch,
+                  filterAll: true
+                },{
                   Header: CONSTANTS.DISPLAY.SUBTYPE,
                   accessor: CONSTANTS.DB.SUBTYPE,
                   filterMethod: this.fuzzyMatch,
@@ -107,16 +112,16 @@ class DisplayTable extends Component {
                   accessor: CONSTANTS.DB.IDENTITY
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.HIT_RATIO,
-                  accessor: CONSTANTS.DB.HIT_RATIO
-                },
-                {
-                  Header: CONSTANTS.DISPLAY.ALIGNMENT_LENGTH,
-                  accessor: CONSTANTS.DB.ALIGNMENT_LENGTH
+                  Header: "Hit Length",
+                  accessor: "hitLength"
                 },
                 {
                   Header: CONSTANTS.DISPLAY.E_VALUE,
                   accessor: CONSTANTS.DB.E_VALUE
+                },
+                {
+                  Header: "Rank",
+                  accessor: "rank"
                 }
               ]
             }
@@ -129,4 +134,4 @@ class DisplayTable extends Component {
 
 }
 
-export default DisplayTable;
+export default DisplayTableOne;

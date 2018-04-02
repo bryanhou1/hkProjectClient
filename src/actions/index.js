@@ -45,6 +45,7 @@ export const loadAutoComplete = (attr, tableNo) => {
 } 
 
 export const search = (query, tableNo) => {
+  debugger
   return (dispatch, getState) => {
     dispatch({ type: "SEARCH_START" })
     const request = axios({
