@@ -22,7 +22,13 @@ export default class NavBar extends Component {
         >
           Home
         </Menu.Item>
-
+        <Menu.Item 
+          as={Link} to='/about'
+          name='About'
+          onClick={this.handleItemClick}
+        >
+          About
+        </Menu.Item>
         <Menu.Item
           as={Link} to='/table1'
           name='Table One'

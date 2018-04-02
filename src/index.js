@@ -7,6 +7,7 @@ import Layout from './components/Layout'
 import App from './containers/App'
 import Table1 from './containers/Table1'
 import Table2 from './containers/Table2'
+import About from './components/About'
 
 import registerServiceWorker from './registerServiceWorker'
 import store from './store/configureStore'
@@ -21,6 +22,7 @@ ReactDOM.render(
   <Router history={history}>
     <Route path="/" component={Layout} >
       <IndexRoute component={App} />
+      <Route path="about" component={About}/>
       <Route path="table1" component={Table1}/>
       <Route path="table2" component={Table2}/>
     </Route>

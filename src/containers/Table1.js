@@ -16,7 +16,7 @@ class Table1 extends Component {
     const {sequences1, loadAutoComplete, autoCompleteCollection, search} = this.props;
 
     return (
-      <div className="App">
+      <div>
         <h1>Table 1</h1>
         <Form 
           menuChoice={1}

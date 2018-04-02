@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {initiateSession, loadAutoComplete, search} from '../actions/index';
 import ReactDataSheet from 'react-datasheet';
 import 'react-datasheet/lib/react-datasheet.css';
+import ResDivider from '../components/ResDivider';
 
 class Table2 extends Component {
 
@@ -20,6 +21,7 @@ class Table2 extends Component {
           autoCompleteCollection={autoCompleteCollection}
         />
 
+        <ResDivider text={"result"}/>
         <ReactDataSheet
           data={sequences2Grid}
           valueRenderer={(cell) => cell.value}
