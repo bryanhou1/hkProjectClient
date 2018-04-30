@@ -16,15 +16,6 @@ class DisplayTableOne extends Component {
           filterable
           columns={[
             {
-              Header: "ID",
-              columns: [
-                {
-                  Header: "ID",
-                  accessor: "id"
-                }
-              ]
-            },
-            {
               Header: CONSTANTS.ARG,
               columns: [
                 {
@@ -112,7 +103,7 @@ class DisplayTableOne extends Component {
                   accessor: CONSTANTS.DB.IDENTITY
                 },
                 {
-                  Header: "Hit Length",
+                  Header: CONSTANTS.DISPLAY.HIT_RATIO,
                   accessor: "hitLength"
                 },
                 {

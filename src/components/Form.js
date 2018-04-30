@@ -28,7 +28,7 @@ class Form extends Component {
       ]],
       [CONSTANTS.BLAST_CRITERIA, [
         [CONSTANTS.DISPLAY.IDENTITY, CONSTANTS.DB.IDENTITY],
-        ["Hit Length", "hitLength"],
+        ["Hit Ratio", "hitLength"],
         [CONSTANTS.DISPLAY.E_VALUE, CONSTANTS.DB.E_VALUE],
         ["Rank","rank"]
       ]]
