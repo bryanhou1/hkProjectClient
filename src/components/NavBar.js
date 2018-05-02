@@ -37,7 +37,6 @@ export default class NavBar extends Component {
         >
           Table One
         </Menu.Item>
-
         <Menu.Item
           name='Table Two'
           as={Link} to='/table2'

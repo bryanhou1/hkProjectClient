@@ -5,11 +5,12 @@ import {initiateSession, loadAutoComplete, search} from '../actions/index';
 import ReactDataSheet from 'react-datasheet';
 import 'react-datasheet/lib/react-datasheet.css';
 import ResDivider from '../components/ResDivider';
+import DisplayTableTwo from '../components/DisplayTableTwo';
 
 class Table2 extends Component {
 
   render() {
-    const {loadAutoComplete, autoCompleteCollection, search, sequences2Grid} = this.props;
+    const {loadAutoComplete, autoCompleteCollection, search, sequences2Grid, sequences2GridTest} = this.props;
 
     return (
       <div>
@@ -22,20 +23,22 @@ class Table2 extends Component {
         />
 
         <ResDivider text={"result"}/>
-        <ReactDataSheet
+        {/* <ReactDataSheet
           data={sequences2Grid}
           valueRenderer={(cell) => cell.value}
-        />
-
+        /> */}
+        <DisplayTableTwo sequences2GridTest={sequences2GridTest}/>
+        
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { sequences2Grid, autoCompleteCollection } = state.sequencesReducer;
+  const { sequences2Grid, sequences2GridTest, autoCompleteCollection } = state.sequencesReducer;
   return {
     sequences2Grid: sequences2Grid,
+    sequences2GridTest: sequences2GridTest,
     autoCompleteCollection: autoCompleteCollection
   }
 }

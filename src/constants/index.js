@@ -37,7 +37,7 @@ export const DISPLAY = {
   IDENTITY: "Identity",
   HIT_RATIO: "Hit Ratio",
   ALIGNMENT_LENGTH: "Alignment",
-  E_VALUE: "E Value"
+  E_VALUE: "E-value"
 }
 
 export const SEARCH_START = "SEARCH_START";

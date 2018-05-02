@@ -2,6 +2,8 @@ import * as CONSTANTS from '../constants/index';
 
 const initialState = {sequences1: [],
   sequences2: [],
+  sequences2GridTest: {xLabels: ["Sample", "Ecotype","Eco-subtype", "Identity", "Hit length", "E-value"],
+    yLabels:["Arg", "Type", "Subtype","Rank"], xHeaders:[[1,2,3,4,5,6],[7,8,9,10,11,12],[1,1,1,1,1,1]], yHeaders: [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]], grid:[["x","x","x","y","z"],["x","x","x","y","z"],["x","x","x","y","z"]]},
   sequences2Grid: [
     [{value: ""}, {value: "Sample"}, {value: "Ecotype"},{value: "Eco-subtype"}, {value: "Identity"}, {value: "Hit length"}, {value: "E-value"}],
     [{value: "ARG"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}],

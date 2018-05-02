@@ -65,7 +65,7 @@ class Form extends Component {
       ["Type", "argType"],
       ["Rank", "rank"],
     ]],
-    ["blue", [
+    ["Habitat", [
       ["sample", "sample"],
       ["ecoType", "ecoType"], 
       ["ecoSubtype", "ecoSubtype"],  
