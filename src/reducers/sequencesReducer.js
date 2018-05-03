@@ -2,15 +2,24 @@ import * as CONSTANTS from '../constants/index';
 
 const initialState = {sequences1: [],
   sequences2: [],
-  sequences2GridTest: {xLabels: ["Sample", "Ecotype","Eco-subtype", "Identity", "Hit length", "E-value"],
-    yLabels:["Arg", "Type", "Subtype","Rank"], xHeaders:[[1,2,3,4,5,6],[7,8,9,10,11,12],[1,1,1,1,1,1]], yHeaders: [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]], grid:[["x","x","x","y","z"],["x","x","x","y","z"],["x","x","x","y","z"]]},
-  sequences2Grid: [
-    [{value: ""}, {value: "Sample"}, {value: "Ecotype"},{value: "Eco-subtype"}, {value: "Identity"}, {value: "Hit length"}, {value: "E-value"}],
-    [{value: "ARG"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}],
-    [{value: "Type"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}],
-    [{value: "Subtype"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}],
-    [{value: "Rank"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}, {value: "none"}]
-  ],
+  sequences2Grid: {
+    display: false,
+    
+    xLabels: ["Sample", "Ecotype","Eco-subtype"],
+    yLabels:["Arg", "Type", "Subtype","Rank"],
+    xHeaders:[[1,2,3],[7,8,9],[1,1,1]],
+    yHeaders: [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]],
+    grid16s:[["x","x","x","y","z"],["x","x","x","y","z"],["x","x","x","y","z"]],
+    gridCell: [],
+    gridPpm: [],
+    paginate: {
+      rowsOnEachPage: 10,
+      colsOnEachPage: 10,
+      rowPagesCount: 3,
+      colPagesCount: 5,
+      currentPage: 1
+    },
+  },
   fetching: false,
   autoCompleteCollection: {
     1: {
@@ -44,7 +53,6 @@ const initialState = {sequences1: [],
       "abundance": [],
     },
     fetching: false
-    
   }}
 
 export default function sequenceReducer(state = initialState, action){
@@ -61,11 +69,7 @@ export default function sequenceReducer(state = initialState, action){
       return {...state, fetching: false}
 
     case "RENDER_TABLE_TWO": {
-
-      let copy = initialState.sequences2Grid.slice()
-      copy = copy.map((row, i) => row.concat(...action.grid[0][i]))
-      copy = [...copy, ...action.grid[1]]
-      return { ...state, sequences2Grid: copy};
+      return { ...state, sequences2Grid: {...state.sequences2Grid, xHeaders: action.xHeaders, yHeaders: action.yHeaders, grid16s: action.grid16s, gridCell: action.gridCell, gridPpm: action.gridPpm, display: true }};
     }case CONSTANTS.FETCH_AUTOCOMPLETE_START:
       return { ...state, autoCompleteCollection: {...state.autoCompleteCollection, fetching: true} }
     case CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS:

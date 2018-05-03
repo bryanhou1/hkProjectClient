@@ -45,7 +45,6 @@ export const loadAutoComplete = (attr, tableNo) => {
 } 
 
 export const search = (query, tableNo) => {
-  debugger
   return (dispatch, getState) => {
     dispatch({ type: "SEARCH_START" })
     const request = axios({
@@ -58,9 +57,8 @@ export const search = (query, tableNo) => {
       response => {
         const {items, table} = response.data;
         dispatch({ type: "SEARCH_SUCCESS", sequences: items, table: table})
-
         if (table===2) {
-          dispatch({ type: "RENDER_TABLE_TWO", grid: response.data.grid})
+          dispatch({ type: "RENDER_TABLE_TWO", grid16s: response.data.grid16s, gridCell: response.data.gridCell, gridPpm: response.data.gridPpm, xHeaders: response.data.xHeaders, yHeaders: response.data.yHeaders})
         }
       },
       err => {

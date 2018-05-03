@@ -10,7 +10,7 @@ import DisplayTableTwo from '../components/DisplayTableTwo';
 class Table2 extends Component {
 
   render() {
-    const {loadAutoComplete, autoCompleteCollection, search, sequences2Grid, sequences2GridTest} = this.props;
+    const {loadAutoComplete, autoCompleteCollection, search, sequences2Grid} = this.props;
 
     return (
       <div>
@@ -23,11 +23,7 @@ class Table2 extends Component {
         />
 
         <ResDivider text={"result"}/>
-        {/* <ReactDataSheet
-          data={sequences2Grid}
-          valueRenderer={(cell) => cell.value}
-        /> */}
-        <DisplayTableTwo sequences2GridTest={sequences2GridTest}/>
+        <DisplayTableTwo sequences2Grid={sequences2Grid}/>
         
       </div>
     );
@@ -35,10 +31,9 @@ class Table2 extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { sequences2Grid, sequences2GridTest, autoCompleteCollection } = state.sequencesReducer;
+  const {sequences2Grid, autoCompleteCollection } = state.sequencesReducer;
   return {
     sequences2Grid: sequences2Grid,
-    sequences2GridTest: sequences2GridTest,
     autoCompleteCollection: autoCompleteCollection
   }
 }
