@@ -32,6 +32,10 @@ class DisplayTableOne extends Component {
                 {
                   Header: CONSTANTS.DISPLAY.TYPE,
                   accessor: CONSTANTS.DB.TYPE,
+                }, 
+                {
+                  Header: "Rank",
+                  accessor: "rank"
                 }
               ]
             },
@@ -109,10 +113,6 @@ class DisplayTableOne extends Component {
                 {
                   Header: CONSTANTS.DISPLAY.E_VALUE,
                   accessor: CONSTANTS.DB.E_VALUE
-                },
-                {
-                  Header: "Rank",
-                  accessor: "rank"
                 }
               ]
             }

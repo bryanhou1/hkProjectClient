@@ -14,22 +14,26 @@ class PaginationMenu extends Component {
   }
 
   render() {
-    let {orientation, paginate} = this.props
+    let {orientation, paginate} = this.props;
+
     return (
       <div>
-        <Grid columns={2}> 
+        <Grid columns={4}> 
+          <Grid.Column>
+            
+          </Grid.Column>
           <Grid.Column>
             <Input 
-              size="mini"
-              label='Currently showing...'
-              name='activePage'
-              orientation={orientation}
-              min={1}
-              max={paginate[orientation].pagesCount}
-              onChange={this.handlePaginationChange2}
-              type='number'
-              value={paginate[orientation].currentPage}
-            /> / {paginate[orientation].pagesCount}
+                size="mini"
+                label='Currently showing...'
+                name='activePage'
+                orientation={orientation}
+                min={1}
+                max={paginate[orientation].pagesCount}
+                onChange={this.handlePaginationChange2}
+                type='number'
+                value={paginate[orientation].currentPage}
+              /> / {paginate[orientation].pagesCount}
           </Grid.Column>
           <Grid.Column>
             <Pagination

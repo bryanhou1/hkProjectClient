@@ -12,7 +12,8 @@ class Form extends Component {
       [CONSTANTS.ARG, [
         ["ARG", "arg"],
         [CONSTANTS.DISPLAY.SUBTYPE, CONSTANTS.DB.SUBTYPE],
-        [CONSTANTS.DISPLAY.TYPE, CONSTANTS.DB.TYPE]
+        [CONSTANTS.DISPLAY.TYPE, CONSTANTS.DB.TYPE],
+        ["Rank","rank"]
       ]],
       [CONSTANTS.GENOME_TAXONOMY, [
         [CONSTANTS.DISPLAY.GENOME, CONSTANTS.DB.GENOME],
@@ -29,8 +30,7 @@ class Form extends Component {
       [CONSTANTS.BLAST_CRITERIA, [
         [CONSTANTS.DISPLAY.IDENTITY, CONSTANTS.DB.IDENTITY],
         ["Hit Ratio", "hitLength"],
-        [CONSTANTS.DISPLAY.E_VALUE, CONSTANTS.DB.E_VALUE],
-        ["Rank","rank"]
+        [CONSTANTS.DISPLAY.E_VALUE, CONSTANTS.DB.E_VALUE]
       ]]
     ]
 

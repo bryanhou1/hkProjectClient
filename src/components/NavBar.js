@@ -35,7 +35,7 @@ export default class NavBar extends Component {
           active={activeItem === 'Table One'}
           onClick={this.handleItemClick}
         >
-          Table One
+          Whole Genome
         </Menu.Item>
         <Menu.Item
           name='Table Two'
@@ -43,7 +43,7 @@ export default class NavBar extends Component {
           active={activeItem === 'Table Two'}
           onClick={this.handleItemClick}
         >
-          Table Two
+          Metagenomes
         </Menu.Item>
       </Menu>
     )
