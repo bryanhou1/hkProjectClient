@@ -17,7 +17,7 @@ class Table1 extends Component {
 
     return (
       <div>
-        <h1>Table 1</h1>
+        <h1>Whole Genomes</h1>
         <Form 
           menuChoice={1}
           search={search}

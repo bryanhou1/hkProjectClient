@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import UnitSelectButtonContainer from './UnitSelectButtonContainer';
 import {Container} from 'semantic-ui-react';
+import PaginationMenu from './PaginationMenu';
+
 // import * as CONSTANTS from "../constants/index";
 
 class DisplayTableTwo extends Component {
@@ -17,9 +19,11 @@ class DisplayTableTwo extends Component {
   }
 
   generateThead() {
-    let {yHeaders, xLabels} = this.props.sequences2Grid;
+    
+    let {yHeaders, xLabels, paginate} = this.props.sequences2Grid;
     let xLabelsT = xLabels.map((xLabel, i)=> <th key={i}>{xLabel}</th>)
-    let xSpaces = yHeaders.map((x,i) => <th key={i*-1}/>)
+    let xSpaces = [...Array(paginate.horizontal.elPerPage)].map((xLabel, i) => <th key={i}/>)
+
     return (
       <thead>
         <tr>
@@ -32,13 +36,26 @@ class DisplayTableTwo extends Component {
   }
 
   generateTBody() {
-    let {yLabels, yHeaders, xLabels, xHeaders, grid16s} = this.props.sequences2Grid;
+    let {yLabels, yHeaders, xLabels, xHeaders, grid16s, gridCell, gridPpm, displayUnit} = this.props.sequences2Grid;
+    let {horizontal, vertical}= this.props.sequences2Grid.paginate
     let rows = []
     let spaces = [];
+    let currentGrid = ((displayUnit) => {
+      switch(displayUnit){
+        case "16s":
+          return grid16s;
+        case "cell":
+          return gridCell;
+        case "ppm":
+          return gridPpm;
+        default:
+          return;
+      }
+    })(displayUnit);
+    
     for (let i = 0; i< xLabels.length; i++){
       spaces.push( <th key={i}/>)
     }
-
 
     let xHeadersComp = []
     for (let i = 0; i < xHeaders.length; i++){
@@ -47,43 +64,54 @@ class DisplayTableTwo extends Component {
         xHeadersComp[i].push(<th key={`${i},${j}`}>{xHeaders[i][j]}</th>)
       }
     }
-    // debugger;
-    for (let i = 0; i<yLabels.length + xHeaders.length; i++){
-      if (i<4) {
-        rows.push(
-          <tr key={i}>
-            <td>
-              {yLabels[i]}
-            </td>
-            {spaces}
-            {yHeaders.map((yHeader)=> <th>{yHeader[i]}</th>)}
-          </tr>
-        )
-      }else{
-        rows.push(
-          <tr key={i}>
-            <td/>
-            {xHeadersComp[i-4]}
-            {grid16s[i-4].map((abundance)=> <th>{abundance}</th> )}
-          </tr>
-        )
-      }
+    
+    for (let i=0; i< yLabels.length;i++) {
+      rows.push(
+        <tr key={i}>
+          <td>
+            {yLabels[i]}
+          </td>
+          {spaces}
+          {yHeaders.slice(horizontal.elPerPage*(horizontal.currentPage-1),horizontal.elPerPage*(horizontal.currentPage-1)+horizontal.elPerPage).map((yHeader, j) => <th key={j}>{yHeader[i]}</th>)}
+        </tr>
+      )
     }
 
+    for (let i = vertical.elPerPage*(vertical.currentPage-1); i<vertical.elPerPage*(vertical.currentPage-1)+vertical.elPerPage; i++){
+      rows.push(
+        <tr key={i}>
+          <td/>
+          {xHeadersComp[i]}
+          {currentGrid[i] ? currentGrid[i].slice(horizontal.elPerPage*(horizontal.currentPage-1),horizontal.elPerPage*(horizontal.currentPage-1)+horizontal.elPerPage).map((abundance, j)=> <th key={j}> {abundance} </th> ) : ""}
+        </tr>
+      )
+    }
+
+
     return (
-    <tbody>
-      {rows}
-    </tbody>
+      <tbody>
+        {rows}
+      </tbody>
     )
   }
 
   render() {
-    return (
-      <Container>
-        <UnitSelectButtonContainer/>
-        {this.generateTable()}
-      </Container>
-    )
+    let {sequences2Grid, changeTableTwoDisplayUnit} = this.props;
+    if (sequences2Grid.display){
+      return (
+        <Container>
+          <UnitSelectButtonContainer changeTableTwoDisplayUnit={changeTableTwoDisplayUnit}/>
+          {this.generateTable()}
+          Left Right<PaginationMenu orientation={"horizontal"} />
+          Up Down <PaginationMenu orientation={"vertical"}/>
+        </Container>
+      )
+    } else {
+      return (
+        <Container />
+      )
+    }
+    
   }
 }
 

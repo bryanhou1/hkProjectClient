@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactAutocomplete from 'react-autocomplete'
 
+
 class SelectMenu extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +55,6 @@ class SelectMenu extends Component {
           onChange={e => this.setState({ value: e.target.value })}
           onSelect={value => this.setState({ value })}
         />
-        
       </div>
     )
   }

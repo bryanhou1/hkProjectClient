@@ -93,6 +93,8 @@ class Form extends Component {
     })
 
     if (!(Object.keys(query).length === 0 && query.constructor === Object)) { //object not empty
+      // need to check other qualities
+      
       console.log("valid search")
       search(query, menuChoice)
     } else {

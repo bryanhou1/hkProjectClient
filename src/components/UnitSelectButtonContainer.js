@@ -11,18 +11,21 @@ class UnitSelectButtonContainer extends Component {
     }
   }
 
-  onClick = (optionName) => {
+  onClick = (optionName, changeTableTwoDisplayUnit) => {
+    let dict = {"per 16S": "16s", "per Cell": "cell", "ppm": "ppm"}
+    
+    changeTableTwoDisplayUnit(dict[optionName])
     this.setState({activeButtonName: optionName})
   }
-   
+  
   render() {
     return (
       <div>
         <h3> Unit: </h3>
         <Button.Group>
-          <UnitSelectButton active={"per 16S" === this.state.activeButtonName} onClick={this.onClick} optionName={"per 16S"}/>
-          <UnitSelectButton active={"per Cell" === this.state.activeButtonName} onClick={this.onClick} optionName={"per Cell"}/>
-          <UnitSelectButton active={"per ppm" === this.state.activeButtonName} onClick={this.onClick} optionName={"per ppm"}/>
+          <UnitSelectButton active={"per 16S" === this.state.activeButtonName} onClick={this.onClick} optionName={"per 16S"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>
+          <UnitSelectButton active={"per Cell" === this.state.activeButtonName} onClick={this.onClick} optionName={"per Cell"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>
+          <UnitSelectButton active={"ppm" === this.state.activeButtonName} onClick={this.onClick} optionName={"ppm"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>
         </Button.Group>
         <br/><br/>
       </div>
@@ -30,6 +33,5 @@ class UnitSelectButtonContainer extends Component {
   }
 
 }
-
 
 export default UnitSelectButtonContainer;

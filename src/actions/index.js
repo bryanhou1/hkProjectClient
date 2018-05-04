@@ -68,3 +68,16 @@ export const search = (query, tableNo) => {
     )
   }
 }
+
+export const changeTableTwoDisplayUnit = (displayUnit) => {
+  return dispatch => {
+    dispatch({ type: "CHANGE_TABLE_TWO_UNIT", displayUnit: displayUnit })
+    return
+  }
+}
+
+export const switchTableTwoPage = ({orientation, page}) => {
+  return dispatch => {
+    dispatch({type: "SWITCH_TABLE_TWO_PAGE", orientation: orientation, page: page})
+  }
+}
