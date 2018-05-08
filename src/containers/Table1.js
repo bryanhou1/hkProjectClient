@@ -2,41 +2,49 @@ import React, { Component } from 'react';
 import Form from '../components/Form';
 import DisplayTableOne from '../components/DisplayTableOne';
 import {connect} from 'react-redux';
-import {initiateSession, loadAutoComplete, search} from '../actions/index';
+import {initiateSession, fetchAutoComplete, search} from '../actions/index';
 import { CSVLink } from 'react-csv';
 import ResDivider from '../components/ResDivider';
+import {Container, Segment, Dimmer, Loader} from 'semantic-ui-react';
 
 class Table1 extends Component {
-
   componentDidMount() {
     this.props.initiateSession();
   }
 
   render() {
-    const {sequences1, loadAutoComplete, autoCompleteCollection, search} = this.props;
-
+    const {sequences1, fetchAutoComplete, autoCompleteCollection, search, resultFetching} = this.props;
     return (
       <div>
         <h1>Whole Genomes</h1>
-        <Form 
+        <Form
           menuChoice={1}
           search={search}
-          loadAutoComplete={loadAutoComplete} 
+          fetchAutoComplete={fetchAutoComplete} 
           autoCompleteCollection={autoCompleteCollection}
+          resultFetching={resultFetching}
         />
         <ResDivider text={"result"}/>
-        <DisplayTableOne sequences={sequences1} />
-        <CSVLink data={sequences1} >Download Search Result</CSVLink>
+        <Container>
+          <Segment basic>
+            <Dimmer active={resultFetching} inverted>
+              <Loader inverted>Loading</Loader>
+            </Dimmer>
+            <DisplayTableOne sequences={sequences1} />
+            <CSVLink data={sequences1} >Download Search Result</CSVLink>
+          </Segment>
+        </Container>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { sequences1,autoCompleteCollection } = state.sequencesReducer;
+  const { sequences1,autoCompleteCollection, fetching } = state.sequencesReducer;
   return {
+    resultFetching: fetching,
     sequences1: sequences1,
     autoCompleteCollection: autoCompleteCollection
   }
 }
-export default connect(mapStateToProps, {initiateSession, loadAutoComplete, search})(Table1);
+export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, search})(Table1);

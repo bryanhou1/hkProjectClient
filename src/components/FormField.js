@@ -1,18 +1,47 @@
 import React, {Component} from 'react';
 import SelectMenu from './SelectMenu';
-import {Dropdown} from 'semantic-ui-react'
+import {Dropdown, Input, Dimmer, Loader} from 'semantic-ui-react'
 
 class FormField extends Component {
 
 
-  buildDropdown = (items) => {
+  buildForm = (items) => {
     return items.map((item, i) => {
-      return (
-        <div key={i}>
-          <label htmlFor={item.dbName}>{item.displayName} : </label> <br/>
-          <Dropdown placeholder={item.displayName} fluid selection options={this.buildDropdownOptions(item.options)} id={item.dbName} />
-        </div>
-      )
+      if (item.type === "dropdown"){
+        return (
+          <div key={i}>
+            <label>{item.displayName}:</label><br />
+            <div className="ui corner labeled input fluid">
+              <Dropdown placeholder={item.displayName} fluid selection options={this.buildDropdownOptions(item.options)} id={item.dbName} onChange={this.props.handleChange}/>
+              <div className="ui corner label">
+                <i className="asterisk icon"></i>
+              </div>
+            </div>
+          </div>
+          
+        )
+      }else if (item.type === "fillIn") {
+        return (
+          <div key={i}>
+            <label htmlFor={item.dbName}>{item.displayName} : </label> <br/>
+            <Input
+              id={item.dbName}
+              className="ui fluid"
+              label={item.label}
+              name='activePage'
+              step={item.step || null}
+              min={item.min}
+              max={item.max}
+              type='number'
+              onChange={this.props.handleChange}
+            />
+          </div>
+        )
+      }else{
+        // modify as needed
+        return (<div/>);
+      }
+
     })
   }
 
@@ -26,19 +55,20 @@ class FormField extends Component {
   }
   
   render() {
-    const { menuChoice, menu, loadAutoComplete, autoCompleteCollection, dropDownSelect} = this.props;
+    let { menuChoice, menu, fetchAutoComplete, autoCompleteCollection, blastMenu} = this.props;
     return (
-    
       <div>
+        <Dimmer active={autoCompleteCollection.fetching} inverted>
+          <Loader content='Loading' />
+        </Dimmer>
         <h3>Search</h3>
         {menu.map((i, index) => (
           <div key={index}>
-            <SelectMenu menuChoice={menuChoice} idVal={index} name={i[0]} items={i[1]} loadAutoComplete={loadAutoComplete} autoCompleteCollection={autoCompleteCollection}/>
+            <SelectMenu menuChoice={menuChoice} idVal={index} name={i[0]} items={i[1]} fetchAutoComplete={fetchAutoComplete} autoCompleteCollection={autoCompleteCollection}/>
           </div>
         ))}
-        
         <div>
-          {this.buildDropdown(dropDownSelect)}
+          {this.buildForm(blastMenu)}
         </div>
       </div>
     )

@@ -22,9 +22,9 @@ export const initiateSession = () => {
   }
 }
 
-export const loadAutoComplete = (attr, tableNo) => {
+export const fetchAutoComplete = (attr, tableNo) => {
   return (dispatch, getState) => {
-    dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_START})
+    dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_START, tableNo: tableNo})
     const request = axios({
       method: 'get',
       url: `${URL.API_URL}/get_autocomplete_data_${tableNo}`,
@@ -46,7 +46,7 @@ export const loadAutoComplete = (attr, tableNo) => {
 
 export const search = (query, tableNo) => {
   return (dispatch, getState) => {
-    dispatch({ type: "SEARCH_START" })
+    dispatch({ type: CONSTANTS.SEARCH_START })
     const request = axios({
       method: 'get',
       url: `${URL.API_URL}/items${tableNo}`,
@@ -56,13 +56,13 @@ export const search = (query, tableNo) => {
     return request.then(
       response => {
         const {items, table} = response.data;
-        dispatch({ type: "SEARCH_SUCCESS", sequences: items, table: table})
+        dispatch({ type: CONSTANTS.SEARCH_SUCCESS, sequences: items, table: table})
         if (table===2) {
-          dispatch({ type: "RENDER_TABLE_TWO", grid16s: response.data.grid16s, gridCell: response.data.gridCell, gridPpm: response.data.gridPpm, xHeaders: response.data.xHeaders, yHeaders: response.data.yHeaders})
+          dispatch({ type: CONSTANTS.RENDER_TABLE_TWO, grid16s: response.data.grid16s, gridCell: response.data.gridCell, gridPpm: response.data.gridPpm, xHeaders: response.data.xHeaders, yHeaders: response.data.yHeaders})
         }
       },
       err => {
-        dispatch({ type: "SEARCH_FAILURE" })
+        dispatch({ type: CONSTANTS.SEARCH_FAILURE })
         throw err;
       }
     )
@@ -71,13 +71,13 @@ export const search = (query, tableNo) => {
 
 export const changeTableTwoDisplayUnit = (displayUnit) => {
   return dispatch => {
-    dispatch({ type: "CHANGE_TABLE_TWO_UNIT", displayUnit: displayUnit })
-    return
+    dispatch({ type: CONSTANTS.CHANGE_TABLE_TWO_UNIT, displayUnit: displayUnit })
+    return;
   }
 }
 
 export const switchTableTwoPage = ({orientation, page}) => {
   return dispatch => {
-    dispatch({type: "SWITCH_TABLE_TWO_PAGE", orientation: orientation, page: page})
+    dispatch({type: CONSTANTS.SWITCH_TABLE_TWO_PAGE, orientation: orientation, page: page})
   }
 }

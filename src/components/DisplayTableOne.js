@@ -19,23 +19,19 @@ class DisplayTableOne extends Component {
               Header: CONSTANTS.ARG,
               columns: [
                 {
-                  Header: "ARG",
-                  accessor: "arg",
-                  filterMethod: this.fuzzyMatch,
-                  filterAll: true
+                  Header: CONSTANTS.DISPLAY.ARG,
+                  accessor: CONSTANTS.DB.ARG,
                 },{
                   Header: CONSTANTS.DISPLAY.SUBTYPE,
                   accessor: CONSTANTS.DB.SUBTYPE,
-                  filterMethod: this.fuzzyMatch,
-                  filterAll: true
                 },
                 {
                   Header: CONSTANTS.DISPLAY.TYPE,
                   accessor: CONSTANTS.DB.TYPE,
                 }, 
                 {
-                  Header: "Rank",
-                  accessor: "rank"
+                  Header: CONSTANTS.DISPLAY.RANK,
+                  accessor: CONSTANTS.DB.RANK
                 }
               ]
             },
@@ -44,15 +40,11 @@ class DisplayTableOne extends Component {
               columns: [
                 {
                   Header: CONSTANTS.DISPLAY.GENOME,
-                  accessor: CONSTANTS.DB.GENOME,
-                  filterMethod: this.fuzzyMatch,
-                  filterAll: true
+                  accessor: CONSTANTS.DB.GENOME
                 },
                 {
                   Header: CONSTANTS.DISPLAY.ACCESSION,
-                  accessor: CONSTANTS.DB.ACCESSION,
-                  filterMethod: this.fuzzyMatch,
-                  filterAll: true
+                  accessor: CONSTANTS.DB.ACCESSION
                 },
                 {
                   Header: CONSTANTS.DISPLAY.PHYLUM,
@@ -108,7 +100,7 @@ class DisplayTableOne extends Component {
                 },
                 {
                   Header: CONSTANTS.DISPLAY.HIT_RATIO,
-                  accessor: "hitLength"
+                  accessor: CONSTANTS.DB.HIT_RATIO
                 },
                 {
                   Header: CONSTANTS.DISPLAY.E_VALUE,

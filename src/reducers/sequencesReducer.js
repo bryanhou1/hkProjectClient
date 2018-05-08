@@ -3,7 +3,7 @@ import * as CONSTANTS from '../constants/index';
 const initialState = {sequences1: [],
   sequences2: [],
   sequences2Grid: {
-    display: true,
+    display: false,
     displayUnit: "16s",
     xLabels: ["Sample", "Ecotype","Eco-subtype"],
     yLabels:["Arg", "Type", "Subtype","Rank"],
@@ -47,8 +47,10 @@ const initialState = {sequences1: [],
   fetching: false,
   autoCompleteCollection: {
     1: {
+      [CONSTANTS.DB.ARG]: [],
       [CONSTANTS.DB.SUBTYPE]: [],
       [CONSTANTS.DB.TYPE]: [],
+      [CONSTANTS.DB.RANK]: [],
       [CONSTANTS.DB.GENOME]: [],
       [CONSTANTS.DB.ACCESSION]: [],
       [CONSTANTS.DB.PHYLUM]: [],
@@ -58,23 +60,19 @@ const initialState = {sequences1: [],
       [CONSTANTS.DB.GENUS]: [],
       [CONSTANTS.DB.SPECIES]: [],
       [CONSTANTS.DB.STRAIN]: [],
-      [CONSTANTS.DB.IDENTITY]: [],
-      [CONSTANTS.DB.HIT_RATIO]: [],
+      [CONSTANTS.DB.PATHOGEN]: [],
       [CONSTANTS.DB.ALIGNMENT_LENGTH]: [],
-      [CONSTANTS.DB.E_VALUE]: []
+      fetching: false
     }, 
     2: {
-      "sample": [],
-      "ecoType": [],
-      "ecoSubtype": [],
-      "identity": [],
-      "hitLength": [],
-      "eValue": [],
-      "arg": [],
-      "argSubtype": [],
-      "argType": [],
-      "rank": [],
-      "abundance": [],
+      [CONSTANTS.DB.SAMPLE]: [],
+      [CONSTANTS.DB.ECO_TYPE]: [],
+      [CONSTANTS.DB.ECO_SUBTYPE]: [],
+      [CONSTANTS.DB.ARG]: [],
+      [CONSTANTS.DB.SUBTYPE]: [],
+      [CONSTANTS.DB.TYPE]: [],
+      [CONSTANTS.DB.RANK]: [],
+      fetching: false
     },
     fetching: false
   }}
@@ -90,9 +88,9 @@ export default function sequenceReducer(state = initialState, action){
     case CONSTANTS.SEARCH_FAILURE:
     case CONSTANTS.FETCH_SEQUENCE_FAILURE:
       return {...state, fetching: false}
-    case "CHANGE_TABLE_TWO_UNIT":
+    case CONSTANTS.CHANGE_TABLE_TWO_UNIT:
       return {...state, sequences2Grid: {...state.sequences2Grid, displayUnit: action.displayUnit}}
-    case "SWITCH_TABLE_TWO_PAGE":{
+    case CONSTANTS.SWITCH_TABLE_TWO_PAGE:{
       return {...state, sequences2Grid: {
         ...state.sequences2Grid, 
         paginate:{
@@ -103,7 +101,7 @@ export default function sequenceReducer(state = initialState, action){
           }
         }
       }}
-    }case "RENDER_TABLE_TWO": {
+    }case CONSTANTS.RENDER_TABLE_TWO: {
       return { ...state,
         sequences2Grid: {...state.sequences2Grid, xHeaders: action.xHeaders, yHeaders: action.yHeaders, grid16s: action.grid16s, gridCell: action.gridCell, gridPpm: action.gridPpm, display: true,
         paginate:{
@@ -121,11 +119,14 @@ export default function sequenceReducer(state = initialState, action){
       }};
     }
     case CONSTANTS.FETCH_AUTOCOMPLETE_START:
-      return { ...state, autoCompleteCollection: {...state.autoCompleteCollection, fetching: true} }
+      return { ...state, autoCompleteCollection: {...state.autoCompleteCollection, [action.tableNo]: {...state.autoCompleteCollection[action.tableNo], fetching: true}} }
     case CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS:
-      return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, [action.table]: {...state.autoCompleteCollection[action.table], [action.attr]: action.col}, fetching: false } }
+      return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, [action.table]: {...state.autoCompleteCollection[action.table], [action.attr]: action.col, fetching: false} } }
     case CONSTANTS.FETCH_AUTOCOMPLETE_FAILURE:
-      return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, fetching: false } }
+      return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection,
+        1: {...state.autoCompleteCollection[action.table], [action.attr]: action.col, fetching: false},
+        2: {...state.autoCompleteCollection[action.table], [action.attr]: action.col, fetching: false}},
+      }
     default:
       return state;
   }

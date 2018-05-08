@@ -7,14 +7,13 @@ export default class NavBar extends Component {
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
-
   }
 
   render() {
     const { activeItem } = this.state
 
     return (
-      <Menu stackable>
+      <Menu stackable inverted fixed="top" borderless size="massive" className="Navbar">
         <Menu.Item 
           as={Link} to='/'
           name='Home'

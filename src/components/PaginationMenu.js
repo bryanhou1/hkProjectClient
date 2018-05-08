@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Form, Pagination, Segment, Input } from 'semantic-ui-react'
+import { Grid, Pagination, Input } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {switchTableTwoPage} from '../actions/index'
 
@@ -23,7 +23,7 @@ class PaginationMenu extends Component {
             
           </Grid.Column>
           <Grid.Column>
-            <Input 
+            <Input
                 size="mini"
                 label='Currently showing...'
                 name='activePage'

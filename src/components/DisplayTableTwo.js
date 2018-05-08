@@ -20,8 +20,8 @@ class DisplayTableTwo extends Component {
 
   generateThead() {
     
-    let {yHeaders, xLabels, paginate} = this.props.sequences2Grid;
-    let xLabelsT = xLabels.map((xLabel, i)=> <th key={i}>{xLabel}</th>)
+    let {xLabels, paginate} = this.props.sequences2Grid;
+    let xLabelsT = xLabels.map((xLabel, i)=> <th key={-i}>{xLabel}</th>)
     let xSpaces = [...Array(paginate.horizontal.elPerPage)].map((xLabel, i) => <th key={i}/>)
 
     return (
@@ -67,7 +67,7 @@ class DisplayTableTwo extends Component {
     
     for (let i=0; i< yLabels.length;i++) {
       rows.push(
-        <tr key={i}>
+        <tr key={"labelRows" + i}>
           <td>
             {yLabels[i]}
           </td>
@@ -79,7 +79,7 @@ class DisplayTableTwo extends Component {
 
     for (let i = vertical.elPerPage*(vertical.currentPage-1); i<vertical.elPerPage*(vertical.currentPage-1)+vertical.elPerPage; i++){
       rows.push(
-        <tr key={i}>
+        <tr key={"row"+i}>
           <td/>
           {xHeadersComp[i]}
           {currentGrid[i] ? currentGrid[i].slice(horizontal.elPerPage*(horizontal.currentPage-1),horizontal.elPerPage*(horizontal.currentPage-1)+horizontal.elPerPage).map((abundance, j)=> <th key={j}> {abundance} </th> ) : ""}
