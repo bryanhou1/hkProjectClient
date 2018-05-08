@@ -64,7 +64,7 @@ class App extends Component {
                 </Segment>
               </Grid.Column>
               <Grid.Column width={8}>
-                <Segment basic>Grid
+                <Segment basic>
                   <div>
                     <h2>Current scale of datasets:</h2>
                     <ul>

@@ -31,7 +31,7 @@ class Table1 extends Component {
               <Loader inverted>Loading</Loader>
             </Dimmer>
             <DisplayTableOne sequences={sequences1} />
-            <CSVLink data={sequences1} >Download Search Result</CSVLink>
+            <CSVLink data={sequences1} filename={"result.csv"}>Download Search Result</CSVLink>
           </Segment>
         </Container>
       </div>
