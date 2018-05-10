@@ -24,7 +24,7 @@ class Table1 extends Component {
           autoCompleteCollection={autoCompleteCollection}
           resultFetching={resultFetching}
         />
-        <ResDivider text={"result"}/>
+        <ResDivider text={"result"} hidden={!sequences1}/>
         <Container>
           <Segment basic>
             <Dimmer active={resultFetching} inverted>

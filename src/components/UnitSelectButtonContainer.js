@@ -22,7 +22,7 @@ class UnitSelectButtonContainer extends Component {
     return (
       <div>
         <h3> Unit: </h3>
-        <Button.Group>
+        <Button.Group className="stackable">
           <UnitSelectButton active={"per 16S" === this.state.activeButtonName} onClick={this.onClick} optionName={"per 16S"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>
           <UnitSelectButton active={"per Cell" === this.state.activeButtonName} onClick={this.onClick} optionName={"per Cell"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>
           <UnitSelectButton active={"ppm" === this.state.activeButtonName} onClick={this.onClick} optionName={"ppm"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>

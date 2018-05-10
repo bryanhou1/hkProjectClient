@@ -21,7 +21,7 @@ class SelectMenu extends Component {
     return (
       <ReactAutocomplete
         inputProps={{ id: `searchField-${menuChoice}-${idVal}`, placeholder: "search...", disabled: !this.state.selectValue}}
-        wrapperStyle={{ position: 'relative', display: 'inline-block'}}
+        wrapperStyle={{ position: 'relative'}}
         wrapperProps={{ className: "ui input"}}
         menuStyle={{
           borderRadius: '3px',
@@ -60,16 +60,18 @@ class SelectMenu extends Component {
     return (
       <div>
         <label htmlFor={`attrField-${menuChoice}-${idVal}`}>{name}</label> : <br/>
-        <Grid>
-          <Grid.Column width={6} stretched>
-            <select className="ui dropdown" name={name} value={this.state.selectValue} onChange={this.handleChange} id={`attrField-${menuChoice}-${idVal}`}>
-              <option value="" disabled/>
-              {items.map((item, i) => <option key={i} value={item[1]}>{item[0]}</option> )}
-            </select>
-          </Grid.Column>
-          <Grid.Column width={10} stretched>
-            {this.autoCompleteTextfield()}
-          </Grid.Column>
+        <Grid stretched>
+          <Grid.Row>
+            <Grid.Column width={6} stretched style={{paddingRight: 1 }}>
+              <select className="ui dropdown" name={name} value={this.state.selectValue} onChange={this.handleChange} id={`attrField-${menuChoice}-${idVal}`}>
+                <option value="" disabled/>
+                {items.map((item, i) => <option key={i} value={item[1]}>{item[0]}</option> )}
+              </select>
+            </Grid.Column>
+            <Grid.Column width={10} stretched style={{paddingLeft: 1 }}>
+              {this.autoCompleteTextfield()}
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
       </div>
     )

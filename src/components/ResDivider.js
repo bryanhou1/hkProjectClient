@@ -1,9 +1,9 @@
 import React from 'react'
 import {Divider} from 'semantic-ui-react'
 
-const ResDivider = ({text}) => {
+const ResDivider = ({text, hidden}) => {
   return (
-    <Divider horizontal>{text}</Divider>
+    <Divider horizontal hidden={hidden}>{ hidden ? "" : text }</Divider>
   )
 }
 

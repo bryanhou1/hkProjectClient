@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import FormField from './FormField';
 import ErrorsDisplay from './ErrorsDisplay';
 import * as CONSTANTS from '../constants/index';
-import {Button, Grid, Dimmer, Loader, Icon} from 'semantic-ui-react';
+import {Grid, Dimmer, Loader} from 'semantic-ui-react';
 import SubmitButton from './SubmitButton.jsx';
 
 class Form extends Component {
@@ -78,7 +78,6 @@ class Form extends Component {
       })
     }
     
-    debugger;
     if (!query["identity"]) {
       query["identity"] = menuChoice === 1 ? "90" : "80"
     }
@@ -149,8 +148,8 @@ class Form extends Component {
     const {menuChoice, fetchAutoComplete, autoCompleteCollection, resultFetching} = this.props;
     return (
       <Grid centered columns={2}>
-        <Grid.Row centered columns={4}>
-          <Grid.Column>
+        <Grid.Row centered>
+          <Grid.Column width={4}>
             <form onSubmit={this.handleSubmit} onKeyPress={this.onKeyPress}>
               <FormField
                 menu={this.menu(menuChoice)}

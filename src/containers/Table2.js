@@ -11,7 +11,6 @@ class TableTwo extends Component {
 
   render() {
     const {fetchAutoComplete, autoCompleteCollection, search, sequences2Grid, changeTableTwoDisplayUnit, switchTableTwoPage, resultFetching} = this.props;
-
     return (
       <div>
         <h1>Metagenomes</h1>
@@ -22,12 +21,12 @@ class TableTwo extends Component {
           autoCompleteCollection={autoCompleteCollection}
           resultFetching={resultFetching}
         />
-        <ResDivider text={"result"}/>
+        <ResDivider text={"result"} hidden={!sequences2Grid.display}/>
         <Container>
           <DisplayTableTwo sequences2Grid={sequences2Grid} changeTableTwoDisplayUnit={changeTableTwoDisplayUnit} switchTableTwoPage={switchTableTwoPage}/>
         </Container>
       </div>
-    );
+    )
   }
 }
 
@@ -39,4 +38,6 @@ const mapStateToProps = (state) => {
     autoCompleteCollection: autoCompleteCollection
   }
 }
+
+
 export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, switchTableTwoPage})(TableTwo);
