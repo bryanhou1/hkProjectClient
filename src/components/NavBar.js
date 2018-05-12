@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image} from 'semantic-ui-react'
 import {Link} from 'react-router'
+import Logo from '../containers/logo.svg';
 
 export default class NavBar extends Component {
   state = {}
@@ -14,7 +15,16 @@ export default class NavBar extends Component {
 
     return (
       <Menu stackable inverted fixed="top" borderless size="massive" className="Navbar">
-        <Menu.Item 
+        <Menu.Item
+          as={Link} to='/'
+          name='Logo'
+          onClick={this.handleItemClick}
+          fitted
+        >
+          <Image src={Logo} size="tiny"/>
+        </Menu.Item>
+        <Menu.Item
+          header
           as={Link} to='/'
           name='Home'
           onClick={this.handleItemClick}
@@ -24,6 +34,7 @@ export default class NavBar extends Component {
         <Menu.Item 
           as={Link} to='/about'
           name='About'
+          active={activeItem === 'About'}
           onClick={this.handleItemClick}
         >
           About
