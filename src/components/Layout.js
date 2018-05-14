@@ -5,28 +5,24 @@ export default class Layout extends Component {
   
   constructor(){
     super()
-    this.state = this.getInitialState();
-  }
-
-  getInitialState() {
-    return {
+    this.state = {
       styles: {
         marginTop: 0
       }
     };
   }
+
+  setHeight = () => {
+    this.setState({styles:{
+      marginTop: document.getElementsByClassName("Navbar")[0].offsetHeight
+    }})
+  }
   
   componentDidMount() {
-    this.setState({
-      styles: {
-        marginTop: this.getNavbarHeight()
-      }
-    })
+    this.setHeight();
+    window.addEventListener("resize", this.setHeight);
   }
 
-  getNavbarHeight() {
-    return document.getElementsByClassName("Navbar")[0].offsetHeight
-  }
 
   render() {
     return (
@@ -35,7 +31,6 @@ export default class Layout extends Component {
         <div style={this.state.styles}>
           {this.props.children}
         </div>
-        
       </div>
     )
   }

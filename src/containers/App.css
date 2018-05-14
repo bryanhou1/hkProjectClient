@@ -13,6 +13,13 @@
   color: white;
 } */
 
+/* 
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+} */
+
+*:focus {outline:none}
 
 ul {
   margin-bottom:1.5em
@@ -25,12 +32,6 @@ ul {
 .App-intro {
   font-size: large;
 }
-
-/* 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
 
 td {
   padding: 2px 4px;
@@ -67,20 +68,25 @@ div.compact {
   padding: 0;
 }
 
-
 table {
   border-collapse: collapse;
   table-layout: fixed;
-  width: 120%;  
+  width: 100%;
   border-radius:6px;
   -moz-border-radius:6px;
 }
 
+table.mainTable, table.overlay3 {
+  width: 140%;
+}
+
+.main-grid-item {
+  background-color: beige;
+}
 /* td, th {
   border-left:solid black 1px;
   border-top:solid black 1px;
 } */
-
 
 td:first-child, th:first-child {
    border-left: none;

@@ -15,11 +15,12 @@ class PaginationMenu extends Component {
   }
 
   render() {
-    let {orientation, paginate, sequence2Grid} = this.props;
-    let {currentPage, elPerPage, pagesCount} = paginate[orientation];
-    const firstCurrentEntry = currentPage <= 0 ? 0 : (currentPage-1)*elPerPage+1
-    const totalEntries = (orientation === 'horizontal') ? sequence2Grid.yHeaders.length : sequence2Grid.xHeaders.length
-    const lastCurrentEntry = currentPage===pagesCount ? totalEntries : currentPage * elPerPage
+    let {orientation, paginate} = this.props;
+    // let {currentPage, elPerPage, pagesCount} = paginate[orientation];
+    // const firstCurrentEntry = currentPage <= 0 ? 0 : (currentPage-1)*elPerPage+1
+    // const lastCurrentEntry = currentPage===pagesCount ? totalEntries : currentPage * elPerPage
+    // const totalEntries = (orientation === 'horizontal') ? sequence2Grid.yHeaders.length : sequence2Grid.xHeaders.length
+    
     
     return (
       <div>
@@ -67,6 +68,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {switchTableTwoPage})(PaginationMenu);
-
-// export defauly
 

@@ -6,10 +6,10 @@ import {Image, Container, Label, Segment} from 'semantic-ui-react';
 
 
 class Carousel extends React.Component {
-
+  
   //lackluster, fix later
   render() {
-    var settings = {
+    let settings = {
       dots: true,
       infinite: true,
       arrow:true

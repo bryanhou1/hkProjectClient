@@ -5,7 +5,8 @@ const initialState = {sequences1: [],
   
   sequences2Grid: {
     display: true,
-    displayUnit: "16s",    xLabels: ["Sample", "Ecotype","Eco-subtype"],
+    displayUnit: "16s",
+    xLabels: ["Sample", "Ecotype","Eco-subtype"],
     yLabels:["Arg", "Type", "Subtype","Rank"],
     xHeaders:[[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1]],
     yHeaders: [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]],
@@ -82,6 +83,26 @@ const initialState = {sequences1: [],
       }
     },
   },
+  searchQuery: {
+    1:{
+      attr1Key: null,
+      attr1Value: null,
+      attr2Key: null,
+      attr2Value: null,
+      identity: null,
+      hitRatio: null,
+      eValue: null
+    },
+    2:{
+      attr1Key: null,
+      attr1Value: null,
+      attr2Key: null,
+      attr2Value : null,
+      identity: null,
+      hitLength: null,
+      eValue: null
+    }
+  }, 
   fetching: false,
   autoCompleteCollection: {
     1: {

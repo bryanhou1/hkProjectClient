@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Menu, Image} from 'semantic-ui-react'
+import { Menu,} from 'semantic-ui-react'
 import {Link} from 'react-router'
-import Logo from '../containers/logo.svg';
+import Logo from './Logo.js';
 
 export default class NavBar extends Component {
   state = {}
@@ -21,7 +21,7 @@ export default class NavBar extends Component {
           onClick={this.handleItemClick}
           fitted
         >
-          <Image src={Logo} size="tiny"/>
+          <Logo/>
         </Menu.Item>
         <Menu.Item
           header

@@ -39,5 +39,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-
 export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, switchTableTwoPage})(TableTwo);
