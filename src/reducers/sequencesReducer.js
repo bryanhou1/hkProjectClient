@@ -1,10 +1,10 @@
-import * as CONSTANTS from '../constants/index';
+import * as CONST from '../constants/index';
 
 const initialState = {sequences1: [],
   sequences2: [],
   
   sequences2Grid: {
-    display: true,
+    display: false,
     displayUnit: "16s",
     xLabels: ["Sample", "Ecotype","Eco-subtype"],
     yLabels:["Arg", "Type", "Subtype","Rank"],
@@ -104,33 +104,37 @@ const initialState = {sequences1: [],
     }
   }, 
   fetching: false,
+  searchedQuery: {
+    1: {},
+    2: {},
+  },
   autoCompleteCollection: {
     1: {
-      [CONSTANTS.DB.ARG]: [],
-      [CONSTANTS.DB.SUBTYPE]: [],
-      [CONSTANTS.DB.TYPE]: [],
-      [CONSTANTS.DB.RANK]: [],
-      [CONSTANTS.DB.GENOME]: [],
-      [CONSTANTS.DB.ACCESSION]: [],
-      [CONSTANTS.DB.PHYLUM]: [],
-      [CONSTANTS.DB.CLASS]: [],
-      [CONSTANTS.DB.ORDER]: [],
-      [CONSTANTS.DB.FAMILY]: [],
-      [CONSTANTS.DB.GENUS]: [],
-      [CONSTANTS.DB.SPECIES]: [],
-      [CONSTANTS.DB.STRAIN]: [],
-      [CONSTANTS.DB.PATHOGEN]: [],
-      [CONSTANTS.DB.ALIGNMENT_LENGTH]: [],
+      [CONST.DB.ARG]: [],
+      [CONST.DB.SUBTYPE]: [],
+      [CONST.DB.TYPE]: [],
+      [CONST.DB.RANK]: [],
+      [CONST.DB.GENOME]: [],
+      [CONST.DB.ACCESSION]: [],
+      [CONST.DB.PHYLUM]: [],
+      [CONST.DB.CLASS]: [],
+      [CONST.DB.ORDER]: [],
+      [CONST.DB.FAMILY]: [],
+      [CONST.DB.GENUS]: [],
+      [CONST.DB.SPECIES]: [],
+      [CONST.DB.STRAIN]: [],
+      [CONST.DB.PATHOGEN]: [],
+      [CONST.DB.ALIGNMENT_LENGTH]: [],
       fetching: false
     }, 
     2: {
-      [CONSTANTS.DB.SAMPLE]: [],
-      [CONSTANTS.DB.ECO_TYPE]: [],
-      [CONSTANTS.DB.ECO_SUBTYPE]: [],
-      [CONSTANTS.DB.ARG]: [],
-      [CONSTANTS.DB.SUBTYPE]: [],
-      [CONSTANTS.DB.TYPE]: [],
-      [CONSTANTS.DB.RANK]: [],
+      [CONST.DB.SAMPLE]: [],
+      [CONST.DB.ECO_TYPE]: [],
+      [CONST.DB.ECO_SUBTYPE]: [],
+      [CONST.DB.ARG]: [],
+      [CONST.DB.SUBTYPE]: [],
+      [CONST.DB.TYPE]: [],
+      [CONST.DB.RANK]: [],
       fetching: false
     },
     fetching: false
@@ -138,18 +142,18 @@ const initialState = {sequences1: [],
 
 export default function sequencesReducer(state = initialState, action){
   switch (action.type) {
-    case CONSTANTS.SEARCH_START:
-    case CONSTANTS.FETCH_SEQUENCE_START:
+    case CONST.SEARCH_START:
+    case CONST.FETCH_SEQUENCE_START:
       return {...state, fetching: true}
-    case CONSTANTS.SEARCH_SUCCESS:
-    case CONSTANTS.FETCH_SEQUENCE_SUCCESS:
+    case CONST.SEARCH_SUCCESS:
+    case CONST.FETCH_SEQUENCE_SUCCESS:
       return {...state, [`sequences${action.table}`]: action.sequences, fetching: false}
-    case CONSTANTS.SEARCH_FAILURE:
-    case CONSTANTS.FETCH_SEQUENCE_FAILURE:
+    case CONST.SEARCH_FAILURE:
+    case CONST.FETCH_SEQUENCE_FAILURE:
       return {...state, fetching: false}
-    case CONSTANTS.CHANGE_TABLE_TWO_UNIT:
+    case CONST.CHANGE_TABLE_TWO_UNIT:
       return {...state, sequences2Grid: {...state.sequences2Grid, displayUnit: action.displayUnit}}
-    case CONSTANTS.SWITCH_TABLE_TWO_PAGE:{
+    case CONST.SWITCH_TABLE_TWO_PAGE:{
       return {...state, sequences2Grid: {
         ...state.sequences2Grid, 
         paginate:{
@@ -160,7 +164,7 @@ export default function sequencesReducer(state = initialState, action){
           }
         }
       }}
-    }case CONSTANTS.RENDER_TABLE_TWO: {
+    }case CONST.RENDER_TABLE_TWO: {
       return { ...state,
         sequences2Grid: {...state.sequences2Grid, xHeaders: action.xHeaders, yHeaders: action.yHeaders, grid16s: action.grid16s, gridCell: action.gridCell, gridPpm: action.gridPpm, display: true,
         paginate:{
@@ -175,13 +179,18 @@ export default function sequencesReducer(state = initialState, action){
             currentPage: 1
           }
         }
-      }};
+      }}
     }
-    case CONSTANTS.FETCH_AUTOCOMPLETE_START:
+    case CONST.STORE_SEARCH_TERMS:
+      return { ...state, searchedQuery: {
+        ...state.searchedQuery,
+        [action.tableNo]: action.query
+      }}
+    case CONST.FETCH_AUTOCOMPLETE_START:
       return { ...state, autoCompleteCollection: {...state.autoCompleteCollection, [action.tableNo]: {...state.autoCompleteCollection[action.tableNo], fetching: true}} }
-    case CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS:
+    case CONST.FETCH_AUTOCOMPLETE_SUCCESS:
       return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection, [action.table]: {...state.autoCompleteCollection[action.table], [action.attr]: action.col, fetching: false} } }
-    case CONSTANTS.FETCH_AUTOCOMPLETE_FAILURE:
+    case CONST.FETCH_AUTOCOMPLETE_FAILURE:
       return { ...state, autoCompleteCollection: { ...state.autoCompleteCollection,
         1: {...state.autoCompleteCollection[action.table], [action.attr]: action.col, fetching: false},
         2: {...state.autoCompleteCollection[action.table], [action.attr]: action.col, fetching: false}},

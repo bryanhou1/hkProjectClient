@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import UnitSelectButtonContainer from './UnitSelectButtonContainer';
 import {Container, Grid} from 'semantic-ui-react';
 import PaginationMenu from './PaginationMenu';
-import { CSVLink } from 'react-csv';
 
-// import * as CONSTANTS from "../constants/index";
+
+// import * as CONST from "../constants/index";
 
 class DisplayTableTwo extends Component {
 
@@ -286,7 +286,7 @@ class DisplayTableTwo extends Component {
             :
             currentGrid[0].slice(horizontal.elPerPage*(horizontal.currentPage-1),horizontal.elPerPage*(horizontal.currentPage-1)+horizontal.elPerPage).map((abundance, j)=> <td className="main-grid-item" key={j} />)
           }
-          {addTrailingSpaces("mainGrid")}
+          {addTrailingSpaces("main-grid-item")}
         </tr>
       )
     }
@@ -391,11 +391,6 @@ class DisplayTableTwo extends Component {
   //   )
   // }
 
-  buildGridForDownLoad() {
-    
-  }
-
-
   render() {
     let {sequences2Grid, changeTableTwoDisplayUnit} = this.props;
     if (sequences2Grid.display){
@@ -405,44 +400,45 @@ class DisplayTableTwo extends Component {
             <Grid.Column verticalAlign="middle" width={4}>
               <UnitSelectButtonContainer changeTableTwoDisplayUnit={changeTableTwoDisplayUnit}/>
             </Grid.Column>
-            <Grid.Column verticalAlign="middle" width={12}>     
+            <Grid.Column verticalAlign="middle" width={10}>     
               <PaginationMenu orientation={"horizontal"}/>
               <PaginationMenu orientation={"vertical"}/>
             </Grid.Column>
           </Grid>
           <Grid>
-            <Grid.Column width={14}>
-              <Container style={{overflow: "auto"}}>
-                <div>
-                  {this.generateMainTable()}
-                </div>
-              </Container>
-            </Grid.Column>
-            {/* <Grid.Column width={2}>
-              <div>
-                {this.generateTableOverlay()}
-              </div>
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <div>
-                {this.generateTableOverLay2()}
-              </div>
-            </Grid.Column>
-
-            <Grid.Column width={8}>
-              <Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={14}>
                 <Container style={{overflow: "auto"}}>
-                  <div>
-                    {this.generateTableOverLay3()}
-                  </div>
                   <div>
                     {this.generateMainTable()}
                   </div>
                 </Container>
-              </Grid.Row>
-            </Grid.Column> */}
+              </Grid.Column>
+              {/* <Grid.Column width={2}>
+                <div>
+                  {this.generateTableOverlay()}
+                </div>
+              </Grid.Column>
+              <Grid.Column width={5}>
+                <div>
+                  {this.generateTableOverLay2()}
+                </div>
+              </Grid.Column>
+
+              <Grid.Column width={8}>
+                <Grid.Row>
+                  <Container style={{overflow: "auto"}}>
+                    <div>
+                      {this.generateTableOverLay3()}
+                    </div>
+                    <div>
+                      {this.generateMainTable()}
+                    </div>
+                  </Container>
+                </Grid.Row>
+              </Grid.Column> */}
+            </Grid.Row>
           </Grid>
-          <CSVLink data={this.buildGridForDownload()} filename={"metagenome-result.csv"}>Download Search Result</CSVLink>
         </Container>
       )
     } else {

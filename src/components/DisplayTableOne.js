@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import * as CONSTANTS from "../constants/index";
+import * as CONST from "../constants/index";
 import matchSorter from 'match-sorter';
 
 class DisplayTableOne extends Component {
@@ -16,75 +16,75 @@ class DisplayTableOne extends Component {
           filterable
           columns={[
             {
-              Header: CONSTANTS.ARG,
+              Header: CONST.ARG,
               columns: [
                 {
-                  Header: CONSTANTS.DISPLAY.ARG,
-                  accessor: CONSTANTS.DB.ARG,
+                  Header: CONST.DISPLAY.ARG,
+                  accessor: CONST.DB.ARG,
                 },{
-                  Header: CONSTANTS.DISPLAY.SUBTYPE,
-                  accessor: CONSTANTS.DB.SUBTYPE,
+                  Header: CONST.DISPLAY.SUBTYPE,
+                  accessor: CONST.DB.SUBTYPE,
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.TYPE,
-                  accessor: CONSTANTS.DB.TYPE,
+                  Header: CONST.DISPLAY.TYPE,
+                  accessor: CONST.DB.TYPE,
                 }, 
                 {
-                  Header: CONSTANTS.DISPLAY.RANK,
-                  accessor: CONSTANTS.DB.RANK
+                  Header: CONST.DISPLAY.RANK,
+                  accessor: CONST.DB.RANK
                 }
               ]
             },
             {
-              Header: CONSTANTS.GENOME_TAXONOMY,
+              Header: CONST.GENOME_TAXONOMY,
               columns: [
                 {
-                  Header: CONSTANTS.DISPLAY.GENOME,
-                  accessor: CONSTANTS.DB.GENOME
+                  Header: CONST.DISPLAY.GENOME,
+                  accessor: CONST.DB.GENOME
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.ACCESSION,
-                  accessor: CONSTANTS.DB.ACCESSION
+                  Header: CONST.DISPLAY.ACCESSION,
+                  accessor: CONST.DB.ACCESSION
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.PHYLUM,
-                  accessor: CONSTANTS.DB.PHYLUM,
+                  Header: CONST.DISPLAY.PHYLUM,
+                  accessor: CONST.DB.PHYLUM,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.CLASS,
-                  accessor: CONSTANTS.DB.CLASS,
+                  Header: CONST.DISPLAY.CLASS,
+                  accessor: CONST.DB.CLASS,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.ORDER,
-                  accessor: CONSTANTS.DB.ORDER,
+                  Header: CONST.DISPLAY.ORDER,
+                  accessor: CONST.DB.ORDER,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.FAMILY,
-                  accessor: CONSTANTS.DB.FAMILY,
+                  Header: CONST.DISPLAY.FAMILY,
+                  accessor: CONST.DB.FAMILY,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.GENUS,
-                  accessor: CONSTANTS.DB.GENUS,
+                  Header: CONST.DISPLAY.GENUS,
+                  accessor: CONST.DB.GENUS,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.SPECIES,
-                  accessor: CONSTANTS.DB.SPECIES,
+                  Header: CONST.DISPLAY.SPECIES,
+                  accessor: CONST.DB.SPECIES,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.STRAIN,
-                  accessor: CONSTANTS.DB.STRAIN,
+                  Header: CONST.DISPLAY.STRAIN,
+                  accessor: CONST.DB.STRAIN,
                   filterMethod: this.fuzzyMatch,
                   filterAll: true
                 }
@@ -92,19 +92,19 @@ class DisplayTableOne extends Component {
               ]
             },
             {
-              Header: CONSTANTS.BLAST_CRITERIA,
+              Header: CONST.BLAST_CRITERIA,
               columns: [
                 {
-                  Header: CONSTANTS.DISPLAY.IDENTITY,
-                  accessor: CONSTANTS.DB.IDENTITY
+                  Header: CONST.DISPLAY.IDENTITY,
+                  accessor: CONST.DB.IDENTITY
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.HIT_RATIO,
-                  accessor: CONSTANTS.DB.HIT_RATIO
+                  Header: CONST.DISPLAY.HIT_RATIO,
+                  accessor: CONST.DB.HIT_RATIO
                 },
                 {
-                  Header: CONSTANTS.DISPLAY.E_VALUE,
-                  accessor: CONSTANTS.DB.E_VALUE
+                  Header: CONST.DISPLAY.E_VALUE,
+                  accessor: CONST.DB.E_VALUE
                 }
               ]
             }

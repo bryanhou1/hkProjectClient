@@ -77,7 +77,8 @@ table {
 }
 
 table.mainTable, table.overlay3 {
-  width: 140%;
+  /* width: 140%; */
+  width: 160%;
 }
 
 .main-grid-item {

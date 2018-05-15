@@ -1,10 +1,10 @@
 import axios from 'axios';
-import * as CONSTANTS from '../constants/index';
+import * as CONST from '../constants/index';
 import * as URL from '../config/url';
 
 export const initiateSession = () => {
   return (dispatch, getState) => {
-    dispatch({type: CONSTANTS.FETCH_SEQUENCE_START})
+    dispatch({type: CONST.FETCH_SEQUENCE_START})
     const request = axios({
       method: 'get',
       url: `${URL.API_URL}/items1`
@@ -12,10 +12,10 @@ export const initiateSession = () => {
     
     return request.then(
       response => {
-        dispatch({type: CONSTANTS.FETCH_SEQUENCE_SUCCESS, sequences: response.data.items, table: response.data.table})
+        dispatch({type: CONST.FETCH_SEQUENCE_SUCCESS, sequences: response.data.items, table: response.data.table})
       },
       err => {
-        dispatch({type: CONSTANTS.FETCH_SEQUENCE_FAILURE})
+        dispatch({type: CONST.FETCH_SEQUENCE_FAILURE})
         throw err;
       }
     )
@@ -24,7 +24,7 @@ export const initiateSession = () => {
 
 export const fetchAutoComplete = (attr, tableNo) => {
   return (dispatch, getState) => {
-    dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_START, tableNo: tableNo})
+    dispatch({type: CONST.FETCH_AUTOCOMPLETE_START, tableNo: tableNo})
     const request = axios({
       method: 'get',
       url: `${URL.API_URL}/get_autocomplete_data_${tableNo}`,
@@ -32,12 +32,11 @@ export const fetchAutoComplete = (attr, tableNo) => {
         "attr": attr
       }
     })
-    
     return request.then(
       response => {
-        dispatch({ type: CONSTANTS.FETCH_AUTOCOMPLETE_SUCCESS, attr: response.data.attr, col: response.data.col.map(String), table: response.data.table})},
+        dispatch({ type: CONST.FETCH_AUTOCOMPLETE_SUCCESS, attr: response.data.attr, col: response.data.col.map(String).sort(), table: response.data.table})},
       err => {
-        dispatch({type: CONSTANTS.FETCH_AUTOCOMPLETE_FAILURE})
+        dispatch({type: CONST.FETCH_AUTOCOMPLETE_FAILURE})
         throw err;
       }
     )
@@ -45,8 +44,11 @@ export const fetchAutoComplete = (attr, tableNo) => {
 } 
 
 export const search = (query, tableNo) => {
+
   return (dispatch, getState) => {
-    dispatch({ type: CONSTANTS.SEARCH_START })
+    dispatch({ type: CONST.SEARCH_START })
+    dispatch({ type: CONST.STORE_SEARCH_TERMS, query: query, tableNo: tableNo})
+    
     const request = axios({
       method: 'get',
       url: `${URL.API_URL}/items${tableNo}`,
@@ -56,13 +58,13 @@ export const search = (query, tableNo) => {
     return request.then(
       response => {
         const {items, table} = response.data;
-        dispatch({ type: CONSTANTS.SEARCH_SUCCESS, sequences: items, table: table})
+        dispatch({ type: CONST.SEARCH_SUCCESS, sequences: items, table: table})
         if (table===2) {
-          dispatch({ type: CONSTANTS.RENDER_TABLE_TWO, grid16s: response.data.grid16s, gridCell: response.data.gridCell, gridPpm: response.data.gridPpm, xHeaders: response.data.xHeaders, yHeaders: response.data.yHeaders})
+          dispatch({ type: CONST.RENDER_TABLE_TWO, grid16s: response.data.grid16s, gridCell: response.data.gridCell, gridPpm: response.data.gridPpm, xHeaders: response.data.xHeaders, yHeaders: response.data.yHeaders})
         }
       },
       err => {
-        dispatch({ type: CONSTANTS.SEARCH_FAILURE })
+        dispatch({ type: CONST.SEARCH_FAILURE })
         throw err;
       }
     )
@@ -71,13 +73,13 @@ export const search = (query, tableNo) => {
 
 export const changeTableTwoDisplayUnit = (displayUnit) => {
   return dispatch => {
-    dispatch({ type: CONSTANTS.CHANGE_TABLE_TWO_UNIT, displayUnit: displayUnit })
+    dispatch({ type: CONST.CHANGE_TABLE_TWO_UNIT, displayUnit: displayUnit })
     return;
   }
 }
 
 export const switchTableTwoPage = ({orientation, page}) => {
   return dispatch => {
-    dispatch({type: CONSTANTS.SWITCH_TABLE_TWO_PAGE, orientation: orientation, page: page})
+    dispatch({type: CONST.SWITCH_TABLE_TWO_PAGE, orientation: orientation, page: page})
   }
 }

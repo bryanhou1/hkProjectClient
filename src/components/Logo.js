@@ -1,4 +1,3 @@
-import {Image} from 'semantic-ui-react';
 import React, {Component} from 'react';
 import LogoImg from '../containers/logo.svg';
 
