@@ -1,75 +1,16 @@
 import * as CONST from '../constants/index';
-
+import * as SAMPLE from '../constants/sample';
 const initialState = {sequences1: [],
-  sequences2: [],
-  
   sequences2Grid: {
     display: false,
     displayUnit: "16s",
-    xLabels: ["Sample", "Ecotype","Eco-subtype"],
-    yLabels:["Arg", "Type", "Subtype","Rank"],
-    xHeaders:[[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1],[1,2,3],[7,8,9],[1,1,1]],
-    yHeaders: [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]],
-    grid16s:[
-      ["1","x","x","y","z","1x","3x","x","y","z","3x","x","y","z","z"],
-      ["x","x","x","y","z","1x","3x","x","y","z","3x","x","y","z","z"],
-      ["x","x","x","y","z","1x","3x","x","y","z","3x","x","y","z","z"],
-      ["x","x","x","y","z","1x","3x","x","y","z","3x","x","y","z","z"],
-      ["x","x","x","y","z","1x","3x","x","y","z","3x","x","y","z","z"],
-      ["5","x","x","y","z","1x","3x","x","y","z","3x","x","y","z","z"],
-      ["x","x","x","y","z","1x","3x","x","y","z","3x","x","y","z","z"],
-      ["x","x","x","y","z","1x","x","x","y","z","3x","15","x","y", "hi"],
-      ["8","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["8","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["10","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["8","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["8","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["8","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["14","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["10","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["8","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"],
-      ["8","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"]
-    ],
-    gridCell: [
-      ["2","x","c","y","z","1c","3c","c","y","z","3c","c","y","z","z"],
-      ["c","c","c","y","z","1c","3c","c","y","z","3c","c","y","z","z"],
-      ["c","c","c","y","z","1c","3c","c","y","z","3c","c","y","z","z"],
-      ["c","c","c","y","z","1c","3c","c","y","z","3c","c","y","z","z"],
-      ["c","c","c","y","z","1c","3c","c","y","z","3c","c","y","z","z"],
-      ["5","c","c","y","z","1c","3c","c","y","z","3c","c","y","z","z"],
-      ["c","c","c","y","z","1c","3c","c","y","z","3c","c","y","z","z"],
-      ["c","c","c","y","z","1c","c","c","y","z","3c","15","c","y", "hi"],
-      ["8","c","c","y","z","c","1c","c","y","z","3c","c","y","z","z"],
-      ["8","c","c","y","z","c","1c","c","y","z","3c","c","y","z","z"],
-      ["10","c","c","y","z","c","1c","c","y","z","3c","c","y","z","z"],
-      ["8","c","c","y","z","c","1c","c","y","z","3c","c","y","z","z"],
-      ["8","c","c","y","z","c","1c","c","y","z","3c","c","y","z","z"],
-      ["8","c","c","y","z","c","1c","c","y","z","3c","c","y","z","z"],
-      ["14","c","c","y","z","c","1c","c","y","z","3c","c","y","z","z"],
-      ["10","c","c","y","z","c","1c","c","y","z","3c","c","y","z","z"],
-      ["8","c","c","y","z","c","1x","x","y","z","3x","x","y","z","z"],
-      ["8","x","x","y","z","x","1x","x","y","z","3x","x","y","z","z"]
-    ],
-    gridPpm: [
-      ["3","p","p","y","z","1p","3p","p","y","z","3p","p","y","z","z"],
-      ["p","p","p","y","z","1p","3p","p","y","z","3p","p","y","z","z"],
-      ["p","p","p","y","z","1p","3p","p","y","z","3p","p","y","z","z"],
-      ["p","p","p","y","z","1p","3p","p","y","z","3p","p","y","z","z"],
-      ["p","p","p","y","z","1p","3p","p","y","z","3p","p","y","z","z"],
-      ["5","p","p","y","z","1p","3p","p","y","z","3p","p","y","z","z"],
-      ["p","p","p","y","z","1p","3p","p","y","z","3p","p","y","z","z"],
-      ["p","p","p","y","z","1p","p","p","y","z","3p","15","p","y", "hi"],
-      ["8","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["8","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["10","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["8","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["8","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["8","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["14","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["10","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["8","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"],
-      ["8","p","p","y","z","p","1p","p","y","z","3p","p","y","z","z"]
-    ],
+    xLabels: [CONST.DISPLAY.SAMPLE, CONST.DISPLAY.ECO_TYPE, CONST.DISPLAY.ECO_SUBTYPE],
+    yLabels:[CONST.DISPLAY.ARG, CONST.DISPLAY.TYPE, CONST.DISPLAY.SUBTYPE, CONST.DISPLAY.RANK],
+    xHeaders:SAMPLE.TABLE_TWO.X_HEADERS,
+    yHeaders: SAMPLE.TABLE_TWO.Y_HEADERS,
+    grid16s: SAMPLE.TABLE_TWO.GRID_16S,
+    gridCell: SAMPLE.TABLE_TWO.GRID_CELL,
+    gridPpm: SAMPLE.TABLE_TWO.GRID_PPM,
     paginate: {
       horizontal: {
         elPerPage: 10,
@@ -82,26 +23,6 @@ const initialState = {sequences1: [],
         currentPage: 1
       }
     },
-  },
-  searchQuery: {
-    1:{
-      attr1Key: null,
-      attr1Value: null,
-      attr2Key: null,
-      attr2Value: null,
-      identity: null,
-      hitRatio: null,
-      eValue: null
-    },
-    2:{
-      attr1Key: null,
-      attr1Value: null,
-      attr2Key: null,
-      attr2Value : null,
-      identity: null,
-      hitLength: null,
-      eValue: null
-    }
   }, 
   fetching: false,
   searchedQuery: {

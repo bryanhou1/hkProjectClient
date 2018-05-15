@@ -44,20 +44,20 @@ class Form extends Component {
       })
     }
     
-    if (!query["identity"]) {
-      query["identity"] = menuChoice === 1 ? "90" : "80"
+    if (!query[CONST.DB.IDENTITY]) {
+      query[CONST.DB.IDENTITY] = menuChoice === 1 ? "90" : "80"
     }
 
-    if (!query["eValue"]) {
-      query["eValue"] = menuChoice === 1 ? "1e-5" : "1e-7"
+    if (!query[CONST.DB.E_VALUE]) {
+      query[CONST.DB.E_VALUE] = menuChoice === 1 ? "1e-5" : "1e-7"
     }
 
-    if (!query["hitRatio"] && menuChoice === 1) {
-      query["hitRatio"] = "0.8"
+    if (!query[CONST.DB.HIT_RATIO] && menuChoice === 1) {
+      query[CONST.DB.HIT_RATIO] = "0.8"
     }
 
-    if (!query["hitLength"] && menuChoice === 2) {
-      query["hitLength"] = "25"
+    if (!query[CONST.DB.HIT_LENGTH] && menuChoice === 2) {
+      query[CONST.DB.HIT_LENGTH] = "25"
     }
     search(query, menuChoice);
   }

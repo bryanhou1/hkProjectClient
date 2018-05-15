@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {initiateSession, fetchAutoComplete, search} from '../actions/index';
 import { CSVLink } from 'react-csv';
 import ResDivider from '../components/ResDivider';
-import {Container, Segment, Dimmer, Loader, Grid, Divider} from 'semantic-ui-react';
+import {Container, Segment, Dimmer, Loader, Grid} from 'semantic-ui-react';
 import * as CONST from '../constants/index';
 
 class Table1 extends Component {
@@ -64,7 +64,7 @@ class Table1 extends Component {
             {Object.keys(searchedQuery[1]).length !== 0 ? (
               <Grid.Column width={4}>
                 <Segment>
-                  <h3>Search Queries</h3>
+                  <h3>Searched Queries</h3>
                   {this.searchedQueryLayout()}
                 </Segment>
               </Grid.Column>

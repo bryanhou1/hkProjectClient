@@ -393,58 +393,61 @@ class DisplayTableTwo extends Component {
 
   render() {
     let {sequences2Grid, changeTableTwoDisplayUnit} = this.props;
+    
     if (sequences2Grid.display){
-      return (
-        <Container>
-          <Grid stackable>
-            <Grid.Column verticalAlign="middle" width={4}>
-              <UnitSelectButtonContainer changeTableTwoDisplayUnit={changeTableTwoDisplayUnit}/>
-            </Grid.Column>
-            <Grid.Column verticalAlign="middle" width={10}>     
-              <PaginationMenu orientation={"horizontal"}/>
-              <PaginationMenu orientation={"vertical"}/>
-            </Grid.Column>
-          </Grid>
-          <Grid>
-            <Grid.Row>
-              <Grid.Column width={14}>
-                <Container style={{overflow: "auto"}}>
-                  <div>
-                    {this.generateMainTable()}
-                  </div>
-                </Container>
+      if (sequences2Grid.grid16s[0].length !== 0 ) {
+        return (
+          <Container>
+            <Grid stackable>
+              <Grid.Column verticalAlign="middle" width={4}>
+                <UnitSelectButtonContainer changeTableTwoDisplayUnit={changeTableTwoDisplayUnit}/>
               </Grid.Column>
-              {/* <Grid.Column width={2}>
-                <div>
-                  {this.generateTableOverlay()}
-                </div>
+              <Grid.Column verticalAlign="middle" width={10}>     
+                <PaginationMenu orientation={"horizontal"}/>
+                <PaginationMenu orientation={"vertical"}/>
               </Grid.Column>
-              <Grid.Column width={5}>
-                <div>
-                  {this.generateTableOverLay2()}
-                </div>
-              </Grid.Column>
-
-              <Grid.Column width={8}>
-                <Grid.Row>
+            </Grid>
+            <Grid>
+              <Grid.Row>
+                <Grid.Column width={14}>
                   <Container style={{overflow: "auto"}}>
-                    <div>
-                      {this.generateTableOverLay3()}
-                    </div>
                     <div>
                       {this.generateMainTable()}
                     </div>
                   </Container>
-                </Grid.Row>
-              </Grid.Column> */}
-            </Grid.Row>
-          </Grid>
-        </Container>
-      )
+                </Grid.Column>
+                {/* <Grid.Column width={2}>
+                  <div>
+                    {this.generateTableOverlay()}
+                  </div>
+                </Grid.Column>
+                <Grid.Column width={5}>
+                  <div>
+                    {this.generateTableOverLay2()}
+                  </div>
+                </Grid.Column>
+
+                <Grid.Column width={8}>
+                  <Grid.Row>
+                    <Container style={{overflow: "auto"}}>
+                      <div>
+                        {this.generateTableOverLay3()}
+                      </div>
+                      <div>
+                        {this.generateMainTable()}
+                      </div>
+                    </Container>
+                  </Grid.Row>
+                </Grid.Column> */}
+              </Grid.Row>
+            </Grid>
+          </Container>
+        )
+      } else {
+        return <Container textAlign="center"> No Entry Found.</Container>
+      }
     } else {
-      return (
-        <Container />
-      )
+      return ( <Container /> )
     }
   }
 }

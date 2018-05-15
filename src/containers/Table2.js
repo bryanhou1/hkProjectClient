@@ -5,7 +5,7 @@ import {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, s
 import 'react-datasheet/lib/react-datasheet.css';
 import ResDivider from '../components/ResDivider';
 import DisplayTableTwo from '../components/DisplayTableTwo';
-import {Container, Grid, Segment, Divider} from 'semantic-ui-react'
+import {Container, Grid, Segment} from 'semantic-ui-react'
 import DownloadTableTwoLink from '../components/DownloadTableTwoLink'
 import  * as CONST from '../constants/index'
 
