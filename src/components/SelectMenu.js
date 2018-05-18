@@ -1,19 +1,45 @@
 import React, {Component} from 'react';
 import ReactAutocomplete from 'react-autocomplete'
 import {Grid} from 'semantic-ui-react';
+// import * as CONST from '../constants/index'
+
+
+const WAIT_INTERVAL = 500;
 
 class SelectMenu extends Component {
   constructor(props) {
     super(props);
+    // should probably put in redux state
     this.state = {selectValue: "", value: ""};
   }
 
+  
+  componentWillMount() {
+    this.timer = null;
+  }
+  
   handleChange = (e) => {
     this.setState({selectValue: e.target.value});
-    
+
     if (this.props.autoCompleteCollection[e.target.value].length === 0 ) {
       this.props.fetchAutoComplete(e.target.value, e.target.id.match(/-(.+)-/)[1]);
     }
+  }
+
+  handleTextChange = (e) => {
+    clearTimeout(this.timer);
+    this.setState({value: e.target.value});
+    
+    let attr = document.getElementById(`attrField${e.target.id.match(/Field(.*)/)[1]}`).value
+    let value = e.target.value
+    this.timer = setTimeout( 
+      (() => {return this.triggerChange(attr, value)}).bind(attr, value),
+      WAIT_INTERVAL
+    );
+  }
+  
+  triggerChange = (attr, value) => {
+    this.props.fetchAutoComplete(attr, this.props.menuChoice, value)
   }
 
   autoCompleteTextfield = () => {
@@ -46,7 +72,7 @@ class SelectMenu extends Component {
           </div>
         }
         value={this.state.value}
-        onChange={e => this.setState({ value: e.target.value })}
+        onChange={this.handleTextChange}
         onSelect={value => this.setState({ value })}
       />
     )
@@ -55,8 +81,7 @@ class SelectMenu extends Component {
 
   render() {
     const { items, name, idVal, menuChoice } = this.props;
-    
-    
+
     return (
       <div>
         <label htmlFor={`attrField-${menuChoice}-${idVal}`}>{name}</label> : <br/>
@@ -77,5 +102,6 @@ class SelectMenu extends Component {
     )
   }
 }
+
 
 export default SelectMenu;

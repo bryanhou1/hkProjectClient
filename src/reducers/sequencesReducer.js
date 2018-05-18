@@ -1,6 +1,7 @@
 import * as CONST from '../constants/index';
 import * as SAMPLE from '../constants/sample';
-const initialState = {sequences1: [],
+const initialState = {
+  sequences1: [],
   sequences2Grid: {
     display: false,
     displayUnit: "16s",

@@ -22,14 +22,15 @@ export const initiateSession = () => {
   }
 }
 
-export const fetchAutoComplete = (attr, tableNo) => {
+export const fetchAutoComplete = (attr, tableNo, str) => {
   return (dispatch, getState) => {
     dispatch({type: CONST.FETCH_AUTOCOMPLETE_START, tableNo: tableNo})
     const request = axios({
       method: 'get',
       url: `${URL.API_URL}/get_autocomplete_data_${tableNo}`,
       params: {
-        "attr": attr
+        "attr": attr,
+        "string": str
       }
     })
     return request.then(
