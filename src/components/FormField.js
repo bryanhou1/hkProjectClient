@@ -18,7 +18,6 @@ class FormField extends Component {
               </div>
             </div>
           </div>
-          
         )
       }else if (item.type === "fillIn") {
         return (

@@ -77,9 +77,9 @@ class Form extends Component {
     switch (menuChoice) {
       case 1:
         return [
-          {displayName: CONST.DISPLAY.IDENTITY, dbName: CONST.DB.IDENTITY, type: "fillIn", min: 50, max:100, step: 1, label: ">=" },
-          {displayName: CONST.DISPLAY.HIT_RATIO, dbName: CONST.DB.HIT_RATIO, type: "fillIn", min: 0.5, max: 1.1, step: 0.1, label: ">="}, 
-          {displayName: CONST.DISPLAY.E_VALUE, dbName: CONST.DB.E_VALUE, type: "fillIn", min: 0, max: 1, step: 1e-200, label: "<="}
+          {displayName: CONST.DISPLAY.IDENTITY, dbName: CONST.DB.IDENTITY, type: "fillIn", min: 50, max:100, step: 1, label: CONST.TABLE_1_SIGNS[CONST.DB.IDENTITY] },
+          {displayName: CONST.DISPLAY.HIT_RATIO, dbName: CONST.DB.HIT_RATIO, type: "fillIn", min: 0.5, max: 1.1, step: 0.1, label:  CONST.TABLE_1_SIGNS[CONST.DB.HIT_RATIO]}, 
+          {displayName: CONST.DISPLAY.E_VALUE, dbName: CONST.DB.E_VALUE, type: "fillIn", min: 0, max: 1, step: 1e-200, label:  CONST.TABLE_1_SIGNS[CONST.DB.E_VALUE]}
         ]
       case 2:
         return [

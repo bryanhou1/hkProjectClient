@@ -14,25 +14,22 @@ class Table1 extends Component {
   }
 
   searchedQueryLayout = () => {
-    debugger
     let {searchedQuery} = this.props;
     let entries = []
-
     //expect 1,2 or none entries
     let allKeys = (Object.keys(searchedQuery[1]))
     let firstTwoAttrKeys = allKeys.filter((key) => !(CONST.BLAST_CRITERIA_ENTRIES[1].DB.includes(key)) )
 
     firstTwoAttrKeys.forEach((key) => {
       entries.push(
-        <div>
+        <div key={`searched query key ${key}`}>
           <strong>{CONST.DISPLAY_LINKS[key]} :</strong> {searchedQuery[1][key]}
         </div>
       )
     })
-
     entries.push(CONST.BLAST_CRITERIA_ENTRIES[1].DB.map((key) => (
-      <div>
-      <strong>{CONST.DISPLAY_LINKS[key]} :</strong> {searchedQuery[1][key]}
+      <div key={`searched query key ${key}`}>
+        <strong>{CONST.DISPLAY_LINKS[key]} :</strong> {CONST.TABLE_1_SIGNS[key]} {searchedQuery[1][key]}
       </div>
     )))
 
