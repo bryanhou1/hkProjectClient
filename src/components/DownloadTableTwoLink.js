@@ -4,6 +4,19 @@ import { CSVLink } from 'react-csv';
 
 export default class DownloadTableTwoLink extends Component{
   
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.dipslayUnit !== nextProps.dipslayUnit) {
+      return true;
+    } else if (
+      !(this.props.builtGrid.length === nextProps.builtGrid.length &&
+      this.props.builtGrid[0].length === nextProps.builtGrid[0].length &&
+      this.props.builtGrid === nextProps.builtGrid)
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   render (){
     let {display, builtGrid} = this.props;
 

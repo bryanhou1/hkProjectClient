@@ -144,7 +144,7 @@ class DisplayTableTwo extends Component {
               <Grid.Row>
                 <Grid.Column width={15}>
                   <Container>
-                  <div style={{width: '100%', height: '425px'}}>
+                  <div style={{width: '100%', height: '430px'}}>
                     {/* modify stickyHeaderCount if implementing row amount changes */}
                     <StickyTable stickyHeaderCount={0} stickyColumnCount={4}>
                       {rows}

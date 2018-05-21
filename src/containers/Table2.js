@@ -74,8 +74,8 @@ class TableTwo extends Component {
         <Container>
           <DisplayTableTwo sequences2Grid={sequences2Grid} changeTableTwoDisplayUnit={changeTableTwoDisplayUnit} switchTableTwoPage={switchTableTwoPage}/>
           <br/><br/>
-          <DownloadTableTwoLink display={display} builtGrid={builtGrids[displayUnit]} />
-          <br/><br/>
+          <DownloadTableTwoLink display={display} builtGrid={builtGrids[displayUnit]} displayUnit={displayUnit} />
+          <br/>
         </Container>
       </div>
     )

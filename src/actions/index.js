@@ -99,7 +99,7 @@ export const search = (query, tableNo) => {
             gridPpm: gridPpm,
             xHeaders: xHeaders,
             yHeaders: yHeaders,
-            builtGrids: builtGrids || []
+            builtGrids: builtGrids
           })
         }
       },
