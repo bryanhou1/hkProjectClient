@@ -58,10 +58,49 @@ export const search = (query, tableNo) => {
 
     return request.then(
       response => {
-        const {items, table} = response.data;
-        dispatch({ type: CONST.SEARCH_SUCCESS, sequences: items, table: table})
-        if (table===2) {
-          dispatch({ type: CONST.RENDER_TABLE_TWO, grid16s: response.data.grid16s, gridCell: response.data.gridCell, gridPpm: response.data.gridPpm, xHeaders: response.data.xHeaders, yHeaders: response.data.yHeaders})
+        const {table} = response.data;
+
+        if (table===1) {
+          dispatch({ type: CONST.SEARCH_SUCCESS, sequences: response.data.items, table: table})
+        } else {
+          let yLabels = ["ARG", "Subtype", "Type", "Rank"];
+          let xLabels = ["Sample", "EcoType", "EcoSubtype"];
+          const {xHeaders, yHeaders, grid16s, gridCell, gridPpm} = response.data;
+          let gridComp = [];
+          //first row 
+          gridComp.push(["",...xLabels])
+          // top 4 rows
+          let yHeadersT=yHeaders[0].map((x,i) => yHeaders.map(x => x[i]))
+          let spaces = xLabels.map(()=> "")
+        
+
+          yLabels.forEach((yLabel, i) => gridComp.push([yLabel, ...spaces, ...yHeadersT[i]]))
+        
+        
+          let builtGrids= {"16s": gridComp.slice(), cell: gridComp.slice(), ppm: gridComp.slice()}
+
+          
+          // refractor later
+          grid16s.forEach((row, i) => {
+            builtGrids["16s"].push(["", ...xHeaders[i], ...row])
+          })
+          gridCell.forEach((row, i) => {
+            builtGrids.cell.push(["", ...xHeaders[i], ...row])
+          })
+
+          gridPpm.forEach((row, i) => {
+            builtGrids.ppm.push(["", ...xHeaders[i], ...row])
+          })
+
+          dispatch({
+            type: CONST.RENDER_TABLE_TWO,
+            grid16s: grid16s,
+            gridCell: gridCell,
+            gridPpm: gridPpm,
+            xHeaders: xHeaders,
+            yHeaders: yHeaders,
+            builtGrids: builtGrids || []
+          })
         }
       },
       err => {

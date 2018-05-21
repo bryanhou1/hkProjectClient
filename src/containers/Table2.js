@@ -19,7 +19,6 @@ class TableTwo extends Component {
     let allKeys = (Object.keys(searchedQuery[2]))
     let firstTwoAttrKeys = allKeys.filter((key) => !(CONST.BLAST_CRITERIA_ENTRIES[2].DB.includes(key)) )
 
-    debugger;
     firstTwoAttrKeys.forEach((key) => {
       entries.push(
         <div key={"search query others " + key}>
@@ -44,7 +43,7 @@ class TableTwo extends Component {
   render() {
     const {fetchAutoComplete, autoCompleteCollection, search, sequences2Grid, changeTableTwoDisplayUnit, switchTableTwoPage, resultFetching, searchedQuery} = this.props;
     //to prevent refresh on other variable changes.
-    const {xHeaders, xLabels, yHeaders, yLabels, grid16s, gridCell, gridPpm, displayUnit, display} = sequences2Grid
+    const {displayUnit, display, builtGrids} = sequences2Grid;
     return (
       <div>
         <h1>Metagenomes</h1>
@@ -74,7 +73,8 @@ class TableTwo extends Component {
         <ResDivider text={"result"} hidden={!sequences2Grid.display}/>
         <Container>
           <DisplayTableTwo sequences2Grid={sequences2Grid} changeTableTwoDisplayUnit={changeTableTwoDisplayUnit} switchTableTwoPage={switchTableTwoPage}/>
-          <DownloadTableTwoLink sequences2Grid={{xHeaders, xLabels, yHeaders, yLabels, grid16s, gridCell, gridPpm, displayUnit, display}} />
+          <br/><br/>
+          <DownloadTableTwoLink display={display} builtGrid={builtGrids[displayUnit]} />
           <br/><br/>
         </Container>
       </div>

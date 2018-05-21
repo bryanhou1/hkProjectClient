@@ -4,7 +4,7 @@ import {Grid} from 'semantic-ui-react';
 // import * as CONST from '../constants/index'
 
 
-const WAIT_INTERVAL = 500;
+const WAIT_INTERVAL = 800;
 
 class SelectMenu extends Component {
   constructor(props) {
@@ -13,14 +13,14 @@ class SelectMenu extends Component {
     this.state = {selectValue: "", value: ""};
   }
 
-  
   componentWillMount() {
     this.timer = null;
   }
   
   handleChange = (e) => {
     this.setState({selectValue: e.target.value});
-
+    // debugger;
+    console.log(this.props)
     if (this.props.autoCompleteCollection[e.target.value].length === 0 ) {
       this.props.fetchAutoComplete(e.target.value, e.target.id.match(/-(.+)-/)[1]);
     }

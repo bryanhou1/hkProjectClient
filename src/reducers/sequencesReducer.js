@@ -3,7 +3,8 @@ import * as SAMPLE from '../constants/sample';
 const initialState = {
   sequences1: [],
   sequences2Grid: {
-    display: false,
+    display: true,
+    builtGrids: {"16s": [], cell: [], ppm: []},
     displayUnit: "16s",
     xLabels: [CONST.DISPLAY.SAMPLE, CONST.DISPLAY.ECO_TYPE, CONST.DISPLAY.ECO_SUBTYPE],
     yLabels:[CONST.DISPLAY.ARG, CONST.DISPLAY.TYPE, CONST.DISPLAY.SUBTYPE, CONST.DISPLAY.RANK],
@@ -88,7 +89,7 @@ export default function sequencesReducer(state = initialState, action){
       }}
     }case CONST.RENDER_TABLE_TWO: {
       return { ...state,
-        sequences2Grid: {...state.sequences2Grid, xHeaders: action.xHeaders, yHeaders: action.yHeaders, grid16s: action.grid16s, gridCell: action.gridCell, gridPpm: action.gridPpm, display: true,
+        sequences2Grid: {...state.sequences2Grid, xHeaders: action.xHeaders, yHeaders: action.yHeaders, grid16s: action.grid16s, gridCell: action.gridCell, gridPpm: action.gridPpm, builtGrids: action.builtGrids, display: true,
         paginate:{
           horizontal: {
             ...state.sequences2Grid.paginate.horizontal,
@@ -101,7 +102,9 @@ export default function sequencesReducer(state = initialState, action){
             currentPage: 1
           }
         }
-      }}
+      },
+      fetching: false
+    }
     }
     case CONST.STORE_SEARCH_TERMS:
       return { ...state, searchedQuery: {

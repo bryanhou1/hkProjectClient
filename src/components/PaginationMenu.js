@@ -21,26 +21,13 @@ class PaginationMenu extends Component {
     // const lastCurrentEntry = currentPage===pagesCount ? totalEntries : currentPage * elPerPage
     // const totalEntries = (orientation === 'horizontal') ? sequence2Grid.yHeaders.length : sequence2Grid.xHeaders.length
     
+    let dict = { horizontal: "ARG", vertical: "Sample"}
     
     return (
       <div>
         <Grid> 
-          <Grid.Column width={4} className="compact">
-            <div className="compact">
-              Page <Input
-                  size="mini"
-                  name='activePage'
-                  orientation={orientation}
-                  min={1}
-                  max={paginate[orientation].pagesCount}
-                  onChange={this.handlePaginationChange2}
-                  type='number'
-                  value={paginate[orientation].currentPage}
-                /> / {paginate[orientation].pagesCount}
-            </div>
-          </Grid.Column>
-          <Grid.Column className="compact" floated='right' textAlign='right' width={10} verticalAlign="middle">
-            {orientation[0].toUpperCase() + orientation.substring(1) + " : "}
+          <Grid.Column className="compact" floated='right' textAlign='right' width={16} verticalAlign="middle">
+            { dict[orientation] + " : "}
             <Pagination
               firstItem={false}
               lastItem={false}
@@ -49,6 +36,18 @@ class PaginationMenu extends Component {
               size='mini'
               totalPages={paginate[orientation].pagesCount}
             />
+            <span>
+              <Input
+                size="mini"
+                name='activePage'
+                orientation={orientation}
+                min={1}
+                max={paginate[orientation].pagesCount}
+                onChange={this.handlePaginationChange2}
+                type='number'
+                value={paginate[orientation].currentPage}
+              /> / {paginate[orientation].pagesCount}
+            </span>
           </Grid.Column>
         </Grid>
         

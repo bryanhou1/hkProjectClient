@@ -11,11 +11,8 @@ class FormField extends Component {
         return (
           <div key={i}>
             <label>{item.displayName}:</label><br />
-            <div className="ui corner labeled input fluid">
+            <div className="ui input fluid">
               <Dropdown placeholder={item.displayName} fluid selection options={this.buildDropdownOptions(item.options)} id={item.dbName} onChange={this.props.handleChange}/>
-              <div className="ui corner label">
-                <i className="asterisk icon"></i>
-              </div>
             </div>
           </div>
         )

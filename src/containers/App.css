@@ -33,7 +33,7 @@ ul {
   font-size: large;
 }
 
-td {
+/* td {
   padding: 2px 4px;
   height: 22px;
   border: solid lightgray 1px;
@@ -57,7 +57,7 @@ td.label {
 
 td.main-grid-item{
   text-align: center;
-}
+} */
 
 
 .ui.grid>.compact.column {
@@ -68,7 +68,7 @@ div.compact {
   padding: 0;
 }
 
-table {
+/* table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
@@ -77,22 +77,73 @@ table {
 }
 
 table.mainTable, table.overlay3 {
-  /* width: 140%; */
   width: 160%;
-}
+} */
 
-.main-grid-item {
-  background-color: beige;
-}
+
 /* td, th {
   border-left:solid black 1px;
   border-top:solid black 1px;
 } */
 
-td:first-child, th:first-child {
+/* td:first-child, th:first-child {
    border-left: none;
+} */
+
+div.sticky-table {
+  border: 2px solid #e5e5e5;
 }
 
+
+/* scrollbar hiding */
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+
+/*table */
+
+div.border-right {
+  border-right: 2px solid #e5e5e5;
+}
+
+div.border-bottom {
+  border-bottom: 2px solid #e5e5e5;
+}
+
+div.sticky-table {
+  border: 2px solid #e5e5e5;
+}
+
+div.label {
+  min-width: 100px;
+  padding: 4px;
+  background: rgb(245, 245, 245);
+}
+
+div.space{
+  background-image: url("../photoAssets/stripe.png") !important;
+}
+
+div.head{
+  height: 25px;
+  padding: 5px;
+  text-align: center;
+  background: rgb(245, 245, 245);
+  font-weight: bolder;
+  text-shadow: 0px 1px 1.5px rgba(0, 0, 0, 0.3);
+}
+
+.main-grid-item {
+  background-color: rgb(255, 255, 255);
+  padding: 4px;
+}
 
 @media only screen and (max-width: 1200px) {
   .ui.stackable.buttons{
