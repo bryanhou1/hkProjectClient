@@ -12,7 +12,12 @@ class Carousel extends React.Component {
     let settings = {
       dots: true,
       infinite: true,
-      arrow:true
+      arrows: true,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      infinite: true,
+      fade: true,
+      cssEase: 'linear'
     };
     return (
       <Slider {...settings}>
@@ -20,7 +25,7 @@ class Carousel extends React.Component {
           <Container>
             <Segment padded>
               <Label attached='bottom'>Fig 1</Label>
-              <Image width={1200} src={Fig1} rounded fluid/>
+              <Image width={100} src={Fig1} rounded fluid/>
             </Segment>
           </Container>
         </div>
@@ -28,7 +33,7 @@ class Carousel extends React.Component {
           <Container>
             <Segment padded>
               <Label attached='bottom'>Fig 2</Label>
-              <Image width={1200} src={Fig2} rounded fluid/>
+              <Image width={100} src={Fig2} rounded fluid/>
             </Segment>
           </Container>
         </div>
