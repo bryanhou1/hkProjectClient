@@ -29,7 +29,7 @@ export const DB = {
 }
 
 export const DISPLAY = {
-  ARG: "ARG",
+  ARG: "Sequence",
   SUBTYPE: "Subtype",
   TYPE: "Type",
   GENOME: "Genome",
@@ -106,8 +106,8 @@ export const DISPLAY_LINKS = {
 export const MENU_1 = [
   [ARG, [
     [DISPLAY_LINKS[DB.ARG], DB.ARG],
-    [DISPLAY_LINKS[DB.SUBTYPE], DB.SUBTYPE],
     [DISPLAY_LINKS[DB.TYPE], DB.TYPE],
+    [DISPLAY_LINKS[DB.SUBTYPE], DB.SUBTYPE],
     [DISPLAY_LINKS[DB.RANK],DB.RANK]
   ]],
   [GENOME_TAXONOMY, [
@@ -127,8 +127,8 @@ export const MENU_1 = [
 export const MENU_2 = [
 [ARG, [
   [DISPLAY_LINKS[DB.ARG], DB.ARG],
-  [DISPLAY_LINKS[DB.SUBTYPE], DB.SUBTYPE],
   [DISPLAY_LINKS[DB.TYPE], DB.TYPE],
+  [DISPLAY_LINKS[DB.SUBTYPE], DB.SUBTYPE],
   [DISPLAY_LINKS[DB.RANK], DB.RANK],
 ]],
 [HABITAT, [
