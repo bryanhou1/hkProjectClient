@@ -142,3 +142,16 @@ export const TABLE_1_SIGNS = {
   [DB.HIT_RATIO]: " ≥ ",
   [DB.E_VALUE]: " ≤ "
 }
+
+export const DEFAULT_VAL = {
+  1:{
+    [DB.IDENTITY]: "90",
+    [DB.HIT_RATIO]: "0.8",
+    [DB.E_VALUE]: "1e-5"
+  },
+  2:{
+    [DB.IDENTITY]: "80",
+    [DB.HIT_LENGTH]: "25",
+    [DB.E_VALUE]: "1e-7"
+  }
+}

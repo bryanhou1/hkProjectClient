@@ -13,7 +13,7 @@ class FormField extends Component {
             <label>{item.displayName}:</label><br />
             <div className="ui input fluid">
               <Popup
-                trigger={<Dropdown placeholder={item.displayName} fluid selection options={this.buildDropdownOptions(item.options)} id={item.dbName} onChange={this.props.handleChange}/>}
+                trigger={<Dropdown placeholder={`defaults to: ${item.default}`} fluid selection options={this.buildDropdownOptions(item.options)} id={item.dbName} onChange={this.props.handleChange}/>}
                 content={item.hint}
                 position='right center'
               />
@@ -35,6 +35,7 @@ class FormField extends Component {
                 max={item.max}
                 type='number'
                 onChange={this.props.handleChange}
+                placeholder={`defaults to: ${item.default}`}
               />}
               content={item.hint}
               position='right center'

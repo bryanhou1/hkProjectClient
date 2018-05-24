@@ -15,7 +15,6 @@ class Carousel extends React.Component {
       arrows: true,
       autoplay: true,
       autoplaySpeed: 4000,
-      infinite: true,
       fade: true,
       cssEase: 'linear'
     };
