@@ -77,15 +77,15 @@ class Form extends Component {
     switch (menuChoice) {
       case 1:
         return [
-          {displayName: CONST.DISPLAY.IDENTITY, dbName: CONST.DB.IDENTITY, type: "fillIn", min: 50, max:100, step: 1, label: CONST.TABLE_1_SIGNS[CONST.DB.IDENTITY] },
-          {displayName: CONST.DISPLAY.HIT_RATIO, dbName: CONST.DB.HIT_RATIO, type: "fillIn", min: 0.5, max: 1.1, step: 0.1, label:  CONST.TABLE_1_SIGNS[CONST.DB.HIT_RATIO]}, 
-          {displayName: CONST.DISPLAY.E_VALUE, dbName: CONST.DB.E_VALUE, type: "fillIn", min: 0, max: 1, step: 1e-200, label:  CONST.TABLE_1_SIGNS[CONST.DB.E_VALUE]}
+          {displayName: CONST.DISPLAY.IDENTITY, dbName: CONST.DB.IDENTITY, type: "fillIn", min: 50, max:100, step: 1, label: CONST.TABLE_1_SIGNS[CONST.DB.IDENTITY], hint: "aa-based sequence similarity of BLAST results (50%-100%)" },
+          {displayName: CONST.DISPLAY.HIT_RATIO, dbName: CONST.DB.HIT_RATIO, type: "fillIn", min: 0.5, max: 1.1, step: 0.1, label:  CONST.TABLE_1_SIGNS[CONST.DB.HIT_RATIO], hint: "the percentage of aa-based hit-length to the reference length (50%-100%)"}, 
+          {displayName: CONST.DISPLAY.E_VALUE, dbName: CONST.DB.E_VALUE, type: "fillIn", min: 0, max: 1, step: 1e-200, label:  CONST.TABLE_1_SIGNS[CONST.DB.E_VALUE], hint: "the e-value of BLAST results (≤1.0E-1)"}
         ]
       case 2:
         return [
-          {displayName: CONST.DISPLAY.IDENTITY, dbName: CONST.DB.IDENTITY, type: "dropdown", options: [60,70,80,90,100]},
-          {displayName: CONST.DISPLAY.HIT_LENGTH, dbName: CONST.DB.HIT_LENGTH, type: "dropdown", options: [17, 25, 33]}, 
-          {displayName: CONST.DISPLAY.E_VALUE, dbName: CONST.DB.E_VALUE, type: "dropdown", options: ["1e-6", "1e-7", "1e-8", "1e-9"]}
+          {displayName: CONST.DISPLAY.IDENTITY, dbName: CONST.DB.IDENTITY, type: "dropdown", options: [60,70,80,90,100], hint: "aa-based sequence similarity of BLAST results (60%, 70%, 80%, 90%, and 100%)"},
+          {displayName: CONST.DISPLAY.HIT_LENGTH, dbName: CONST.DB.HIT_LENGTH, type: "dropdown", options: [17, 25, 33], hint: "aa-based sequence hit-length of BLAST results (17 aa, 25 aa and 33 aa of 100bp reads)"}, 
+          {displayName: CONST.DISPLAY.E_VALUE, dbName: CONST.DB.E_VALUE, type: "dropdown", options: ["1e-6", "1e-7", "1e-8", "1e-9"], hint: "the e-value of BLAST results (1.0E-6, 1.0E-7, 1.0E-8, 1.0E-9)"}
         ];
       default:
         return [];

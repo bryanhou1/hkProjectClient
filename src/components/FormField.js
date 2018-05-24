@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SelectMenu from './SelectMenu';
-import {Dropdown, Input, Dimmer, Loader} from 'semantic-ui-react'
+import {Dropdown, Input, Dimmer, Loader, Popup} from 'semantic-ui-react'
 
 class FormField extends Component {
 
@@ -12,7 +12,11 @@ class FormField extends Component {
           <div key={i}>
             <label>{item.displayName}:</label><br />
             <div className="ui input fluid">
-              <Dropdown placeholder={item.displayName} fluid selection options={this.buildDropdownOptions(item.options)} id={item.dbName} onChange={this.props.handleChange}/>
+              <Popup
+                trigger={<Dropdown placeholder={item.displayName} fluid selection options={this.buildDropdownOptions(item.options)} id={item.dbName} onChange={this.props.handleChange}/>}
+                content={item.hint}
+                position='right center'
+              />
             </div>
           </div>
         )
@@ -20,16 +24,20 @@ class FormField extends Component {
         return (
           <div key={i}>
             <label htmlFor={item.dbName}>{item.displayName} : </label> <br/>
-            <Input
-              id={item.dbName}
-              className="ui fluid"
-              label={item.label}
-              name='activePage'
-              step={item.step || null}
-              min={item.min}
-              max={item.max}
-              type='number'
-              onChange={this.props.handleChange}
+            <Popup
+              trigger={<Input
+                id={item.dbName}
+                className="ui fluid"
+                label={item.label}
+                name='activePage'
+                step={item.step || null}
+                min={item.min}
+                max={item.max}
+                type='number'
+                onChange={this.props.handleChange}
+              />}
+              content={item.hint}
+              position='right center'
             />
           </div>
         )

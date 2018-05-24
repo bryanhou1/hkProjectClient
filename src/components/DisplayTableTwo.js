@@ -18,10 +18,9 @@ class DisplayTableTwo extends Component {
   }
 
   render() {
-    
     let {yLabels, yHeaders, xLabels, xHeaders, grid16s, gridCell, gridPpm, displayUnit, paginate} = this.props.sequences2Grid;
     let {horizontal, vertical} = paginate
-  
+    
     let xLabelsT = xLabels.map((xLabel, i)=> <Cell className={i === xLabels.length-1 ? "head border-bottom border-right" : "head border-bottom"} key={-i}>{xLabel}</Cell>)
     let xSpaces = [...Array(horizontal.elPerPage)].map((xLabel, i) => <Cell className="head border-bottom space" key={i}></Cell>)
   
@@ -250,7 +249,6 @@ class DisplayTableTwo extends Component {
 //       return <td className="head" key={-i}>{xLabel}</td>
 //     })
     
-//     debugger;
 //     rows.push(
 //       <tr key="first-row">
 //         {xLabelsT}
