@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactAutocomplete from 'react-autocomplete'
-import {Grid} from 'semantic-ui-react';
+import {Grid, Popup} from 'semantic-ui-react';
 // import * as CONST from '../constants/index'
 
 
@@ -79,17 +79,26 @@ class SelectMenu extends Component {
 
   render() {
     const { items, name, idVal, menuChoice } = this.props;
-
     return (
       <div>
         <label htmlFor={`attrField-${menuChoice}-${idVal}`}>{name}</label> : <br/>
         <Grid stretched>
           <Grid.Row>
             <Grid.Column width={6} stretched style={{paddingRight: 1 }}>
-              <select className="ui dropdown" name={name} value={this.state.selectValue} onChange={this.handleChange} id={`attrField-${menuChoice}-${idVal}`}>
-                <option value="" disabled/>
-                {items.map((item, i) => <option key={i} value={item[1]}>{item[0]}</option> )}
-              </select>
+              <Popup
+                trigger={
+                  <select className="ui dropdown" name={name} value={this.state.selectValue} onChange={this.handleChange} id={`attrField-${menuChoice}-${idVal}`}>
+                    <option value="" disabled/>
+                    {items.map((item, i) => <option key={i} value={item[1]}>{item[0]}</option> )}
+                  </select>
+                }
+                content={this.state.selectValue ? 
+                  items.filter((item) => item[1] === this.state.selectValue)[0][2]
+                  : 
+                  "Start by selecting a attribute to search for!"
+                }
+                position='left center'
+              />
             </Grid.Column>
             <Grid.Column width={10} stretched style={{paddingLeft: 1 }}>
               {this.autoCompleteTextfield()}
