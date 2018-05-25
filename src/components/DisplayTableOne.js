@@ -7,7 +7,16 @@ import matchSorter from 'match-sorter';
 class DisplayTableOne extends Component {
 
   fuzzyMatch = (filter, rows) => matchSorter(rows, filter.value, { keys: [filter.id] })
-  
+  capMatch = (filter, rows) => {
+    return rows[filter.id].toLowerCase().startsWith(filter.value.toLowerCase())
+  }
+
+  numMatch = (filterType) => filterType=== "<=" ? 
+  (filter, rows) => (Number(rows[filter.id]) <= Number(filter.value))
+  :
+  (filter, rows) => (Number(rows[filter.id]) >= Number(filter.value))
+
+
   render() {
     const {sequences} =this.props;
     return (
@@ -21,17 +30,16 @@ class DisplayTableOne extends Component {
                 {
                   Header: CONST.DISPLAY.ARG,
                   accessor: CONST.DB.ARG,
+                  filterMethod: this.capMatch,
                 },{
                   Header: CONST.DISPLAY.SUBTYPE,
                   accessor: CONST.DB.SUBTYPE,
+                  filterMethod: this.capMatch,
                 },
                 {
                   Header: CONST.DISPLAY.TYPE,
                   accessor: CONST.DB.TYPE,
-                }, 
-                {
-                  Header: CONST.DISPLAY.RANK,
-                  accessor: CONST.DB.RANK
+                  filterMethod: this.capMatch,
                 }
               ]
             },
@@ -40,11 +48,13 @@ class DisplayTableOne extends Component {
               columns: [
                 {
                   Header: CONST.DISPLAY.GENOME,
-                  accessor: CONST.DB.GENOME
+                  accessor: CONST.DB.GENOME,
+                  filterMethod: this.capMatch,
                 },
                 {
                   Header: CONST.DISPLAY.ACCESSION,
-                  accessor: CONST.DB.ACCESSION
+                  accessor: CONST.DB.ACCESSION,
+                  filterMethod: this.capMatch,
                 },
                 {
                   Header: CONST.DISPLAY.PHYLUM,
@@ -96,15 +106,18 @@ class DisplayTableOne extends Component {
               columns: [
                 {
                   Header: CONST.DISPLAY.IDENTITY,
-                  accessor: CONST.DB.IDENTITY
+                  accessor: CONST.DB.IDENTITY,
+                  filterMethod: this.numMoreThanMatch
                 },
                 {
                   Header: CONST.DISPLAY.HIT_RATIO,
-                  accessor: CONST.DB.HIT_RATIO
+                  accessor: CONST.DB.HIT_RATIO,
+                  filterMethod: this.numMatch(">="),
                 },
                 {
                   Header: CONST.DISPLAY.E_VALUE,
-                  accessor: CONST.DB.E_VALUE
+                  accessor: CONST.DB.E_VALUE,
+                  filterMethod: this.numMatch("<="),
                 }
               ]
             }
