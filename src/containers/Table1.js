@@ -44,8 +44,14 @@ class Table1 extends Component {
     const {sequences1, fetchAutoComplete, autoCompleteCollection, search, resultFetching, searchedQuery} = this.props;
     return (
       <div>
-        <h1>Whole Genomes</h1>
         <Grid centered>
+          <Grid.Row>
+            <Grid.Column width={13}>
+              <div style={{paddingTop: "2em"}}>
+                <h1>Whole Genomes</h1>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Row>
             <Grid.Column width={4}>
               <Form

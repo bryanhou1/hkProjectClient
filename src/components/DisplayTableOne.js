@@ -10,12 +10,10 @@ class DisplayTableOne extends Component {
   capMatch = (filter, rows) => {
     return rows[filter.id].toLowerCase().startsWith(filter.value.toLowerCase())
   }
-
   numMatch = (filterType) => filterType=== "<=" ? 
   (filter, rows) => (Number(rows[filter.id]) <= Number(filter.value))
   :
   (filter, rows) => (Number(rows[filter.id]) >= Number(filter.value))
-
 
   render() {
     const {sequences} =this.props;

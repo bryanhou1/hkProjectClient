@@ -7,27 +7,30 @@ import Layout from './components/Layout'
 import App from './containers/App.jsx'
 import Table1 from './containers/Table1'
 import Table2 from './containers/Table2'
-import About from './components/About'
+import About from './components/About.jsx'
 
 import registerServiceWorker from './registerServiceWorker'
 import store from './store/configureStore'
 import {Provider} from 'react-redux'
 import { Router, Route, browserHistory, IndexRoute} from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
+import * as CONST from './config/url'
+// import {ActionCableProvider} from 'react-actioncable-provider'
 
 const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
 <Provider store={store}>
-  <Router history={history}>
-    {/* <Route path="/"> */}
-    <Route path="/" component={Layout} >
+    <Router history={history}>
+      <Route path="/" component={Layout} >
         <IndexRoute component={App} />
         <Route path="about" component={About}/>
-        <Route path="table1" component={Table1}/>
-        <Route path="table2" component={Table2}/>
-    </Route>
-  </Router>
+        {/* <ActionCableProvider url={CONST.API_WS_URL}> */}
+          <Route path="table1" component={Table1}/>
+          <Route path="table2" component={Table2}/>
+        {/* </ActionCableProvider> */}
+      </Route>
+    </Router>
 </Provider>
 , document.getElementById('root'));
 registerServiceWorker();

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from './NavBar'
-
+import Footer from './Footer.jsx'
 export default class Layout extends Component {
   
   constructor(){
@@ -31,6 +31,7 @@ export default class Layout extends Component {
         <div style={this.state.styles}>
           {this.props.children}
         </div>
+        <Footer/>
       </div>
     )
   }

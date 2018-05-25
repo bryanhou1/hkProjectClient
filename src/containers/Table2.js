@@ -9,7 +9,7 @@ import {Container, Grid, Segment} from 'semantic-ui-react'
 import DownloadTableTwoLink from '../components/DownloadTableTwoLink'
 import  * as CONST from '../constants/index'
 
-class TableTwo extends Component {
+class Table2 extends Component {
 
   searchedQueryLayout = () => {
     let {searchedQuery} = this.props;
@@ -92,4 +92,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, switchTableTwoPage})(TableTwo);
+export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, switchTableTwoPage})(Table2);
