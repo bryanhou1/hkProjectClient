@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Form from '../components/Form';
 import {connect} from 'react-redux';
-import {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, switchTableTwoPage} from '../actions/index';
-import 'react-datasheet/lib/react-datasheet.css';
-import ResDivider from '../components/ResDivider';
-import DisplayTableTwo from '../components/DisplayTableTwo';
+import {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, switchTableTwoPage} from '../actions/index'
+import 'react-datasheet/lib/react-datasheet.css'
+import ResDivider from '../components/ResDivider'
+import DisplayTableTwo from '../components/DisplayTableTwo'
 import {Container, Grid, Segment} from 'semantic-ui-react'
-import DownloadTableTwoLink from '../components/DownloadTableTwoLink'
 import  * as CONST from '../constants/index'
 
 class Table2 extends Component {
@@ -43,11 +42,16 @@ class Table2 extends Component {
   render() {
     const {fetchAutoComplete, autoCompleteCollection, search, sequences2Grid, changeTableTwoDisplayUnit, switchTableTwoPage, resultFetching, searchedQuery} = this.props;
     //to prevent refresh on other variable changes.
-    const {displayUnit, display, builtGrids} = sequences2Grid;
     return (
       <div>
-        <h1>Metagenomes</h1>
         <Grid centered>
+          <Grid.Row>
+            <Grid.Column width={13}>
+              <div style={{paddingTop: "2em"}}>
+                <h1>Metagenomes</h1>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Row>
             <Grid.Column width={4}>
               <Form 
@@ -73,9 +77,6 @@ class Table2 extends Component {
         <ResDivider text={"result"} hidden={!sequences2Grid.display}/>
         <Container>
           <DisplayTableTwo sequences2Grid={sequences2Grid} changeTableTwoDisplayUnit={changeTableTwoDisplayUnit} switchTableTwoPage={switchTableTwoPage}/>
-          <br/><br/>
-          <DownloadTableTwoLink display={display} builtGrid={builtGrids[displayUnit]} displayUnit={displayUnit} />
-          <br/>
         </Container>
       </div>
     )

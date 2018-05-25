@@ -45,7 +45,7 @@ export default class NavBar extends Component {
           active={activeItem === 'Table One'}
           onClick={this.handleItemClick}
         >
-          Whole Genome
+          Whole Genomes
         </Menu.Item>
         <Menu.Item
           name='Table Two'

@@ -1,5 +1,6 @@
 import React ,{Component} from 'react';
 import { CSVLink } from 'react-csv';
+import { Button } from 'semantic-ui-react';
 
 
 export default class DownloadTableTwoLink extends Component{
@@ -17,11 +18,13 @@ export default class DownloadTableTwoLink extends Component{
     return false;
   }
 
+
+
   render (){
     let {display, builtGrid} = this.props;
 
     return (
-      display ? <CSVLink data={builtGrid} filename={"metagenome-result.csv"} > Download Search Results </CSVLink> : null
+      display ? <Button size="mini" content={<CSVLink data={builtGrid} filename={"metagenome-result.csv"} > Download Search Results </CSVLink>}/>: null
     )
   }
 }

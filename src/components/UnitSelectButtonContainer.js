@@ -19,7 +19,7 @@ class UnitSelectButtonContainer extends Component {
   }
   
   buttonGroup = () => (
-    <Button.Group className="stackable">
+    <Button.Group className="stackable" size="mini">
       <UnitSelectButton active={"per 16S" === this.state.activeButtonName} onClick={this.onClick} optionName={"per 16S"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>
       <UnitSelectButton active={"per Cell" === this.state.activeButtonName} onClick={this.onClick} optionName={"per Cell"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>
       <UnitSelectButton active={"ppm" === this.state.activeButtonName} onClick={this.onClick} optionName={"ppm"} changeTableTwoDisplayUnit={this.props.changeTableTwoDisplayUnit}/>
@@ -36,13 +36,12 @@ class UnitSelectButtonContainer extends Component {
   render() {
     return (
       <div>
-        <h3> Unit: </h3>
+        Unit:&nbsp;&nbsp;
         <Popup
           trigger={this.buttonGroup()}
           content={this.popupContent()}
           position='left center'
         />
-        <br/>
       </div>
     )
   }

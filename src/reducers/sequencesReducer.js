@@ -3,11 +3,11 @@ import * as SAMPLE from '../constants/sample';
 const initialState = {
   sequences1: [],
   sequences2Grid: {
-    display: false,
+    display: true,
     builtGrids: {"16s": [[]], cell: [[]], ppm: [[]]},
     displayUnit: "16s",
     xLabels: [CONST.DISPLAY.SAMPLE, CONST.DISPLAY.ECO_TYPE, CONST.DISPLAY.ECO_SUBTYPE],
-    yLabels:[CONST.DISPLAY.ARG, CONST.DISPLAY.TYPE, CONST.DISPLAY.SUBTYPE, CONST.DISPLAY.RANK],
+    yLabels:[CONST.DISPLAY.ARG, CONST.DISPLAY.TYPE, CONST.DISPLAY.SUBTYPE],
     xHeaders:SAMPLE.TABLE_TWO.X_HEADERS,
     yHeaders: SAMPLE.TABLE_TWO.Y_HEADERS,
     grid16s: SAMPLE.TABLE_TWO.GRID_16S,
@@ -36,7 +36,6 @@ const initialState = {
       [CONST.DB.ARG]: [],
       [CONST.DB.SUBTYPE]: [],
       [CONST.DB.TYPE]: [],
-      [CONST.DB.RANK]: [],
       [CONST.DB.GENOME]: [],
       [CONST.DB.ACCESSION]: [],
       [CONST.DB.PHYLUM]: [],
@@ -57,7 +56,6 @@ const initialState = {
       [CONST.DB.ARG]: [],
       [CONST.DB.SUBTYPE]: [],
       [CONST.DB.TYPE]: [],
-      [CONST.DB.RANK]: [],
       fetching: false
     },
     fetching: false

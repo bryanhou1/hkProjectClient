@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {initiateSession, fetchAutoComplete, search} from '../actions/index';
 import { CSVLink } from 'react-csv';
 import ResDivider from '../components/ResDivider';
-import {Container, Segment, Dimmer, Loader, Grid} from 'semantic-ui-react';
+import {Container, Segment, Dimmer, Loader, Grid, Button} from 'semantic-ui-react';
 import * as CONST from '../constants/index';
 
 class Table1 extends Component {
@@ -75,13 +75,15 @@ class Table1 extends Component {
           </Grid.Row>
         </Grid>
         <ResDivider text={"result"} hidden={!sequences1}/>
+        <Container textAlign="right">
+          <Button style={{margin: "0 14px"}}size="mini" content={<CSVLink data={sequences1} filename={"whole_genome_result.csv"}>Download Search Result</CSVLink>} />
+        </Container>
         <Container>
           <Segment basic>
             <Dimmer active={resultFetching} inverted>
               <Loader inverted>Loading</Loader>
             </Dimmer>
             <DisplayTableOne sequences={sequences1} />
-            <CSVLink data={sequences1} filename={"whole_genome_result.csv"}>Download Search Result</CSVLink>
           </Segment>
         </Container>
       </div>

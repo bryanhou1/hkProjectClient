@@ -15,13 +15,21 @@ import {Provider} from 'react-redux'
 import { Router, Route, browserHistory, IndexRoute} from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import * as CONST from './config/url'
+import ReactGA from 'react-ga';
+
+
+ReactGA.initialize('UA-119855147-1');
 // import {ActionCableProvider} from 'react-actioncable-provider'
+
+function fireTracking() {
+  ReactGA.pageview(window.location.hash);
+}
 
 const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
 <Provider store={store}>
-    <Router history={history}>
+    <Router onUpdate={fireTracking} history={history}>
       <Route path="/" component={Layout} >
         <IndexRoute component={App} />
         <Route path="about" component={About}/>

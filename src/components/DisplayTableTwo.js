@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import UnitSelectButtonContainer from './UnitSelectButtonContainer';
-import {Container, Grid} from 'semantic-ui-react';
+import {Container, Grid, Menu, Segment} from 'semantic-ui-react';
 import PaginationMenu from './PaginationMenu';
-import { StickyTable, Row, Cell } from 'react-sticky-table';
+import { StickyTable, Row, Cell} from 'react-sticky-table';
 import 'react-sticky-table/dist/react-sticky-table.css';
+import DownloadTableTwoLink from '../components/DownloadTableTwoLink'
 
 // import * as CONST from "../constants/index";
 
@@ -18,7 +19,7 @@ class DisplayTableTwo extends Component {
   }
 
   render() {
-    let {yLabels, yHeaders, xLabels, xHeaders, grid16s, gridCell, gridPpm, displayUnit, paginate} = this.props.sequences2Grid;
+    let {yLabels, yHeaders, xLabels, xHeaders, grid16s, gridCell, gridPpm, displayUnit, paginate, display, builtGrids} = this.props.sequences2Grid;
     let {horizontal, vertical} = paginate
     
     let xLabelsT = xLabels.map((xLabel, i)=> <Cell className={i === xLabels.length-1 ? "head border-bottom border-right" : "head border-bottom"} key={-i}>{xLabel}</Cell>)
@@ -78,18 +79,18 @@ class DisplayTableTwo extends Component {
       }
     }
     
-    //fill up main grid rows with spaces
-    const completeMainGridRow = () => {
-      let mainGridSpacesRows = []
-      if (horizontal.currentPage === horizontal.pagesCount) {
-        for (let i=0, j = horizontal.elPerPage - ((currentGrid[0].length % horizontal.elPerPage) || horizontal.elPerPage); i < j; i++) {
-          mainGridSpacesRows.push(<Cell key={"spaces"+i} className="main-grid-item space"></Cell>)
-        }
-        return mainGridSpacesRows;
-      } else {
-        return null;
-      }
-    }
+    // //fill up main grid rows with spaces
+    // const completeMainGridRow = () => {
+    //   let mainGridSpacesRows = []
+    //   if (horizontal.currentPage === horizontal.pagesCount) {
+    //     for (let i=0, j = horizontal.elPerPage - ((currentGrid[0].length % horizontal.elPerPage) || horizontal.elPerPage); i < j; i++) {
+    //       mainGridSpacesRows.push(<Cell key={"spaces"+i} className="main-grid-item space"></Cell>)
+    //     }
+    //     return mainGridSpacesRows;
+    //   } else {
+    //     return null;
+    //   }
+    // }
 
     //row 1-4 
     for (let i=0; i< yLabels.length;i++) { //vertical counter
@@ -130,29 +131,43 @@ class DisplayTableTwo extends Component {
       if (sequences2Grid.grid16s[0].length !== 0 ) {
         return (
           <Container>
-            <Grid centered stackable>
-              <Grid.Row>
-                <Grid.Column verticalAlign="middle" width={4}>
-                  <UnitSelectButtonContainer changeTableTwoDisplayUnit={changeTableTwoDisplayUnit}/>
+            <Grid stackable>
+              <Grid.Row centered>
+                <Grid.Column width={12}>
+                  <Container>
+                    <UnitSelectButtonContainer changeTableTwoDisplayUnit={changeTableTwoDisplayUnit}/>
+                  </Container>
                 </Grid.Column>
-                <Grid.Column verticalAlign="middle" width={11}>     
-                  <PaginationMenu orientation={"horizontal"}/>
-                  <PaginationMenu orientation={"vertical"}/>
+                <Grid.Column width={3}>
+                  <Container textAlign="right">
+                    <DownloadTableTwoLink display={display} builtGrid={builtGrids[displayUnit]} displayUnit={displayUnit} />
+                  </Container>
                 </Grid.Column>
               </Grid.Row>
-              <Grid.Row>
+              <Grid.Row centered>
                 <Grid.Column width={15}>
                   <Container>
-                  <div style={{width: '100%', height: '430px'}}>
+                  <div style={{width: '100%', height: '420px'}}>
                     {/* modify stickyHeaderCount if implementing row amount changes */}
                     <StickyTable stickyHeaderCount={0} stickyColumnCount={4}>
                       {rows}
                     </StickyTable>
                   </div>
                   </Container>
+                  <Segment style={{marginBottom: "2em"}} textAlign="right">
+                    <Menu compact size="mini" style={{border: "none", boxShadow: "none"}}>   
+                      <Menu.Item fitted className="non-inherited-border-less">
+                        <PaginationMenu orientation={"horizontal"}/>
+                      </Menu.Item>
+                      <Menu.Item fitted className="non-inherited-border-less">
+                        <PaginationMenu orientation={"vertical"}/>
+                      </Menu.Item>
+                    </Menu>
+                  </Segment>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
+            
           </Container>
         )
       } else {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Pagination, Input } from 'semantic-ui-react'
+import { Pagination, Input, Menu, Label } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {switchTableTwoPage} from '../actions/index'
 
@@ -24,36 +24,40 @@ class PaginationMenu extends Component {
     let dict = { horizontal: "ARG", vertical: "Sample"}
     
     return (
-      <div>
-        <Grid> 
-          <Grid.Column className="compact" floated='right' textAlign='right' width={16} verticalAlign="middle">
-            { dict[orientation] + " : "}
-            <Pagination
-              firstItem={false}
-              lastItem={false}
-              activePage={paginate[orientation].currentPage}
-              onPageChange={this.handlePaginationChange}
-              size='mini'
-              totalPages={paginate[orientation].pagesCount}
+      <Menu compact style={{border: "none", boxShadow: "none"}}>
+        <Menu.Item fitted className="non-inherited-border-less">
+          <Label size="large" style={{padding: "5% 0", textAlign: "center", height: "31.41px"}}> { dict[orientation] + " : "}</Label>
+        </Menu.Item>
+        <Menu.Item fitted
+          className="non-inherited-border-less"
+          content={<Pagination
+            firstItem={false}
+            lastItem={false}
+            activePage={paginate[orientation].currentPage}
+            onPageChange={this.handlePaginationChange}
+            size='mini'
+            totalPages={paginate[orientation].pagesCount}
+          />}
+        />
+        <Menu.Item fitted
+          className="non-inherited-border-less"
+          content={
+            <Input
+              size="mini"
+              style={{height: "31.41px"}}
+              name='activePage'
+              orientation={orientation}
+              min={1}
+              max={paginate[orientation].pagesCount}
+              onChange={this.handlePaginationChange2}
+              type='number'
+              value={paginate[orientation].currentPage}
             />
-            <span>
-              <Input
-                size="mini"
-                name='activePage'
-                orientation={orientation}
-                min={1}
-                max={paginate[orientation].pagesCount}
-                onChange={this.handlePaginationChange2}
-                type='number'
-                value={paginate[orientation].currentPage}
-              /> / {paginate[orientation].pagesCount}
-            </span>
-          </Grid.Column>
-        </Grid>
-        
-        <br/>
-        
-      </div>
+          }/>
+          <Menu.Item fitted>
+           &nbsp;&nbsp;/&nbsp;{paginate[orientation].pagesCount}&nbsp;
+         </Menu.Item>
+      </Menu>
     )
   }
 }

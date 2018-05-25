@@ -105,7 +105,7 @@ class DisplayTableOne extends Component {
                 {
                   Header: CONST.DISPLAY.IDENTITY,
                   accessor: CONST.DB.IDENTITY,
-                  filterMethod: this.numMoreThanMatch
+                  filterMethod: this.numMatch(">=")
                 },
                 {
                   Header: CONST.DISPLAY.HIT_RATIO,

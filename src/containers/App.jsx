@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Grid, Header, Segment, Image, Container, List } from "semantic-ui-react"
+import {Grid, Header, Segment, Image} from "semantic-ui-react"
 
 import Carousel from '../components/Carousel.jsx'
 import Fig1 from '../photoAssets/Fig1.jpg';
@@ -14,8 +14,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Carousel/>
-        <Segment vertical style={{ padding: '5em 0em' }}>
+
+        <Segment vertical style={{ padding: '2em 0em' }}>
           <Grid stackable centered>
             <Grid.Row>
               <Grid.Column width={this.gridWidth}>
@@ -26,6 +26,11 @@ class App extends Component {
                     </Header.Content>
                   </Header>
                 </Segment>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={this.gridWidth}>
+                <Carousel />
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
@@ -42,7 +47,7 @@ class App extends Component {
               <Grid.Column width={this.gridWidth}>
                 <Segment basic>
                   <Image name="Fig1" src={Fig1} rounded centered />
-                  <label htmlFor="Fig1">Fig. 1 blah blah blah</label>
+                  <label htmlFor="Fig1">Fig. 1. The phylogenetic relationship of all 54,718 bacterial genomes of 45 phyla in WGD and the occurrence of ARGs (blue nodes) and Rank I ARGs (red nodes). The pathogenic strains were indicated by purple edges.</label>
                 </Segment>
               </Grid.Column>
             </Grid.Row>
@@ -69,39 +74,23 @@ class App extends Component {
                     <h2>Current scale of datasets:</h2>
                     <ul>
                       <li>Whole Genome Database (WGD): 54,718 bacterial genomes (completeness ≥ 50%, contamination ≤ 10%) covering 32 bacterial phyla, 162 classes, 299 orders, 643 families, 1,986 genera, and 3,654 species.</li>
-                      <li>Metagenomes Database (MGD): 867 metagenomic datasets covering 25 eco-subtypes of 7 eco-types including the natural environments (water, sediment, soil, and permafrost) and the anthropogenic environments (WWTPs, animal feces and human feces).</li>
+                      <li>Metagenomes Database (MGD): 854 metagenomic datasets covering 25 eco-subtypes of 7 eco-types including the natural environments (water, sediment, soil, and permafrost) and the anthropogenic environments (WWTPs, animal feces and human feces).</li>
                     </ul>
                   </div>
                 </Segment>
               </Grid.Column>
             </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={this.gridWidth}>
+                <div>
+                <h2>References:</h2>
+                <ul>
+                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque consequatur distinctio, rerum maxime debitis ratione itaque sapiente illum, ea error, odit minima ipsa? Excepturi quidem in labore nobis at quas.</li>
+                </ul>
+              </div>
+              </Grid.Column>
+            </Grid.Row>
           </Grid>
-        </Segment>
-        <Segment inverted vertical style={{ padding: '5em 0em' }}>
-          <Container>
-            <Grid divided inverted stackable>
-              <Grid.Row>
-                <Grid.Column width={3}>
-                  <Header inverted as='h4' content='About' />
-                  <List link inverted>
-                    <List.Item as='a'>Contact Us</List.Item>
-                  </List>
-                </Grid.Column>
-                <Grid.Column width={3}>
-                  <Header inverted as='h4' content='Related Links' />
-                  <List link inverted>
-                    <List.Item as='a'>Smile</List.Item>
-                    <List.Item as='a'>ARG-OAP</List.Item>
-                  </List>
-                </Grid.Column>
-                <Grid.Column width={7}>
-                  <Header as='h4' inverted>...</Header>
-                  <p>This is a trial version. If anything doesn't function as expected you can contact us at .....</p>
-                  <p>HKU Environmental Biotechnology Lab © 2018</p>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Container>
         </Segment>
       </div>
     )

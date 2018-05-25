@@ -137,7 +137,6 @@ div.head{
   text-align: center;
   background: rgb(245, 245, 245);
   font-weight: bolder;
-  text-shadow: 0px 1px 1.5px rgba(0, 0, 0, 0.3);
 }
 
 .main-grid-item {
@@ -161,4 +160,15 @@ div.head{
 
 .ui.menu.fixed {
   z-index: 1001;
+}
+
+.slick-prev:before {
+  color: gray;
+}
+.slick-next:before {
+  color: gray;
+}
+
+div.item.non-inherited-border-less:before {
+  width: 0 !important;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import Fig1 from '../photoAssets/Fig1.jpg';
 import Fig2 from '../photoAssets/Fig2.jpg';
-import {Image, Container, Label, Segment} from 'semantic-ui-react';
+import {Image, Label, Segment} from 'semantic-ui-react';
 
 
 class Carousel extends React.Component {
@@ -20,22 +20,14 @@ class Carousel extends React.Component {
     };
     return (
       <Slider {...settings}>
-        <div>
-          <Container>
-            <Segment padded>
-              <Label attached='bottom'>Fig 1</Label>
-              <Image width={100} src={Fig1} rounded fluid/>
-            </Segment>
-          </Container>
-        </div>
-        <div>
-          <Container>
-            <Segment padded>
-              <Label attached='bottom'>Fig 2</Label>
-              <Image width={100} src={Fig2} rounded fluid/>
-            </Segment>
-          </Container>
-        </div>
+        <Segment padded>
+          <Label attached='bottom'>Fig. 1. The phylogenetic relationship of all 54,718 bacterial genomes of 45 phyla in WGD and the occurrence of ARGs (blue nodes) and Rank I ARGs (red nodes). The pathogenic strains were indicated by purple edges.</Label>
+          <Image size="massive" src={Fig1} rounded fluid centered/>
+        </Segment>
+        <Segment padded>
+          <Label attached='bottom'>Fig. 2. The global map of metagenomic datasets in MGD. The size of the datasets (nodes) was proportional to the number of samples and the color was differentiated by the eco-type.</Label>
+          <Image size="massive" src={Fig2} rounded fluid centered/>
+        </Segment>
       </Slider>
     );
   }
