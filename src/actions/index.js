@@ -63,7 +63,7 @@ export const search = (query, tableNo) => {
         if (table===1) {
           dispatch({ type: CONST.SEARCH_SUCCESS, sequences: response.data.items, table: table})
         } else {
-          let yLabels = ["ARG", "Subtype", "Type", "Rank"];
+          let yLabels = ["ARG", "Subtype", "Type"];
           let xLabels = ["Sample", "EcoType", "EcoSubtype"];
           const {xHeaders, yHeaders, grid16s, gridCell, gridPpm} = response.data;
           let gridComp = [];

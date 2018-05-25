@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu,} from 'semantic-ui-react'
+import { Menu, Dropdown} from 'semantic-ui-react'
 import {Link} from 'react-router'
 import Logo from './Logo.js';
 
@@ -10,6 +10,9 @@ export default class NavBar extends Component {
     this.setState({ activeItem: name })
   }
 
+  handleDDClick = (e) => {
+    window.open(e.currentTarget.dataset.link,"_self")
+  }
   render() {
     const { activeItem } = this.state
 
@@ -54,7 +57,16 @@ export default class NavBar extends Component {
           onClick={this.handleItemClick}
         >
           Metagenomes
-        </Menu.Item>
+        </Menu.Item> 
+        <Menu.Menu position='right'>
+          <Dropdown item text='Related Links' inverted>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={this.handleDDClick} data-link="http://web.hku.hk/~zhangt/ZhangT.htm">Our Lab</Dropdown.Item>
+              <Dropdown.Item onClick={this.handleDDClick} data-link="https://smile.hku.hk/SARGs">Other Tools</Dropdown.Item>
+              <Dropdown.Item onClick={this.handleDDClick} data-link="about">Team</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Menu.Menu>
       </Menu>
     )
   }
