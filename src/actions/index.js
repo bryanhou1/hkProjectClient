@@ -3,6 +3,7 @@ import * as CONST from '../constants/index';
 import * as URL from '../config/url';
 
 export const initiateSession = () => {
+  //only for table 1
   return (dispatch, getState) => {
     dispatch({type: CONST.FETCH_SEQUENCE_START})
     const request = axios({
@@ -12,7 +13,7 @@ export const initiateSession = () => {
     
     return request.then(
       response => {
-        dispatch({type: CONST.FETCH_SEQUENCE_SUCCESS, sequences: response.data.items, table: response.data.table})
+        dispatch({type: CONST.FETCH_SEQUENCE_SUCCESS, sequences: response.data, table: 1})
       },
       err => {
         dispatch({type: CONST.FETCH_SEQUENCE_FAILURE})
@@ -44,7 +45,31 @@ export const fetchAutoComplete = (attr, tableNo, str) => {
   }
 } 
 
-export const search = (query, tableNo) => {
+export const searchTable1 = (query, tableNo) => {
+
+  return (dispatch, getState) => {
+    dispatch({ type: CONST.SEARCH_START })
+    dispatch({ type: CONST.STORE_SEARCH_TERMS, query: query, tableNo: 1})
+    
+    const request = axios({
+      method: 'get',
+      url: `${URL.API_URL}/items${tableNo}`,
+      params: {query: query}
+    })
+
+    return request.then(
+      response => {
+        dispatch({ type: CONST.SEARCH_SUCCESS, sequences: response.data, table: 1})
+      },
+      err => {
+        dispatch({ type: CONST.SEARCH_FAILURE })
+        throw err;
+      }
+    )
+  }
+}
+
+export const searchTable2 = (query, tableNo) => {
 
   return (dispatch, getState) => {
     dispatch({ type: CONST.SEARCH_START })
@@ -60,48 +85,42 @@ export const search = (query, tableNo) => {
       response => {
         const {table} = response.data;
 
-        if (table===1) {
-          dispatch({ type: CONST.SEARCH_SUCCESS, sequences: response.data.items, table: table})
-        } else {
-          let yLabels = ["ARG", "Subtype", "Type"];
-          let xLabels = ["Sample", "EcoType", "EcoSubtype"];
-          const {xHeaders, yHeaders, grid16s, gridCell, gridPpm} = response.data;
-          let gridComp = [];
-          //first row 
-          gridComp.push(["",...xLabels])
-          // top 4 rows
-          let yHeadersT=yHeaders[0].map((x,i) => yHeaders.map(x => x[i]))
-          let spaces = xLabels.map(()=> "")
-        
+        let yLabels = ["ARG", "Subtype", "Type"];
+        let xLabels = ["Sample", "EcoType", "EcoSubtype"];
+        const {xHeaders, yHeaders, grid16s, gridCell, gridPpm} = response.data;
+        let gridComp = [];
+        //first row 
+        gridComp.push(["",...xLabels])
+        // top 4 rows
+        let yHeadersT=yHeaders[0].map((x,i) => yHeaders.map(x => x[i]))
+        let spaces = xLabels.map(()=> "")
 
-          yLabels.forEach((yLabel, i) => gridComp.push([yLabel, ...spaces, ...yHeadersT[i]]))
-        
-        
-          let builtGrids= {"16s": gridComp.slice(), cell: gridComp.slice(), ppm: gridComp.slice()}
+        yLabels.forEach((yLabel, i) => gridComp.push([yLabel, ...spaces, ...yHeadersT[i]]))
+      
 
-          
-          // refractor later
-          grid16s.forEach((row, i) => {
-            builtGrids["16s"].push(["", ...xHeaders[i], ...row])
-          })
-          gridCell.forEach((row, i) => {
-            builtGrids.cell.push(["", ...xHeaders[i], ...row])
-          })
+        let builtGrids= {"16s": gridComp.slice(), cell: gridComp.slice(), ppm: gridComp.slice()}
 
-          gridPpm.forEach((row, i) => {
-            builtGrids.ppm.push(["", ...xHeaders[i], ...row])
-          })
+        // refractor later
+        grid16s.forEach((row, i) => {
+          builtGrids["16s"].push(["", ...xHeaders[i], ...row])
+        })
+        gridCell.forEach((row, i) => {
+          builtGrids.cell.push(["", ...xHeaders[i], ...row])
+        })
 
-          dispatch({
-            type: CONST.RENDER_TABLE_TWO,
-            grid16s: grid16s,
-            gridCell: gridCell,
-            gridPpm: gridPpm,
-            xHeaders: xHeaders,
-            yHeaders: yHeaders,
-            builtGrids: builtGrids
-          })
-        }
+        gridPpm.forEach((row, i) => {
+          builtGrids.ppm.push(["", ...xHeaders[i], ...row])
+        })
+
+        dispatch({
+          type: CONST.RENDER_TABLE_TWO,
+          grid16s: grid16s,
+          gridCell: gridCell,
+          gridPpm: gridPpm,
+          xHeaders: xHeaders,
+          yHeaders: yHeaders,
+          builtGrids: builtGrids
+        })
       },
       err => {
         dispatch({ type: CONST.SEARCH_FAILURE })
