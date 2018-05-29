@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SelectMenu from './SelectMenu';
-import {Dropdown, Input, Dimmer, Loader, Popup} from 'semantic-ui-react'
+import {Dropdown, Input, Dimmer, Loader, Popup, Label} from 'semantic-ui-react'
 
 class FormField extends Component {
 

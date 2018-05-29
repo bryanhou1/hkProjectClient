@@ -64,6 +64,7 @@ class Form extends Component {
       query[CONST.DB.HIT_LENGTH] = CONST.DEFAULT_VAL[menuChoice][CONST.DB.HIT_LENGTH]
     }
     search(query, menuChoice);
+
   }
 
   menu = (menuChoice) => {
@@ -82,7 +83,7 @@ class Form extends Component {
       case 1:
         return [
           {displayName: CONST.DISPLAY.IDENTITY, dbName: CONST.DB.IDENTITY, type: "fillIn", min: 50, max:100, step: 1, label: CONST.TABLE_1_SIGNS[CONST.DB.IDENTITY], hint: "aa-based sequence similarity of BLAST results (50%-100%)", default: CONST.DEFAULT_VAL[1][CONST.DB.IDENTITY]},
-          {displayName: CONST.DISPLAY.HIT_RATIO, dbName: CONST.DB.HIT_RATIO, type: "fillIn", min: 0.5, max: 1.0, step: 0.1, label:  CONST.TABLE_1_SIGNS[CONST.DB.HIT_RATIO], hint: "the percentage of aa-based hit-length to the reference length (50%-100%)", default: CONST.DEFAULT_VAL[1][CONST.DB.HIT_RATIO]}, 
+          {displayName: CONST.DISPLAY.HIT_RATIO, dbName: CONST.DB.HIT_RATIO, type: "fillIn", min: 0.5, max: 1.0, step: 0.1, label:  CONST.TABLE_1_SIGNS[CONST.DB.HIT_RATIO], hint: "the percentage of aa-based hit-length to the reference length (0.5-1.0)", default: CONST.DEFAULT_VAL[1][CONST.DB.HIT_RATIO]}, 
           {displayName: CONST.DISPLAY.E_VALUE, dbName: CONST.DB.E_VALUE, type: "fillIn", min: 0, max: 1, step: 1e-200, label:  CONST.TABLE_1_SIGNS[CONST.DB.E_VALUE], hint: "the e-value of BLAST results (≤1.0E-1)", default: CONST.DEFAULT_VAL[1][CONST.DB.E_VALUE]}
         ]
       case 2:

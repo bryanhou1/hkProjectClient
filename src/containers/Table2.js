@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from '../components/Form';
 import {connect} from 'react-redux';
-import {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, switchTableTwoPage} from '../actions/index'
+import {initiateSession, fetchAutoComplete, searchTable2, changeTableTwoDisplayUnit, switchTableTwoPage} from '../actions/index'
 import 'react-datasheet/lib/react-datasheet.css'
 import ResDivider from '../components/ResDivider'
 import DisplayTableTwo from '../components/DisplayTableTwo'
@@ -40,7 +40,7 @@ class Table2 extends Component {
   }
 
   render() {
-    const {fetchAutoComplete, autoCompleteCollection, search, sequences2Grid, changeTableTwoDisplayUnit, switchTableTwoPage, resultFetching, searchedQuery} = this.props;
+    const {fetchAutoComplete, autoCompleteCollection, searchTable2, sequences2Grid, changeTableTwoDisplayUnit, switchTableTwoPage, resultFetching, searchedQuery} = this.props;
     //to prevent refresh on other variable changes.
     return (
       <div>
@@ -56,7 +56,7 @@ class Table2 extends Component {
             <Grid.Column width={4}>
               <Form 
                 menuChoice = {2}
-                search={search}
+                search={searchTable2}
                 fetchAutoComplete={fetchAutoComplete} 
                 autoCompleteCollection={autoCompleteCollection}
                 resultFetching={resultFetching}
@@ -93,4 +93,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, search, changeTableTwoDisplayUnit, switchTableTwoPage})(Table2);
+export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, searchTable2, changeTableTwoDisplayUnit, switchTableTwoPage})(Table2);

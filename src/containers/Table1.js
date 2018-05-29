@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from '../components/Form';
 import DisplayTableOne from '../components/DisplayTableOne';
 import {connect} from 'react-redux';
-import {initiateSession, fetchAutoComplete, search} from '../actions/index';
+import {initiateSession, fetchAutoComplete, searchTable1} from '../actions/index';
 import { CSVLink } from 'react-csv';
 import ResDivider from '../components/ResDivider';
 import {Container, Segment, Dimmer, Loader, Grid, Button} from 'semantic-ui-react';
@@ -41,7 +41,7 @@ class Table1 extends Component {
   }
 
   render() {
-    const {sequences1, fetchAutoComplete, autoCompleteCollection, search, resultFetching, searchedQuery} = this.props;
+    const {sequences1, fetchAutoComplete, autoCompleteCollection, searchTable1, resultFetching, searchedQuery} = this.props;
     return (
       <div>
         <Grid centered>
@@ -56,7 +56,7 @@ class Table1 extends Component {
             <Grid.Column width={4}>
               <Form
                 menuChoice={1}
-                search={search}
+                search={searchTable1}
                 fetchAutoComplete={fetchAutoComplete} 
                 autoCompleteCollection={autoCompleteCollection}
                 resultFetching={resultFetching}
@@ -100,4 +100,4 @@ const mapStateToProps = (state) => {
     autoCompleteCollection: autoCompleteCollection
   }
 }
-export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, search})(Table1);
+export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, searchTable1})(Table1);

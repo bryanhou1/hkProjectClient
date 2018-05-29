@@ -22,7 +22,6 @@ export default class DownloadTableTwoLink extends Component{
 
   render (){
     let {display, builtGrid} = this.props;
-
     return (
       display ? <Button size="mini" content={<CSVLink data={builtGrid} filename={"metagenome-result.csv"} > Download Search Results </CSVLink>}/>: null
     )
