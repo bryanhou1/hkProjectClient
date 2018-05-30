@@ -1,6 +1,10 @@
 import * as CONST from '../constants/index';
 import * as SAMPLE from '../constants/sample';
 const initialState = {
+  jobIds: {
+    1: "",
+    2: ""
+  },
   sequences1: [],
   sequences2Grid: {
     display: true,
@@ -58,7 +62,7 @@ const initialState = {
       [CONST.DB.TYPE]: [],
       fetching: false
     },
-    fetching: false
+    fetching: false,
   }}
 
 export default function sequencesReducer(state = initialState, action){
@@ -72,6 +76,9 @@ export default function sequencesReducer(state = initialState, action){
     case CONST.SEARCH_FAILURE:
     case CONST.FETCH_SEQUENCE_FAILURE:
       return {...state, fetching: false}
+
+    case CONST.JOB_SUBMIT_SUCCESS:
+      return {...state, jobIds: {...state.jobIds, [`${action.table}`]: action.jobId}}
     case CONST.CHANGE_TABLE_TWO_UNIT:
       return {...state, sequences2Grid: {...state.sequences2Grid, displayUnit: action.displayUnit}}
     case CONST.SWITCH_TABLE_TWO_PAGE:{
@@ -88,21 +95,21 @@ export default function sequencesReducer(state = initialState, action){
     }case CONST.RENDER_TABLE_TWO: {
       return { ...state,
         sequences2Grid: {...state.sequences2Grid, xHeaders: action.xHeaders, yHeaders: action.yHeaders, grid16s: action.grid16s, gridCell: action.gridCell, gridPpm: action.gridPpm, builtGrids: action.builtGrids, display: true,
-        paginate:{
-          horizontal: {
-            ...state.sequences2Grid.paginate.horizontal,
-            pagesCount: Math.ceil(action.grid16s[0].length/state.sequences2Grid.paginate.horizontal.elPerPage),
-            currentPage: 1
-          },
-          vertical: {
-            ...state.sequences2Grid.paginate.vertical,
-            pagesCount: Math.ceil(action.grid16s.length/state.sequences2Grid.paginate.vertical.elPerPage),
-            currentPage: 1
+          paginate:{
+            horizontal: {
+              ...state.sequences2Grid.paginate.horizontal,
+              pagesCount: Math.ceil(action.grid16s[0].length/state.sequences2Grid.paginate.horizontal.elPerPage),
+              currentPage: 1
+            },
+            vertical: {
+              ...state.sequences2Grid.paginate.vertical,
+              pagesCount: Math.ceil(action.grid16s.length/state.sequences2Grid.paginate.vertical.elPerPage),
+              currentPage: 1
+            }
           }
-        }
-      },
+        },
       fetching: false
-    }
+      }
     }
     case CONST.STORE_SEARCH_TERMS:
       return { ...state, searchedQuery: {
@@ -118,6 +125,8 @@ export default function sequencesReducer(state = initialState, action){
         1: {...state.autoCompleteCollection[action.table], [action.attr]: action.col, fetching: false},
         2: {...state.autoCompleteCollection[action.table], [action.attr]: action.col, fetching: false}},
       }
+    case CONST.CLEAR_JOB_ID:
+      return {...state, jobIds: {...state.jobIds, [action.id]: ""}}
     default:
       return state;
   }

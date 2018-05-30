@@ -14,7 +14,26 @@ class DisplayTableTwo extends Component {
     this.state = {
       style: {
         minWidth: "100px"
-      } 
+      },
+      intervalId: null
+    }
+  }
+
+  componentDidMount () {
+    this.setState({intervalId: setInterval(() => this.polling(), 4000)})
+  }
+
+  componentDidUpdate() {
+    this.polling()
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.state.intervalId)
+  }
+
+  polling () {
+    if (this.props.jobId !== "") {
+      this.props.getTable2(this.props.jobId)
     }
   }
 

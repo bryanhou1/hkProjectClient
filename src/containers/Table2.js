@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from '../components/Form';
 import {connect} from 'react-redux';
-import {initiateSession, fetchAutoComplete, searchTable2, changeTableTwoDisplayUnit, switchTableTwoPage} from '../actions/index'
+import {initiateSession, fetchAutoComplete, searchTable2, changeTableTwoDisplayUnit, switchTableTwoPage, getTable2} from '../actions/index'
 import 'react-datasheet/lib/react-datasheet.css'
 import ResDivider from '../components/ResDivider'
 import DisplayTableTwo from '../components/DisplayTableTwo'
@@ -40,7 +40,7 @@ class Table2 extends Component {
   }
 
   render() {
-    const {fetchAutoComplete, autoCompleteCollection, searchTable2, sequences2Grid, changeTableTwoDisplayUnit, switchTableTwoPage, resultFetching, searchedQuery} = this.props;
+    const {fetchAutoComplete, autoCompleteCollection, searchTable2, sequences2Grid, changeTableTwoDisplayUnit, switchTableTwoPage, resultFetching, searchedQuery, jobId, getTable2} = this.props;
     //to prevent refresh on other variable changes.
     return (
       <div>
@@ -76,7 +76,7 @@ class Table2 extends Component {
         </Grid> 
         <ResDivider text={"result"} hidden={!sequences2Grid.display}/>
         <Container>
-          <DisplayTableTwo sequences2Grid={sequences2Grid} changeTableTwoDisplayUnit={changeTableTwoDisplayUnit} switchTableTwoPage={switchTableTwoPage}/>
+          <DisplayTableTwo sequences2Grid={sequences2Grid} changeTableTwoDisplayUnit={changeTableTwoDisplayUnit} switchTableTwoPage={switchTableTwoPage} jobId={jobId} getTable2={getTable2}/>
         </Container>
       </div>
     )
@@ -84,8 +84,9 @@ class Table2 extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { sequences2Grid, autoCompleteCollection, fetching, searchedQuery } = state.sequencesReducer;
+  const { sequences2Grid, autoCompleteCollection, fetching, searchedQuery,jobIds } = state.sequencesReducer;
   return {
+    jobId: jobIds[2],
     resultFetching: fetching,
     sequences2Grid: sequences2Grid,
     searchedQuery: searchedQuery,
@@ -93,4 +94,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, searchTable2, changeTableTwoDisplayUnit, switchTableTwoPage})(Table2);
+export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, searchTable2, getTable2, changeTableTwoDisplayUnit, switchTableTwoPage})(Table2);

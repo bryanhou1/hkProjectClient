@@ -64,6 +64,9 @@ export const RENDER_TABLE_TWO = "RENDER_TABLE_TWO";
 export const CHANGE_TABLE_TWO_UNIT = "CHANGE_TABLE_TWO_UNIT";
 export const SWITCH_TABLE_TWO_PAGE = "SWITCH_TABLE_TWO_PAGE";
 export const STORE_SEARCH_TERMS = "STORE_SEARCH_TERMS";
+export const JOB_SUBMIT_SUCCESS = "JOB_SUBMIT_SUCCESS";
+export const JOB_FETCHED = "JOB_FETCHED";
+export const CLEAR_JOB_ID = "CLEAR_JOB_ID";
 
 export const BLAST_CRITERIA_ENTRIES = {
   1: {
@@ -104,9 +107,6 @@ export const DISPLAY_LINKS = {
 // Organism: the formal scientific name for the source organism
 // Assembly_level: genome completeness (complete 100%, chromosome 75%-100%, contig 50%-75%, scaffold <50%)
 // Phylum, Class, Order, Family, Genus, Species, Strain: 
-
-
-
 
 export const DISPLAY_DESC = {
   [DB.ARG]: "ARG reference sequences",

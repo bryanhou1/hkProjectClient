@@ -74,7 +74,86 @@ export const searchTable2 = (query, tableNo) => {
   return (dispatch, getState) => {
     dispatch({ type: CONST.SEARCH_START })
     dispatch({ type: CONST.STORE_SEARCH_TERMS, query: query, tableNo: tableNo})
-    
+    const request = axios({
+      method: 'get',
+      url: `${URL.API_URL}/items${tableNo}_submit_job`,
+      params: {query: query}
+    })
+    return request.then(
+      response => {
+        dispatch({ type: CONST.JOB_SUBMIT_SUCCESS, jobId: response.data.job_id, table: 2})
+      },
+      err => {
+        dispatch({ type: CONST.SEARCH_FAILURE })
+        throw err;
+      }
+    )
+  }
+}
+
+export const getTable2 = (jobId) => {
+  return (dispatch, getState) => {
+    const request = axios({
+      method: 'get',
+      url: `${URL.API_URL}/items2_check_job`,
+      params: {job_id: jobId}
+    })
+
+    return request.then(
+      response => {
+        if (response.status === 200 ) {
+          //stop polling
+          
+          dispatch({type: CONST.CLEAR_JOB_ID, id: 2}) 
+
+          let yLabels = ["ARG", "Subtype", "Type"];
+          let xLabels = ["Sample", "EcoType", "EcoSubtype"];
+          const {xHeaders, yHeaders, grid16s, gridCell, gridPpm} = response.data;
+          let gridComp = [];
+          //first row 
+          gridComp.push(["",...xLabels])
+          // top 4 rows
+          let yHeadersT=yHeaders[0].map((x,i) => yHeaders.map(x => x[i]))
+          let spaces = xLabels.map(()=> "")
+
+          yLabels.forEach((yLabel, i) => gridComp.push([yLabel, ...spaces, ...yHeadersT[i]]))
+        
+          let builtGrids= {"16s": gridComp.slice(), cell: gridComp.slice(), ppm: gridComp.slice()}
+
+          // refractor later
+          grid16s.forEach((row, i) => {
+            builtGrids["16s"].push(["", ...xHeaders[i], ...row])
+          })
+          gridCell.forEach((row, i) => {
+            builtGrids.cell.push(["", ...xHeaders[i], ...row])
+          })
+
+          gridPpm.forEach((row, i) => {
+            builtGrids.ppm.push(["", ...xHeaders[i], ...row])
+          })
+
+          dispatch({
+            type: CONST.RENDER_TABLE_TWO,
+            grid16s: grid16s,
+            gridCell: gridCell,
+            gridPpm: gridPpm,
+            xHeaders: xHeaders,
+            yHeaders: yHeaders,
+            builtGrids: builtGrids
+          })
+        }
+      },
+      err => {
+        throw err;
+      }
+    )
+  }
+}
+export const searchTable2old = (query, tableNo) => {
+
+  return (dispatch, getState) => {
+    dispatch({ type: CONST.SEARCH_START })
+    dispatch({ type: CONST.STORE_SEARCH_TERMS, query: query, tableNo: tableNo})
     const request = axios({
       method: 'get',
       url: `${URL.API_URL}/items${tableNo}`,
@@ -84,7 +163,6 @@ export const searchTable2 = (query, tableNo) => {
     return request.then(
       response => {
         const {table} = response.data;
-
         let yLabels = ["ARG", "Subtype", "Type"];
         let xLabels = ["Sample", "EcoType", "EcoSubtype"];
         const {xHeaders, yHeaders, grid16s, gridCell, gridPpm} = response.data;
@@ -97,7 +175,6 @@ export const searchTable2 = (query, tableNo) => {
 
         yLabels.forEach((yLabel, i) => gridComp.push([yLabel, ...spaces, ...yHeadersT[i]]))
       
-
         let builtGrids= {"16s": gridComp.slice(), cell: gridComp.slice(), ppm: gridComp.slice()}
 
         // refractor later
