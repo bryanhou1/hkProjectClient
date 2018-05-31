@@ -2,7 +2,7 @@ import React from 'react'
 import ResearchGate from '../photoAssets/researchGate.ico'
 import { Card, Button, Grid} from 'semantic-ui-react'
 import Anni from '../photoAssets/Anni.jpeg'
-import Bryan from '../photoAssets/Anni.jpeg'
+import Bryan from '../photoAssets/Bryan.jpg'
 
 const About = () => {
 

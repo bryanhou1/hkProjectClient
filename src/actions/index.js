@@ -58,7 +58,7 @@ export const fetchAutoComplete = (attr, tableNo, str) => {
       response => {
         dispatch({ type: CONST.FETCH_AUTOCOMPLETE_SUCCESS, attr: response.data.attr, col: response.data.col.map(String).sort(), table: response.data.table})},
       err => {
-        dispatch({type: CONST.FETCH_AUTOCOMPLETE_FAILURE})
+        dispatch({type: CONST.FETCH_AUTOCOMPLETE_FAILURE, message: "Server Offline"})
         throw err;
       }
     )
@@ -82,7 +82,7 @@ export const searchTable1 = (query, tableNo) => {
         dispatch({ type: CONST.SEARCH_SUCCESS, sequences: response.data, table: 1})
       },
       err => {
-        dispatch({ type: CONST.SEARCH_FAILURE })
+        dispatch({ type: CONST.SEARCH_FAILURE, message: "Server Offline" })
         throw err;
       }
     )
@@ -104,7 +104,7 @@ export const searchTable2 = (query, tableNo) => {
         dispatch({ type: CONST.JOB_SUBMIT_SUCCESS, jobId: response.data.job_id, table: 2})
       },
       err => {
-        dispatch({ type: CONST.SEARCH_FAILURE })
+        dispatch({ type: CONST.SEARCH_FAILURE, message: "Server Offline" })
         throw err;
       }
     )
@@ -164,6 +164,7 @@ export const getTable2 = (jobId) => {
         }
       },
       err => {
+        dispatch({ type: CONST.SEARCH_FAILURE, message: "Server Offline" })
         throw err;
       }
     )

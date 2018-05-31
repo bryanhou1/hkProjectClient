@@ -4,10 +4,10 @@ import {Message} from "semantic-ui-react";
 class ErrorsDisplay extends Component {
 
   render() {
-    const {errors} = this.props;
+    const {errors, clearErrors} = this.props;
     return (
       <div>
-        { errors.length !== 0 ? <Message negative header='Warning!'content={this.props.errors[0]} onDismiss={this.props.clearErrors}/> : null }
+        { errors.length !== 0 ? <Message negative header='Warning!' content={errors[0]} onDismiss={clearErrors}/> : null }
       </div>
     )
   }
