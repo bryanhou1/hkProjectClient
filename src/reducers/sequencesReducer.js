@@ -7,7 +7,7 @@ const initialState = {
   },
   sequences1: [],
   sequences2Grid: {
-    display: true,
+    display: false,
     builtGrids: {"16s": [[]], cell: [[]], ppm: [[]]},
     displayUnit: "16s",
     xLabels: [CONST.DISPLAY.SAMPLE, CONST.DISPLAY.ECO_TYPE, CONST.DISPLAY.ECO_SUBTYPE],

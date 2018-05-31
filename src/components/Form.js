@@ -31,13 +31,15 @@ class Form extends Component {
     }
     
     if (menuChoice === 1){
-      [CONST.DB.IDENTITY,CONST.DB.E_VALUE,CONST.DB.HIT_RATIO].forEach((prop) => {
+      query["ignore_eValue_zero"] = document.getElementById("neglect-zero-boolean").parentElement.classList.contains("checked") ? true : false
+
+      CONST.BLAST_CRITERIA_ENTRIES[menuChoice].DB.forEach((prop) => {
         if (document.getElementById(prop) && document.getElementById(prop).value !== "") {
           query[prop] = document.getElementById(prop).value
         }
       })
     } else {
-      [CONST.DB.IDENTITY,CONST.DB.E_VALUE,CONST.DB.HIT_LENGTH].forEach((prop) => {
+      CONST.BLAST_CRITERIA_ENTRIES[menuChoice].DB.forEach((prop) => {
         if (document.getElementById(prop) && document.getElementById(prop).children[0].className !== "default text") {
           query[prop] = document.getElementById(prop).children[0].innerHTML
         }

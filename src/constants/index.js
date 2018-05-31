@@ -44,7 +44,7 @@ export const DISPLAY = {
   HIT_RATIO: "Hit Ratio",
   HIT_LENGTH: "Hit Length",
   ALIGNMENT_LENGTH: "Alignment",
-  E_VALUE: "e-Value",
+  E_VALUE: "E-Value",
   PATHOGEN: "Pathogen",
   SAMPLE: "Accession",
   ECO_TYPE: "Eco-type",
