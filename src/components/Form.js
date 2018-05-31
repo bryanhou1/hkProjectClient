@@ -118,7 +118,7 @@ class Form extends Component {
 }
 
   render() {
-    const {menuChoice, fetchAutoComplete, autoCompleteCollection, resultFetching} = this.props;
+    const {menuChoice, fetchAutoComplete, autoCompleteCollection, resultFetching, errors, clearErrors} = this.props;
     return (
       <Grid centered>
         <Grid.Row centered>
@@ -140,9 +140,13 @@ class Form extends Component {
                 <SubmitButton resultFetching={resultFetching} remoteSubmit={this.remoteSubmitHandler} popupBool={this.state.identity && this.state.eValue && (this.state.hitRatio || this.state.hitLength)}/>
                 <button hidden type='submit' ref={(button) => {this.formButton = button}} />
               </div>
-              <ErrorsDisplay />
+              
+              
             </form>
           </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+            <ErrorsDisplay errors={errors} clearErrors={clearErrors}/>
         </Grid.Row>
       </Grid>
     )

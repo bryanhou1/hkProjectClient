@@ -14,14 +14,14 @@ import store from './store/configureStore'
 import {Provider} from 'react-redux'
 import { Router, Route, browserHistory, IndexRoute} from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import * as CONST from './config/url'
+// import * as CONST from './config/url'
 import ReactGA from 'react-ga';
 
 
 ReactGA.initialize('UA-119855147-1');
 // import {ActionCableProvider} from 'react-actioncable-provider'
 
-function fireTracking() {
+const fireTracking = () => {
   ReactGA.pageview(window.location.hash);
 }
 

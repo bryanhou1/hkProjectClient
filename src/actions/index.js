@@ -6,20 +6,40 @@ export const initiateSession = () => {
   //only for table 1
   return (dispatch, getState) => {
     dispatch({type: CONST.FETCH_SEQUENCE_START})
-    const request = axios({
-      method: 'get',
-      url: `${URL.API_URL}/items1`
-    })
-    
-    return request.then(
+
+    return axios.get(`${URL.API_URL}/items1`).then(
       response => {
         dispatch({type: CONST.FETCH_SEQUENCE_SUCCESS, sequences: response.data, table: 1})
-      },
-      err => {
-        dispatch({type: CONST.FETCH_SEQUENCE_FAILURE})
-        throw err;
-      }
-    )
+      }).catch(error => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          
+          console.log(error.request);
+        } else {
+        
+          console.log('Error', error.message);
+        }
+        dispatch({type: CONST.FETCH_SEQUENCE_FAILURE, status: error.status, message: "Server Offline"})
+      });
+  
+
+    // const request = axios({
+    //   method: 'get',
+    //   url: `${URL.API_URL}/items1`
+    // })
+    
+    // return request.then(
+    //   response => {
+    //     dispatch({type: CONST.FETCH_SEQUENCE_SUCCESS, sequences: response.data, table: 1})
+    //   }   
+    // ).catch( 
+    //   err => {
+    //     console.log(err)
+    //     console.log(err.response)
+    //     dispatch({type: CONST.FETCH_SEQUENCE_FAILURE, rest: err,res: err.response} )
+    //   }
+    // )
   }
 }
 
@@ -217,5 +237,11 @@ export const changeTableTwoDisplayUnit = (displayUnit) => {
 export const switchTableTwoPage = ({orientation, page}) => {
   return dispatch => {
     dispatch({type: CONST.SWITCH_TABLE_TWO_PAGE, orientation: orientation, page: page})
+  }
+}
+
+export const clearErrors = () => {
+  return dispatch => {
+    dispatch({type: CONST.CLEAR_ERRORS})
   }
 }

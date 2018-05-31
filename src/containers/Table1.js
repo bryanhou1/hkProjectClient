@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from '../components/Form';
 import DisplayTableOne from '../components/DisplayTableOne';
 import {connect} from 'react-redux';
-import {initiateSession, fetchAutoComplete, searchTable1} from '../actions/index';
+import {initiateSession, fetchAutoComplete, searchTable1, clearErrors} from '../actions/index';
 import { CSVLink } from 'react-csv';
 import ResDivider from '../components/ResDivider';
 import {Container, Segment, Dimmer, Loader, Grid, Button} from 'semantic-ui-react';
@@ -44,7 +44,7 @@ class Table1 extends Component {
   }
 
   render() {
-    const {sequences1, fetchAutoComplete, autoCompleteCollection, searchTable1, resultFetching, searchedQuery} = this.props;
+    const {sequences1, fetchAutoComplete, autoCompleteCollection, searchTable1, resultFetching, searchedQuery, errors, clearErrors} = this.props;
     return (
       <div>
         <Grid centered>
@@ -63,6 +63,8 @@ class Table1 extends Component {
                 fetchAutoComplete={fetchAutoComplete} 
                 autoCompleteCollection={autoCompleteCollection}
                 resultFetching={resultFetching}
+                errors={errors}
+                clearErrors={clearErrors}
               />
             </Grid.Column>
           </Grid.Row>
@@ -95,12 +97,13 @@ class Table1 extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { sequences1,autoCompleteCollection, fetching, searchedQuery } = state.sequencesReducer;
+  const { sequences1,autoCompleteCollection, fetching, searchedQuery, errors } = state.sequencesReducer;
   return {
     resultFetching: fetching,
     sequences1: sequences1,
     searchedQuery: searchedQuery,
-    autoCompleteCollection: autoCompleteCollection
+    autoCompleteCollection: autoCompleteCollection,
+    errors: errors
   }
 }
-export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, searchTable1})(Table1);
+export default connect(mapStateToProps, {initiateSession, fetchAutoComplete, searchTable1, clearErrors})(Table1);

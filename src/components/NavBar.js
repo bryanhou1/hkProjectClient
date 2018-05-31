@@ -59,7 +59,7 @@ export default class NavBar extends Component {
           Metagenomes
         </Menu.Item> 
         <Menu.Menu position='right'>
-          <Dropdown item text='Related Links' inverted>
+          <Dropdown item text='Related Links' inverted="true">
             <Dropdown.Menu>
               <Dropdown.Item onClick={this.handleDDClick} data-link="http://web.hku.hk/~zhangt/ZhangT.htm">Our Lab</Dropdown.Item>
               <Dropdown.Item onClick={this.handleDDClick} data-link="https://smile.hku.hk/SARGs">Other Tools</Dropdown.Item>

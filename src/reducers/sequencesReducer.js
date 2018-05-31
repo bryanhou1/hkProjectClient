@@ -1,7 +1,8 @@
 import * as CONST from '../constants/index';
 import * as SAMPLE from '../constants/sample';
 const initialState = {
-  jobIds: {
+  errors: []
+  ,jobIds: {
     1: "",
     2: ""
   },
@@ -75,8 +76,8 @@ export default function sequencesReducer(state = initialState, action){
       return {...state, [`sequences${action.table}`]: action.sequences, fetching: false}
     case CONST.SEARCH_FAILURE:
     case CONST.FETCH_SEQUENCE_FAILURE:
-      return {...state, fetching: false}
-
+      debugger
+      return {...state, fetching: false, errors: [...state.errors, action.message]}
     case CONST.JOB_SUBMIT_SUCCESS:
       return {...state, jobIds: {...state.jobIds, [`${action.table}`]: action.jobId}}
     case CONST.CHANGE_TABLE_TWO_UNIT:
@@ -127,6 +128,8 @@ export default function sequencesReducer(state = initialState, action){
       }
     case CONST.CLEAR_JOB_ID:
       return {...state, jobIds: {...state.jobIds, [action.id]: ""}}
+    case CONST.CLEAR_ERRORS:
+      return {...state, errors: []}
     default:
       return state;
   }

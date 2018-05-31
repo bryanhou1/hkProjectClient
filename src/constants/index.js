@@ -67,6 +67,7 @@ export const STORE_SEARCH_TERMS = "STORE_SEARCH_TERMS";
 export const JOB_SUBMIT_SUCCESS = "JOB_SUBMIT_SUCCESS";
 export const JOB_FETCHED = "JOB_FETCHED";
 export const CLEAR_JOB_ID = "CLEAR_JOB_ID";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const BLAST_CRITERIA_ENTRIES = {
   1: {
