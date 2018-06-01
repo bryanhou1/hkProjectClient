@@ -50,7 +50,7 @@ export default class SubmitButton extends Component {
       >
         <Grid divided columns='equal'>
           <Grid.Column verticalAlign="middle">
-            <Button type="submit" color='green' content='Blast criteria not filled completely. Proceed with default blast values?'  onClick={this.confirmSubmit}/>
+            <Button type="submit" color='green' content='Proceed with default blast criteria?'  onClick={this.confirmSubmit}/>
           </Grid.Column>
           <Grid.Column verticalAlign="middle">
             <Button color='red' content='Return to fill in search criteria.' onClick={this.rejectSubmit} />

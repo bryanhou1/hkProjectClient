@@ -56,7 +56,7 @@ class App extends Component {
                 <Segment basic>
                     <div>
                       <h2>Methods:</h2>
-                      <p>ARGs were identified and quantified using two standard pipelines, the ARGs online analysis platform (ARGs-OAP) [47] and integron identification and visualization pipeline (I-VIP) (manuscript under review).</p>
+                      <p>ARGs were identified and quantified using two standard pipelines, the ARGs online analysis platform (ARGs-OAP) [1] and integron identification and visualization pipeline (I-VIP) (manuscript under review).</p>
                       <br />
                     </div>
                     <div>
@@ -83,7 +83,14 @@ class App extends Component {
             <Grid.Row>
               <Grid.Column width={this.gridWidth}>
                 <div>
-                <h2>References:</h2>
+                  [1]   <em>Yang Y, Jiang X, Chai B, Ma L, Li B, Zhang A, et al. ARGs-OAP: online analysis pipeline for antibiotic resistance genes detection from metagenomic data using an integrated structured ARG-database. Bioinformatics. 2016;  doi:10.1093/bioinformatics/btw136.</em>
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={this.gridWidth}>
+                <div>
+                <h2>Citation:</h2>
                 <ul>
                   <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque consequatur distinctio, rerum maxime debitis ratione itaque sapiente illum, ea error, odit minima ipsa? Excepturi quidem in labore nobis at quas.</li>
                 </ul>
