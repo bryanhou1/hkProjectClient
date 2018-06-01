@@ -18,7 +18,7 @@ class Table1 extends Component {
     let entries = []
     //expect 1,2 or none entries
     let allKeys = (Object.keys(searchedQuery[1]))
-    let firstTwoAttrKeys = allKeys.filter((key) => !(CONST.BLAST_CRITERIA_ENTRIES[1].DB.includes(key) || "ignore_eValue_zero") )
+    let firstTwoAttrKeys = allKeys.filter((key) => !(CONST.BLAST_CRITERIA_ENTRIES[1].DB.includes(key)) && key !== "ignore_eValue_zero" )
     firstTwoAttrKeys.forEach((key) => {
       entries.push(
         <div key={`searched query key ${key}`}>
