@@ -32,10 +32,15 @@ class Table1 extends Component {
       </div>
     )))
 
-    entries.push(
-      <div key={`searched query key ignore_eValue_zero`}>
-       <strong> Ignoring all entries where {CONST.DB.E_VALUE} = 0  </strong>
-      </div>)
+    if (!!(document.getElementById("neglect-zero-boolean").parentElement.classList.contains("checked"))) {
+      entries.push(
+        <div key={`searched query key ignore_eValue_zero`}>
+         <strong> Ignoring all entries where {CONST.DISPLAY.E_VALUE} = 0  </strong>
+        </div>
+      )
+    }
+
+
     return (
       <div>
         {entries}
