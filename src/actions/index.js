@@ -14,10 +14,8 @@ export const initiateSession = () => {
         if (error.response) {
           console.log(error.response);
         } else if (error.request) {
-          
           console.log(error.request);
         } else {
-        
           console.log('Error', error.message);
         }
         dispatch({type: CONST.FETCH_SEQUENCE_FAILURE, status: error.status, message: "Server Offline"})
@@ -67,27 +65,74 @@ export const fetchAutoComplete = (attr, tableNo, str) => {
 
 export const searchTable1 = (query, tableNo) => {
 
-  return (dispatch, getState) => {
-    dispatch({ type: CONST.SEARCH_START })
-    dispatch({ type: CONST.STORE_SEARCH_TERMS, query: query, tableNo: 1})
-    
-    const request = axios({
-      method: 'get',
-      url: `${URL.API_URL}/items${tableNo}`,
-      params: {query: query}
-    })
-
-    return request.then(
-      response => {
-        dispatch({ type: CONST.SEARCH_SUCCESS, sequences: response.data, table: 1})
-      },
-      err => {
-        dispatch({ type: CONST.SEARCH_FAILURE, message: "Server Offline" })
-        throw err;
-      }
-    )
+    return (dispatch, getState) => {
+      dispatch({ type: CONST.SEARCH_START })
+      dispatch({ type: CONST.STORE_SEARCH_TERMS, query: query, tableNo: 1})
+      
+      const request = axios({
+        method: 'get',
+        url: `${URL.API_URL}/items${tableNo}_submit_job`,
+        params: {query: query}
+      })
+  
+      return request.then(
+        response => {
+          dispatch({ type: CONST.JOB_SUBMIT_SUCCESS, jobId: response.data.job_id, table: 1})
+        },
+        err => {
+          dispatch({ type: CONST.SEARCH_FAILURE, message: "Server Offline" })
+          throw err;
+        }
+      )
+    }
   }
-}
+
+  export const getTable1 = (jobId) => {
+    return (dispatch, getState) => {
+      const request = axios({
+        method: 'get',
+        url: `${URL.API_URL}/items1_check_job`,
+        params: {job_id: jobId}
+      })
+  
+      return request.then(
+        response => {
+          if (response.status === 200) {
+            dispatch({type: CONST.CLEAR_JOB_ID, id: 1}) 
+            dispatch({ type: CONST.SEARCH_SUCCESS, sequences: response.data, table: 1})
+          }
+        },
+        err => {
+          dispatch({ type: CONST.SEARCH_FAILURE, message: "Server Offline" })
+          throw err;
+        }
+      )
+    }
+  }
+// export const searchTable1Old = (query, tableNo) => {
+
+//   return (dispatch, getState) => {
+//     dispatch({ type: CONST.SEARCH_START })
+//     dispatch({ type: CONST.STORE_SEARCH_TERMS, query: query, tableNo: 1})
+    
+//     const request = axios({
+//       method: 'get',
+//       url: `${URL.API_URL}/items${tableNo}`,
+//       params: {query: query}
+//     })
+
+//     return request.then(
+//       response => {
+//         dispatch({ type: CONST.SEARCH_SUCCESS, sequences: response.data, table: 1})
+//       },
+//       err => {
+//         dispatch({ type: CONST.SEARCH_FAILURE, message: "Server Offline" })
+//         throw err;
+//       }
+//     )
+//   }
+// }
+
 
 export const searchTable2 = (query, tableNo) => {
 

@@ -5,7 +5,35 @@ import * as CONST from "../constants/index";
 import matchSorter from 'match-sorter';
 
 class DisplayTableOne extends Component {
+  //shortpolling
+  constructor(props) {
+    super(props)
+    this.state = {
+      intervalId: null
+    }
+  }
 
+  componentDidMount () {
+    this.setState({intervalId: setInterval(() => this.polling(), 4000)})
+  }
+
+  componentDidUpdate() {
+    this.polling()
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.state.intervalId)
+  }
+
+  polling () {
+    if (this.props.jobId !== "") {
+      this.props.getTable1(this.props.jobId)
+    }
+  }
+
+
+
+  //filter methods
   fuzzyMatch = (filter, rows) => matchSorter(rows, filter.value, { keys: [filter.id] })
   capMatch = (filter, rows) => {
     return rows[filter.id].toLowerCase().startsWith(filter.value.toLowerCase())
@@ -14,6 +42,8 @@ class DisplayTableOne extends Component {
   (filter, rows) => (Number(rows[filter.id]) <= Number(filter.value))
   :
   (filter, rows) => (Number(rows[filter.id]) >= Number(filter.value))
+
+
 
   render() {
     const {sequences} =this.props;
