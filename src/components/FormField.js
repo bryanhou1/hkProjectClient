@@ -75,7 +75,7 @@ class FormField extends Component {
           {this.buildForm(blastMenu)}
         </div>
         
-        {menuChoice === 1 ?<div><Checkbox id="neglect-zero-boolean" label={{ children: `Neglect All Entries where ${CONST.DISPLAY.E_VALUE} = 0` }} /></div> : null}
+        {menuChoice === 1 ?<div><Checkbox id="neglect-zero-boolean" label={{ children: `Neglect all entries where ${CONST.DISPLAY.E_VALUE} = 0` }} /></div> : null}
         
       </div>
     )
