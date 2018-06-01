@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SelectMenu from './SelectMenu';
-import {Dropdown, Input, Dimmer, Loader, Popup, Checkbox} from 'semantic-ui-react'
+import {Dropdown, Input, Dimmer, Loader, Popup} from 'semantic-ui-react'
 import * as CONST from '../constants/index'
 
 class FormField extends Component {
@@ -74,9 +74,6 @@ class FormField extends Component {
         <div>
           {this.buildForm(blastMenu)}
         </div>
-        
-        {menuChoice === 1 ?<div><Checkbox id="neglect-zero-boolean" label={{ children: `Neglect all entries where ${CONST.DISPLAY.E_VALUE.toLowerCase()} = 0` }} /></div> : null}
-        
       </div>
     )
   }

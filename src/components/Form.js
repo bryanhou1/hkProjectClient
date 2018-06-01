@@ -31,8 +31,7 @@ class Form extends Component {
     }
     
     if (menuChoice === 1){
-      query["ignore_eValue_zero"] = !!(document.getElementById("neglect-zero-boolean").parentElement.classList.contains("checked"))
-
+      
       CONST.BLAST_CRITERIA_ENTRIES[menuChoice].DB.forEach((prop) => {
         if (document.getElementById(prop) && document.getElementById(prop).value !== "") {
           query[prop] = document.getElementById(prop).value
