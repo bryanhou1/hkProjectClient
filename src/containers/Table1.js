@@ -39,6 +39,10 @@ class Table1 extends Component {
     )
   }
 
+  handleBtnOnClick = (e) => {
+    e.currentTarget.children[0].children[0].click()
+  }
+
   render() {
     const {sequences1, fetchAutoComplete, autoCompleteCollection, searchTable1, resultFetching, searchedQuery, errors, clearErrors, jobId, getTable1} = this.props;
     return (
@@ -77,12 +81,25 @@ class Table1 extends Component {
         </Grid>
         <ResDivider text={"result"} hidden={!sequences1}/>
         <Container textAlign="right">
-          <Button style={{margin: "0 14px"}}size="mini" content={<CSVLink data={sequences1} filename={"whole_genome_result.csv"}>Download Search Result</CSVLink>} />
+          <Button 
+            style={{margin: "0 14px"}}
+            size="mini"
+            onClick={this.handleBtnOnClick}
+            content={
+            <div>
+              <CSVLink data={sequences1}
+                filename={"whole_genome_result.csv"}
+                style={{display: "none"}}
+              >
+              </CSVLink>
+              <span> Download Search Result </span>
+            </div>}
+          />
         </Container>
         <Container>
           <Segment basic>
             <Dimmer active={resultFetching} inverted>
-              <Loader inverted>Loading</Loader>
+              <Loader inverted>Searching...</Loader>
             </Dimmer>
             <DisplayTableOne sequences={sequences1} jobId={jobId} getTable1={getTable1}/>
           </Segment>

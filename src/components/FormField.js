@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SelectMenu from './SelectMenu';
 import {Dropdown, Input, Dimmer, Loader, Popup} from 'semantic-ui-react'
-import * as CONST from '../constants/index'
+// import * as CONST from '../constants/index'
 
 class FormField extends Component {
   buildForm = (items) => {

@@ -18,12 +18,23 @@ export default class DownloadTableTwoLink extends Component{
     return false;
   }
 
-
+  handleBtnOnClick = (e) => {
+    e.currentTarget.children[0].children[0].click()
+  }
 
   render (){
     let {display, builtGrid} = this.props;
     return (
-      display ? <Button size="mini" content={<CSVLink data={builtGrid} filename={"metagenome-result.csv"} > Download Search Results </CSVLink>}/>: null
+      display ? <Button 
+        size="mini"
+        onClick={this.handleBtnOnClick}
+        content={
+        <div>
+          <CSVLink data={builtGrid}  style={{display: "none"}} filename={"metagenome-result.csv"}></CSVLink>
+          <span> Download Search Results </span>
+        </div>
+        }/>: null
     )
   }
 }
+
