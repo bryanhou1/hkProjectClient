@@ -49,14 +49,14 @@ class Table1 extends Component {
       <div>
         <Grid centered>
           <Grid.Row>
-            <Grid.Column width={13}>
+            <Grid.Column mobile={16} tablet={14} computer={13}>
               <div style={{paddingTop: "2em"}}>
                 <h1>Whole Genomes</h1>
               </div>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={4}>
+            <Grid.Column mobile={16} tablet={7} computer={4}>
               <Form
                 menuChoice={1}
                 search={searchTable1}
@@ -70,7 +70,7 @@ class Table1 extends Component {
           </Grid.Row>
           <Grid.Row>
             {Object.keys(searchedQuery[1]).length !== 0 ? (
-              <Grid.Column width={4}>
+              <Grid.Column mobile={16} tablet={7} computer={4}>
                 <Segment>
                   <h3>Searched Queries</h3>
                   {this.searchedQueryLayout()}
