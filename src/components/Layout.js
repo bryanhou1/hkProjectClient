@@ -8,7 +8,7 @@ export default class Layout extends Component {
       styles: {
         marginTop: 0
       },
-      windowWidth: null
+      windowWidth: 1600
     };
   }
 

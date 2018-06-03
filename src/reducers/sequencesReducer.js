@@ -76,7 +76,6 @@ export default function sequencesReducer(state = initialState, action){
       return {...state, [`sequences${action.table}`]: action.sequences, fetching: false}
     case CONST.SEARCH_FAILURE:
     case CONST.FETCH_SEQUENCE_FAILURE:
-      debugger
       return {...state, fetching: false, errors: [...state.errors, action.message]}
     case CONST.JOB_SUBMIT_SUCCESS:
       return {...state, jobIds: {...state.jobIds, [`${action.table}`]: action.jobId}}

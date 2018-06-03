@@ -1,15 +1,16 @@
 import React from 'react'
 import ResearchGate from '../photoAssets/researchGate.ico'
-import { Card, Button, Grid} from 'semantic-ui-react'
+import { Card, Button, Grid, Segment, Image, Divider} from 'semantic-ui-react'
 import Anni from '../photoAssets/Anni.jpeg'
 import Bryan from '../photoAssets/Bryan.jpg'
 import Tong from '../photoAssets/Tong.jpg'
+import TeamLogo from '../photoAssets/TeamLogo.png'
 
 const About = () => {
   return (
-    <Grid>
+    <Grid >
       <Grid.Row centered>
-        <Grid.Column width={13}>
+        <Grid.Column mobile={15} tablet={14} computer={13}>
           <div style={{paddingTop: "2em"}}>
             <h1>Team</h1>
           </div>
@@ -18,6 +19,24 @@ const About = () => {
             {AnniCard()}
             {BryanCard()}
           </Card.Group>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row centered>
+        <Grid.Column mobile={15} tablet={14} computer={13}>
+          <div>
+            <h1>Organization</h1>
+          </div>
+          <Grid celled="internally">
+            <Grid.Row>
+              <Grid.Column mobile={4} tablet={3} computer={2}>
+                <Image src={TeamLogo} size="small" />
+              </Grid.Column>
+              <Grid.Column mobile={12} tablet={13} computer={14} >
+                <h2>Environmental Biotechnology Lab</h2>
+                Team led by Prof. Zhang Tong researching on ARG, NGS, bioremediation, bioreactor, bioenergy recovery and more.
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
@@ -55,7 +74,9 @@ const AnniCard = () => {
     <div className="meta">
       PhD Student
       <br/>
-      Environmental Biotechnology Lab, University of Hong Kong
+      Environmental Biotechnology Lab
+      <br/>
+      University of Hong Kong
       <br/>
     </div>
 
@@ -92,7 +113,9 @@ const BryanCard = () => {
     <div className="meta">
       Research Assistant
       <br/>
-      Environmental Biotechnology Lab, University of Hong Kong
+      Environmental Biotechnology Lab
+      <br/>
+      University of Hong Kong
       <br/>
     </div>
 
@@ -134,10 +157,11 @@ const TongCard = () => {
     <div className="meta">
       Professor
       <br/>
-      Environmental Biotechnology Lab, University of Hong Kong
+      Environmental Biotechnology Lab
+      <br/>
+      University of Hong Kong
       <br/>
     </div>
-
   )
 
   return (
