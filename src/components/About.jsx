@@ -3,11 +3,9 @@ import ResearchGate from '../photoAssets/researchGate.ico'
 import { Card, Button, Grid} from 'semantic-ui-react'
 import Anni from '../photoAssets/Anni.jpeg'
 import Bryan from '../photoAssets/Bryan.jpg'
+import Tong from '../photoAssets/Tong.jpg'
 
 const About = () => {
-
-  
-
   return (
     <Grid>
       <Grid.Row centered>
@@ -16,6 +14,7 @@ const About = () => {
             <h1>Team</h1>
           </div>
           <Card.Group>
+            {TongCard()}
             {AnniCard()}
             {BryanCard()}
           </Card.Group>
@@ -103,6 +102,48 @@ const BryanCard = () => {
     <Card
       image={Bryan}
       header='Chen-Ju Bryan HOU'
+      description={description}
+      meta={meta}
+      extra={extra}
+    />
+  )
+}
+
+const TongCard = () => {
+  const extra = (
+    <div>
+      <a href="https://twitter.com/zhangt1968" target="_blank" rel="noopener noreferrer"><Button circular color='twitter' icon='twitter'/></a>
+      <a href="mailto:zhangt@hku.hk"><Button circular color='blue' icon='mail'/></a>
+      <a href="https://www.researchgate.net/profile/Tong_Zhang_15" target="_blank" rel="noopener noreferrer"><Button circular color='teal' icon={<img src={ResearchGate} alt="researchgate" style={{width: 14, height: 14}}/>}/></a>
+    </div>
+  )
+  
+  const description = (
+    <div>
+      <strong>Research interests:</strong>
+      <ul>
+        <li>Microbial population dynamics in full-scale WWTPs</li>
+        <li>Major functional groups in biological wastewater treatment</li>
+        <li>Antibiotics and antibiotics resistance genes in WWTPs and related environments</li>
+        <li>Novel microbial populations and genes in waste/wastewater treatment</li>
+      </ul>
+    </div>
+  )
+
+  const meta = (
+    <div className="meta">
+      Professor
+      <br/>
+      Environmental Biotechnology Lab, University of Hong Kong
+      <br/>
+    </div>
+
+  )
+
+  return (
+    <Card
+      image={Tong}
+      header='Ir. Dr. Tong ZHANG'
       description={description}
       meta={meta}
       extra={extra}

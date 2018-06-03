@@ -17,7 +17,7 @@ export default class NavBar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu stackable inverted fixed="top" borderless size="massive" className="Navbar">
+      <Menu stackable inverted fixed={this.props.windowWidth < 768 ? "" : "top"} borderless size="massive" className="Navbar">
         <Menu.Item
           as={Link} to='/'
           name='Logo'
