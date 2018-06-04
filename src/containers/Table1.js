@@ -12,7 +12,7 @@ class Table1 extends Component {
   componentDidMount() {
     this.props.initiateSession();
   }
-
+  
   searchedQueryLayout = () => {
     let {searchedQuery} = this.props;
     let entries = []
@@ -42,6 +42,8 @@ class Table1 extends Component {
   handleBtnOnClick = (e) => {
     e.currentTarget.children[0].children[0].click()
   }
+
+
 
   render() {
     const {sequences1, fetchAutoComplete, autoCompleteCollection, searchTable1, resultFetching, searchedQuery, errors, clearErrors, jobId, getTable1} = this.props;
@@ -99,7 +101,7 @@ class Table1 extends Component {
         <Container>
           <Segment basic>
             <Dimmer active={resultFetching} inverted>
-              <Loader inverted>Searching...</Loader>
+              <Loader inverted>Content is loading...<br/> It may take a while if the search is large. <br /> qAlternatively consider downloading the database to play with it locally.</Loader>
             </Dimmer>
             <DisplayTableOne sequences={sequences1} jobId={jobId} getTable1={getTable1}/>
           </Segment>

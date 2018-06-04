@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Grid, Header, Segment, Image} from "semantic-ui-react"
+import {Grid, Header, Segment} from "semantic-ui-react"
 
 import TopCarousel from '../components/TopCarousel.jsx'
 import ExampleCarousel from '../components/ExampleCarousel.jsx'
-import Fig1 from '../photoAssets/Fig1.jpg';
+// import Fig1 from '../photoAssets/Fig1.jpg';
 
 class App extends Component {
   constructor(props) {

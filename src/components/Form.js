@@ -139,13 +139,12 @@ class Form extends Component {
                 <SubmitButton resultFetching={resultFetching} remoteSubmit={this.remoteSubmitHandler} popupBool={this.state.identity && this.state.eValue && (this.state.hitRatio || this.state.hitLength)}/>
                 <button hidden type='submit' ref={(button) => {this.formButton = button}} />
               </div>
-              
-              
             </form>
+            <div>
+              <br/>
+              <ErrorsDisplay errors={errors} clearErrors={clearErrors}/>
+            </div>
           </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-            <ErrorsDisplay errors={errors} clearErrors={clearErrors}/>
         </Grid.Row>
       </Grid>
     )

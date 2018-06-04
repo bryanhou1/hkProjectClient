@@ -7,7 +7,7 @@ class ErrorsDisplay extends Component {
     const {errors, clearErrors} = this.props;
     return (
       <div>
-        { errors.length !== 0 ? <Message negative header='Warning!' content={errors[0]} onDismiss={clearErrors}/> : null }
+        { errors.length !== 0 ? <Message error header='Warning!' content={errors[0]} onDismiss={clearErrors}/> : null }
       </div>
     )
   }
