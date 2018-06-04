@@ -110,7 +110,7 @@ export const DISPLAY_LINKS = {
 // Phylum, Class, Order, Family, Genus, Species, Strain: 
 
 export const DISPLAY_DESC = {
-  [DB.ARG]: "ARG reference sequences",
+  [DB.ARG]: "ARG reference sequences, corresponds with ARGs-OAP 1.0",
   [DB.SUBTYPE]: "ARG subtypes/genotypes",
   [DB.TYPE]: "ARG types/phenotypes",
   [DB.GENOME]: "genbank assembly accession",

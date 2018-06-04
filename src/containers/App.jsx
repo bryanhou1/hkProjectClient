@@ -47,9 +47,8 @@ class App extends Component {
   )
 
   searchableParams = () => (
-    <Segment basic>
-      <div>
-        <h2>What can be searched?</h2>
+    <div>
+        <h2>Searchable Parameters</h2>
         <ul>
           <li><strong>ARGs</strong></li>
           <ul>
@@ -68,15 +67,14 @@ class App extends Component {
             <li>Identity, Hit-length or Hit-ratio, and E-value</li>
           </ul>
         </ul>
-      </div>
-    </Segment>
+    </div>
   )
 
   downloadExplanation = () => (
-    <Segment basic>
-      <h2>What can be downloaded?</h2>
+    <div>
+      <h2>Downloadable Content</h2>
       <p>The occurrence of ARGs in different taxonomy (Whole Genomes) and the abundance of ARGs in different habitats (Metagenomes) are available for download post search. Three different abundance units (copy per cell, copy per 16S and ppm) are provided for ease of comparison.<br /></p>
-    </Segment>
+    </div>
   )
 
   // pic1 = () => (
@@ -94,7 +92,7 @@ class App extends Component {
 
   citation = () => (
     <div>
-      <h2>Citation:</h2>
+      <h2>How to Cite</h2>
       <ul>
         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque consequatur distinctio, rerum maxime debitis ratione itaque sapiente illum, ea error, odit minima ipsa? Excepturi quidem in labore nobis at quas.</li>
       </ul>
@@ -138,19 +136,16 @@ class App extends Component {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row divided>
-              <Grid.Column width={this.gridWidth-5}>
+              <Grid.Column width={Math.floor(this.gridWidth/2)}>
                 {this.dataSource()}
               </Grid.Column>
-              <Grid.Column width={5}>
-                {this.searchableParams()}
+              <Grid.Column width={Math.ceil(this.gridWidth/2)}>
+                <Segment basic>
+                  {this.searchableParams()}
+                  {this.downloadExplanation()}
+                </Segment>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
-              <Grid.Column width={this.gridWidth}>
-                {this.downloadExplanation()}
-              </Grid.Column>
-            </Grid.Row>
-
             <Grid.Row>
               <Grid.Column width={this.gridWidth}>
                 {this.exampleUsage()}

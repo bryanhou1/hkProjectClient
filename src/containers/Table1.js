@@ -101,7 +101,7 @@ class Table1 extends Component {
         <Container>
           <Segment basic>
             <Dimmer active={resultFetching} inverted>
-              <Loader inverted>Content is loading...<br/> It may take a while if the search is large. <br /> qAlternatively consider downloading the database to play with it locally.</Loader>
+              <Loader inverted>Content is loading...<br/> It may take a while if the search is large. <br /></Loader>
             </Dimmer>
             <DisplayTableOne sequences={sequences1} jobId={jobId} getTable1={getTable1}/>
           </Segment>

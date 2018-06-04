@@ -29,7 +29,7 @@ const About = () => {
           <Grid celled="internally">
             <Grid.Row>
               <Grid.Column mobile={4} tablet={3} computer={2}>
-                <Image src={TeamLogo} size="small" />
+                <Image src={TeamLogo} as='a' href='http://web.hku.hk/~zhangt/ZhangT.htm' target='_blank'size="small" />
               </Grid.Column>
               <Grid.Column mobile={12} tablet={13} computer={14} >
                 <h2>Environmental Biotechnology Lab</h2>

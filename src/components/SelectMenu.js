@@ -19,9 +19,10 @@ class SelectMenu extends Component {
   
   handleChange = (e) => {
     this.setState({selectValue: e.target.value, value: ""});
-    if (this.props.autoCompleteCollection[e.target.value].length === 0 ) {
-      this.props.fetchAutoComplete(e.target.value, e.target.id.match(/-(.+)-/)[1]);
-    }
+    // will autoload some autocomplete first
+    // if (this.props.autoCompleteCollection[e.target.value].length === 0 ) {
+    //   this.props.fetchAutoComplete(e.target.value, e.target.id.match(/-(.+)-/)[1]);
+    // }
   }
 
   handleTextChange = (e) => {

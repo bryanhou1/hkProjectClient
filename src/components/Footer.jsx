@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Container, Button, Icon, Header, List, Segment} from 'semantic-ui-react'
 import TeamLogo from '../photoAssets/TeamLogo.png'
 
-export default class NavBar extends Component {
+export default class Footer extends Component {
   state = {}
 
   render() {
@@ -42,7 +42,9 @@ export default class NavBar extends Component {
                 </Container>
               </Grid.Column>
               <Grid.Column width={3} verticalAlign="middle">
-                <img src={TeamLogo} alt="HKU Environmental Biotechnology Lab" style={{width: "120px", height: "120px"}}/>
+                <a href="http://web.hku.hk/~zhangt/ZhangT.htm" target="_blank" rel="noopener noreferrer">
+                  <img src={TeamLogo} alt="HKU Environmental Biotechnology Lab" style={{width: "120px", height: "120px"}}/>
+                </a>
               </Grid.Column>
             </Grid.Row>
           </Grid>
