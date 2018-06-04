@@ -11,7 +11,7 @@ export default class NavBar extends Component {
   }
 
   handleDDClick = (e) => {
-    window.open(e.currentTarget.dataset.link,"_self")
+    window.open(e.currentTarget.dataset.link,e.currentTarget.dataset.target)
   }
   render() {
     const { activeItem } = this.state
@@ -61,9 +61,9 @@ export default class NavBar extends Component {
         <Menu.Menu position='right'>
           <Dropdown item text='Related Links' inverted="true">
             <Dropdown.Menu>
-              <Dropdown.Item onClick={this.handleDDClick} data-link="http://web.hku.hk/~zhangt/ZhangT.htm">Our Lab</Dropdown.Item>
-              <Dropdown.Item onClick={this.handleDDClick} data-link="https://smile.hku.hk/SARGs">Other Tools</Dropdown.Item>
-              <Dropdown.Item onClick={this.handleDDClick} data-link="about">Team</Dropdown.Item>
+              <Dropdown.Item onClick={this.handleDDClick} data-link="http://web.hku.hk/~zhangt/ZhangT.htm" data-target="_blank">Our Lab</Dropdown.Item>
+              <Dropdown.Item onClick={this.handleDDClick} data-link="https://smile.hku.hk/SARGs" data-target="_blank">Other Tools</Dropdown.Item>
+              <Dropdown.Item onClick={this.handleDDClick} data-link="about" data-target="_self">Team</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Menu>

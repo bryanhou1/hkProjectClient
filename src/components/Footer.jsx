@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Grid, Container, Button, Icon, Header, List, Segment } from 'semantic-ui-react'
+import { Grid, Container, Button, Icon, Header, List, Segment} from 'semantic-ui-react'
+import TeamLogo from '../photoAssets/TeamLogo.png'
 
 export default class NavBar extends Component {
   state = {}
@@ -21,7 +22,6 @@ export default class NavBar extends Component {
                 <List link inverted>
                   <List.Item as='a' href='http://web.hku.hk/~zhangt/ZhangT.htm'>HKU Environmental Biotechnology Lab</List.Item>
                   <List.Item as='a' href='https://smile.hku.hk/SARGs'>Other tools</List.Item>
-                  <List.Item as='a' href='#'>Team</List.Item>
                 </List>
               </Grid.Column>
               <Grid.Column width={7}>
@@ -40,6 +40,9 @@ export default class NavBar extends Component {
                     </a>
                   </Button>
                 </Container>
+              </Grid.Column>
+              <Grid.Column width={3} verticalAlign="middle">
+                <img src={TeamLogo} alt="HKU Environmental Biotechnology Lab" style={{width: "120px", height: "120px"}}/>
               </Grid.Column>
             </Grid.Row>
           </Grid>

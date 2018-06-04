@@ -1,6 +1,6 @@
 import React from 'react'
 import ResearchGate from '../photoAssets/researchGate.ico'
-import { Card, Button, Grid, Segment, Image, Divider} from 'semantic-ui-react'
+import { Card, Button, Grid, Image} from 'semantic-ui-react'
 import Anni from '../photoAssets/Anni.jpeg'
 import Bryan from '../photoAssets/Bryan.jpg'
 import Tong from '../photoAssets/Tong.jpg'

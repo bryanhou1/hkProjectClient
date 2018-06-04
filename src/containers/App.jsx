@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import {Grid, Header, Segment, Image} from "semantic-ui-react"
 
-import Carousel from '../components/Carousel.jsx'
+import TopCarousel from '../components/TopCarousel.jsx'
+import ExampleCarousel from '../components/ExampleCarousel.jsx'
 import Fig1 from '../photoAssets/Fig1.jpg';
 
 class App extends Component {
@@ -30,15 +31,65 @@ class App extends Component {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column width={this.gridWidth}>
-                <Carousel />
+                <TopCarousel />
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column width={this.gridWidth}>
                 <Segment basic>
                   <div>
-                    <h2>Introduction:</h2>
-                    <p>The ARGs-OSP aims to provide a global ARG profile covering the information of their phylogenetic and ecological distribution. Search and download functionality are designed for users to retrieve the occurrence of ARGs in different taxonomy and the abundance of ARGs in different habitats. Through data sharing, ARGs-OSP is expected to motivate and facilitate future studies into mining new information and knowledge from the combined data, without making repeated efforts in dataset processing. <br /></p>
+                    <h2>What is ARGs-OSP?</h2>
+                    <p>ARGs-OSP is online search platfrom that provides a global ARG profile covering the information of their phylogenetic and ecological distribution. Search and download functionality are designed for users to retrieve the occurrence of ARGs in different taxonomy and the abundance of ARGs in different habitats. Through data sharing, ARGs-OSP aims to motivate and facilitate future studies into mining new information and knowledge from the combined data, without making repeated efforts in dataset processing. <br /></p>
+                  </div>
+                </Segment>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row divided>
+              <Grid.Column width={this.gridWidth-5}>
+                <Segment basic>
+                    <div>
+                      <h2>Data Source:</h2>
+                      <p>We identified and quantified all the ARGs from two source using two standard pipelines, the ARGs online analysis platform (<a href="http://smile.hku.hk/SARGs">ARGs-OAP v1.0</a>)[1] and integron identification and visualization pipeline (I-VIP) (manuscript under review):<br /></p>
+                      <ul>
+                        <li><strong>Bacterial whole genome database (WGD):</strong> 54,718 bacterial genomes (7,770 complete genomes and 46,948 draft genomes with medium and high quality of more than 50% completeness from NCBI Genome database.</li>
+                        <li><strong>The Metagenome Database (MGD):</strong> 854 metagenomic datasets were downloaded from NCBI SRA database and MG-RAST, which were all generated through Illumina shotgun sequencing. The habitat information of the metadata of all samples was manually organized to categorize them into totally 25 eco-subtypes of 7 eco-types.</li>
+                      </ul>
+                      <p>The mothertables of the ARGs’ occurrence and abundance on ARGs-OSP are published along with the metadata information.</p>
+                    </div>
+                </Segment>
+              </Grid.Column>
+              <Grid.Column width={5}>
+                <Segment basic>
+                  <div>
+                    <h2>What can be searched on ARGs-OSP?</h2>
+                    <ul>
+                      <li><strong>ARGs</strong></li>
+                      <ul>
+                        <li>Sequence, Subtype and Type</li>
+                      </ul>
+                      <li><strong>The host information for whole genomes</strong></li>
+                      <ul>
+                        <li>Genome, Accession, Organism, Assembly level, Phylum, Class, Order, Family, Genus, Species, Strain, and Pathogen</li>
+                      </ul>
+                      <li><strong>The habitat information for metagenomes</strong></li>
+                      <ul>
+                        <li>Accession, Eco-subtype, and Eco-type</li>
+                      </ul>
+                      <li><strong>The searching criteria</strong></li>
+                      <ul>
+                        <li>Identity, Hit-length or Hit-ratio, and E-value</li>
+                      </ul>
+                    </ul>
+                  </div>
+                </Segment>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={this.gridWidth}>
+                <Segment basic>
+                  <div>
+                    <h2>What can be downloaded from ARGs-OSP?</h2>
+                    <p>The occurrence of ARGs in different taxonomy (Whole Genomes) and the abundance of ARGs in different habitats (Metagenomes) are available for download post search. Three different abundance units (copy per cell, copy per 16S and ppm) are provided for ease of comparison.<br /></p>
                   </div>
                 </Segment>
               </Grid.Column>
@@ -47,35 +98,16 @@ class App extends Component {
               <Grid.Column width={this.gridWidth}>
                 <Segment basic>
                   <Image name="Fig1" src={Fig1} rounded centered />
-                  <label htmlFor="Fig1">Fig. 1. The phylogenetic relationship of all 54,718 bacterial genomes of 45 phyla in WGD and the occurrence of ARGs (blue nodes) and Rank I ARGs (red nodes). The pathogenic strains were indicated by purple edges.</label>
+                  <label htmlFor="Fig1">Fig. 1. <em>The phylogenetic relationship of all 54,718 bacterial genomes of 45 phyla in WGD and the occurrence of ARGs (blue nodes) and Rank I ARGs (red nodes). The pathogenic strains were indicated by purple edges.</em></label>
                 </Segment>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row divided>
-              <Grid.Column width={this.gridWidth-8}>
-                <Segment basic>
-                    <div>
-                      <h2>Methods:</h2>
-                      <p>ARGs were identified and quantified using two standard pipelines, the ARGs online analysis platform (ARGs-OAP) [1] and integron identification and visualization pipeline (I-VIP) (manuscript under review).</p>
-                      <br />
-                    </div>
-                    <div>
-                      <h2>Target:</h2>
-                      <ul>
-                        <li>Antibiotic resistant genes (ARGs)</li>
-                        <li>Class 1 integrases (intI1)</li>
-                      </ul>
-                    </div>
-                </Segment>
-              </Grid.Column>
-              <Grid.Column width={8}>
+            <Grid.Row>
+              <Grid.Column width={this.gridWidth}>
                 <Segment basic>
                   <div>
-                    <h2>Current scale of datasets:</h2>
-                    <ul>
-                      <li>Whole Genome Database (WGD): 54,718 bacterial genomes (completeness ≥ 50%, contamination ≤ 10%) covering 32 bacterial phyla, 162 classes, 299 orders, 643 families, 1,986 genera, and 3,654 species.</li>
-                      <li>Metagenomes Database (MGD): 854 metagenomic datasets covering 25 eco-subtypes of 7 eco-types including the natural environments (water, sediment, soil, and permafrost) and the anthropogenic environments (WWTPs, animal feces and human feces).</li>
-                    </ul>
+                    <h2>What can be downloaded from ARGs-OSP?</h2>
+                    <p>The occurrence of ARGs in different taxonomy (Whole Genomes) and the abundance of ARGs in different habitats (Metagenomes) are available for download. Three different abundance units (copy per cell, copy per 16S and ppm) are provided for ease of comparison.<br /></p>
                   </div>
                 </Segment>
               </Grid.Column>
@@ -89,12 +121,28 @@ class App extends Component {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column width={this.gridWidth}>
+                  <h2>Example uses of ARGs-OSP</h2>
+                  
+                  <Grid centered>
+                    <Grid.Row>
+                      <Grid.Column mobile={15} tablet={10} computer={10}>
+                        <ExampleCarousel/> 
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                  <br/><br/>
+                  In additional to the usages above, the users can conveniently compare the global profile to the ARG results of their local samples from <a href="http://smile.hku.hk/SARGs">ARGs-OAP v1.0</a>.
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row>
+              <Grid.Column width={this.gridWidth}>
                 <div>
-                <h2>Citation:</h2>
-                <ul>
-                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque consequatur distinctio, rerum maxime debitis ratione itaque sapiente illum, ea error, odit minima ipsa? Excepturi quidem in labore nobis at quas.</li>
-                </ul>
-              </div>
+                  <h2>Citation:</h2>
+                  <ul>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque consequatur distinctio, rerum maxime debitis ratione itaque sapiente illum, ea error, odit minima ipsa? Excepturi quidem in labore nobis at quas.</li>
+                  </ul>
+                </div>
               </Grid.Column>
             </Grid.Row>
           </Grid>
