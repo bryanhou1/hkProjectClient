@@ -94,7 +94,10 @@ class App extends Component {
     <div>
       <h2>How to Cite</h2>
       <ul>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque consequatur distinctio, rerum maxime debitis ratione itaque sapiente illum, ea error, odit minima ipsa? Excepturi quidem in labore nobis at quas.</li>
+        <li><strong>ARGs-OSP: online searching platform for antibiotic resistance genes distribution in metagenomic database and bacterial whole genome database</strong><br/>
+          An Ni Zhang, Chen-Ju Hou, Li-Guan Li, Tong Zhang <br/>
+          bioRxiv 337675; doi: <a href="https://doi.org/10.1101/337675" target="_blank" rel="noopener noreferrer">https://doi.org/10.1101/337675</a>
+        </li>
       </ul>
     </div>
   )
@@ -169,5 +172,3 @@ class App extends Component {
 }
 
 export default App;
-
-
