@@ -19,10 +19,9 @@ import ReactGA from 'react-ga';
 
 
 ReactGA.initialize('UA-119855147-1');
-// import {ActionCableProvider} from 'react-actioncable-provider'
 
 const fireTracking = () => {
-  ReactGA.pageview(window.location.hash);
+  ReactGA.pageview(window.location.pathname + window.location.search);
 }
 
 const history = syncHistoryWithStore(browserHistory, store)
