@@ -21,8 +21,7 @@ class Carousel extends React.Component {
       infinite: true,
       arrows: true,
       fade: true,
-      cssEase: 'linear'
-      
+      cssEase: 'linear',
     };
     return (
       <Slider {...settings}>

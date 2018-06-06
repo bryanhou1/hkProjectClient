@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from './NavBar'
 import Footer from './Footer.jsx'
+import BrowserDetectionContainer from './BrowserDetectionContainer'
 export default class Layout extends Component {
   constructor(){
     super()
@@ -37,6 +38,7 @@ export default class Layout extends Component {
       <div>
         <Navbar windowWidth={this.state.windowWidth}/>
         <div style={this.state.styles}>
+          <BrowserDetectionContainer/>
           {this.props.children}
         </div>
         <Footer/>
